@@ -33,6 +33,11 @@ extension Bundle {
 
 // MARK: Files
 
+func getURLWithFileName(fileName: String, fileExtension: String) -> URL {
+    let bundle = Bundle(for: Utils.self)
+    return bundle.url(forResource: fileName, withExtension: fileExtension) ?? URL(fileURLWithPath: "Tests/Resources/JSON/\(fileName).\(fileExtension)")
+}
+
 func table(name: String) -> Table? {
     let bundle = Bundle(for: Utils.self)
     if let json = NSDataAsset(name: "\(name).catalog", bundle: bundle)?.json {
