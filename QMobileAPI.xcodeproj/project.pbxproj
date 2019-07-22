@@ -649,6 +649,8 @@
 		C588A32B22DDB43D003B9E27 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		C588A32D22DDB443003B9E27 /* HTTPCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCodeTests.swift; sourceTree = "<group>"; };
 		C5A59FD422DF0D8900C0FB38 /* RemoteActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteActionTests.swift; sourceTree = "<group>"; };
+		C5B6769D22E5B0D600A14F9C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		C5B6769E22E5B0FA00A14F9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FE0A77711F0A8091005DA036 /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		FE0A77741F0A815F005DA036 /* cat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cat.json; sourceTree = "<group>"; };
 		FE0A77751F0A815F005DA036 /* catalog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
@@ -1292,6 +1294,8 @@
 		48ECC8DF1E8A9AF50086E4A5 = {
 			isa = PBXGroup;
 			children = (
+				C5B6769E22E5B0FA00A14F9C /* README.md */,
+				C5B6769D22E5B0D600A14F9C /* Package.swift */,
 				482AF3901E8AAFF500F6E8D3 /* Sources */,
 				85FD366AF1B7280FBD3404D2 /* Frameworks */,
 				48ECC8EA1E8A9AF50086E4A5 /* Products */,
