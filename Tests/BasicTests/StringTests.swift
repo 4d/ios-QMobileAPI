@@ -11,6 +11,19 @@ import Foundation
 import XCTest
 @testable import QMobileAPI
 
+extension ProcessInfo {
+    
+    static var isSwiftRuntime: Bool {
+
+        let envVar = ProcessInfo.processInfo.environment["_"]
+        if let check = envVar {
+            print(check)
+            return check == checkTestingWithSPM
+        }
+        return false
+    }
+}
+
 class StringTests : XCTestCase {
     
     let str: String = "abcdef"
@@ -81,7 +94,7 @@ class StringTests : XCTestCase {
     
     func testLocalized() {
         // Checking if we are testing with XCode or with SPM in terminal
-        if (ProcessInfo.processInfo.environment.description.contains(checkTestingWithSPM)) {
+        if (ProcessInfo.isSwiftRuntime) {
             return
         }
         XCTAssertEqual("api.request".localized, "Network issue")
@@ -90,7 +103,7 @@ class StringTests : XCTestCase {
     
     func testLocalizedWithComment() {
         // Checking if we are testing with XCode or with SPM in terminal
-        if (ProcessInfo.processInfo.environment.description.contains(checkTestingWithSPM)) {
+        if (ProcessInfo.isSwiftRuntime) {
             return
         }
         let localized = "api.request".localized(with: "sample comment", bundle: Bundle(for: APIManager.self))

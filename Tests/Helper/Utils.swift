@@ -19,7 +19,7 @@ import AppKit
 #endif
 
 let tablesNames = ["CLIENTS", "INVOICES", "PRODUCTS"]
-let checkTestingWithSPM = #""_": "/usr/bin/swift""#
+let checkTestingWithSPM = "/usr/bin/swift"
 
 private class Utils {
 
