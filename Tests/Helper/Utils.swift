@@ -19,7 +19,6 @@ import AppKit
 #endif
 
 let tablesNames = ["CLIENTS", "INVOICES", "PRODUCTS"]
-let checkTestingWithSPM = "/usr/bin/swift"
 
 private class Utils {
 
@@ -112,6 +111,20 @@ extension XCTestCase {
     }
 
 }
+
+extension ProcessInfo {
+    
+    static var isSwiftRuntime: Bool {
+        
+        let envVar = ProcessInfo.processInfo.environment["_"]
+        if let check = envVar {
+            print(check)
+            return check == "/usr/bin/swift"
+        }
+        return false
+    }
+}
+
 /*
 import Alamofire
 

@@ -11,18 +11,6 @@ import Foundation
 import XCTest
 @testable import QMobileAPI
 
-extension ProcessInfo {
-    
-    static var isSwiftRuntime: Bool {
-
-        let envVar = ProcessInfo.processInfo.environment["_"]
-        if let check = envVar {
-            print(check)
-            return check == checkTestingWithSPM
-        }
-        return false
-    }
-}
 
 class StringTests : XCTestCase {
     
