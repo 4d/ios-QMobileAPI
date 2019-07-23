@@ -19,6 +19,7 @@ import AppKit
 #endif
 
 let tablesNames = ["CLIENTS", "INVOICES", "PRODUCTS"]
+let checkTestingWithSPM = #""_": "/usr/bin/swift""#
 
 private class Utils {
 
@@ -33,9 +34,12 @@ extension Bundle {
 
 // MARK: Files
 
-func getURLWithFileName(fileName: String, fileExtension: String) -> URL {
-    let bundle = Bundle(for: Utils.self)
-    return bundle.url(forResource: fileName, withExtension: fileExtension) ?? URL(fileURLWithPath: "Tests/Resources/JSON/\(fileName).\(fileExtension)")
+extension String {
+    var testBundleUrl: URL {
+        let bundle = Bundle(for: Utils.self)
+        let url = URL(fileURLWithPath: self)
+        return bundle.url(forResource: url.deletingPathExtension().lastPathComponent, withExtension: url.pathExtension) ?? url
+    }
 }
 
 func table(name: String) -> Table? {
@@ -47,10 +51,9 @@ func table(name: String) -> Table? {
         }
         return table
     }
-    guard let url = bundle.url(forResource: "\(name).catalog", withExtension: "json") else {
-        XCTFail("File not found to test \(name)")
-        return nil
-    }
+
+    let url = "Tests/Resources/Sample/Table/\(name).catalog.json".testBundleUrl
+    
     guard let data = try? Data(contentsOf: url, options: []) else {
         XCTFail("Failed to read data for table \(name) at url \(url)")
         return nil
@@ -73,6 +76,7 @@ func json(name: String) -> JSON? {
         XCTFail("File not found to test \(name) data")
         return nil
     }
+    
     guard let data = try? Data(contentsOf: url, options: []) else {
         XCTFail("Failed to read data for table \(name) at url \(url)")
         return nil

@@ -12,6 +12,8 @@ import Alamofire
 @testable import QMobileAPI
 
 class CodableTests: XCTestCase {
+    
+    let jsonPath = "Tests/Resources/JSON"
 
     override func setUp() {
         super.setUp()
@@ -36,8 +38,8 @@ class CodableTests: XCTestCase {
     }
 
     func testInfoJSON() {
-        if let url = Bundle(for: JSONTests.self).url(forResource: "info", withExtension: "json"),
-            let value = Info(fileURL: url) {
+        let url = "\(jsonPath)/info.json".testBundleUrl
+        if let value = Info(fileURL: url) {
 
             do {
                 let data = try JSONEncoder().encode(value)
@@ -52,9 +54,8 @@ class CodableTests: XCTestCase {
     }
 
     func testCatalogJson() {
-        if let url = Bundle(for: JSONTests.self).url(forResource: "catalog", withExtension: "json"),
-            let value = Catalog(fileURL: url) {
-
+        let url = "\(jsonPath)/catalog.json".testBundleUrl
+        if let value = Catalog(fileURL: url) {
             do {
                 let data = try JSONEncoder().encode(value)
                 let newValue = try JSONDecoder().decode(Catalog.self, from: data)
@@ -69,9 +70,9 @@ class CodableTests: XCTestCase {
 
 
     func testDataStoreClass() {
-        if let url = Bundle(for: JSONTests.self).url(forResource: "cat", withExtension: "json"),
-            let value = Table(fileURL: url) {
-
+        let url = "\(jsonPath)/cat.json".testBundleUrl
+        if let value = Table(fileURL: url) {
+            
             do {
                 let data = try JSONEncoder().encode(value)
                 let newValue = try JSONDecoder().decode(Table.self, from: data)
@@ -85,9 +86,9 @@ class CodableTests: XCTestCase {
     }
 
     func testError() {
-        if let url = Bundle(for: JSONTests.self).url(forResource: "erreur", withExtension: "json"),
-            let value = RestErrors(fileURL: url) {
-
+        let url = "\(jsonPath)/erreur.json".testBundleUrl
+        if let value = RestErrors(fileURL: url) {
+            
             do {
                 let data = try JSONEncoder().encode(value)
                 let newValue = try JSONDecoder().decode(RestErrors.self, from: data)

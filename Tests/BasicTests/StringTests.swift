@@ -80,11 +80,19 @@ class StringTests : XCTestCase {
     }
     
     func testLocalized() {
+        // Checking if we are testing with XCode or with SPM in terminal
+        if (ProcessInfo.processInfo.environment.description.contains(checkTestingWithSPM)) {
+            return
+        }
         XCTAssertEqual("api.request".localized, "Network issue")
         XCTAssertEqual("".localized, "")
     }
     
     func testLocalizedWithComment() {
+        // Checking if we are testing with XCode or with SPM in terminal
+        if (ProcessInfo.processInfo.environment.description.contains(checkTestingWithSPM)) {
+            return
+        }
         let localized = "api.request".localized(with: "sample comment", bundle: Bundle(for: APIManager.self))
         XCTAssertEqual(localized, "Network issue")
     }

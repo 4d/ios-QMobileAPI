@@ -15,6 +15,8 @@ import Result
 
 class RemoteUploadTests: XCTestCase {
     let requestTimeout: TimeInterval = 5
+    
+    let imagePath = "Tests/Resources/image.jpg"
 
     let instance = APIManager.instance
 
@@ -31,10 +33,8 @@ class RemoteUploadTests: XCTestCase {
     func testUpload() {
         let expectation = self.expectation()
 
-        guard let url = Bundle(for: RemoteUploadTests.self).url(forResource: "image", withExtension: "jpg") else {
-            XCTFail("No file to test upload")
-            return
-        }
+        let url = imagePath.testBundleUrl
+        
         let cancellable = instance.upload(url: url) { result  in
             switch result {
             case .success(let data):
@@ -55,11 +55,8 @@ class RemoteUploadTests: XCTestCase {
 
     func testUploadData() {
         let expectation = self.expectation()
-        
-        guard let url = Bundle(for: RemoteUploadTests.self).url(forResource: "image", withExtension: "jpg") else {
-            XCTFail("No file to test upload")
-            return
-        }
+
+        let url = imagePath.testBundleUrl
 
         guard let data = try? Data(contentsOf: url, options: []) else {
             XCTFail("Failed to read data for all table at url \(url)")

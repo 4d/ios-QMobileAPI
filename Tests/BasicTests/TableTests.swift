@@ -12,6 +12,9 @@ import XCTest
 import SwiftyJSON
 
 class TableTests: XCTestCase {
+    
+    let jsonPath = "Tests/Resources/JSON"
+    let jsonSampleTablePath = "Tests/Resources/Sample/Table"
 
     override func setUp() {
         super.setUp()
@@ -41,13 +44,9 @@ class TableTests: XCTestCase {
     }
 
     func testJSONTables() {
-//        let bundle = Bundle(for: type(of: self))
-//        guard let url = bundle.url(forResource: "catalogClient", withExtension: "json") else {
-//            XCTFail("File not found to test all tables parsing")
-//            return
-//        }
-        let url = getURLWithFileName(fileName: "catalogClient", fileExtension: "json")        
-
+        
+        let url = "\(jsonSampleTablePath)/catalogClient.json".testBundleUrl
+        
         guard let data = try? Data(contentsOf: url, options: []) else {
             XCTFail("Failed to read data for all table at url \(url)")
             return
@@ -79,12 +78,8 @@ class TableTests: XCTestCase {
     }
 
     func testJSONTablesWithNoKey() {
-//        let bundle = Bundle(for: type(of: self))
-//        guard let url = bundle.url(forResource: "catalog", withExtension: "json") else {
-//            XCTFail("File not found to test all tables parsing")
-//            return
-//        }
-       let url = getURLWithFileName(fileName: "catalog", fileExtension: "json")
+
+        let url = "\(jsonPath)/catalog.json".testBundleUrl
         
         guard let data = try? Data(contentsOf: url, options: []) else {
             XCTFail("Failed to read data for all table at url \(url)")
@@ -103,12 +98,8 @@ class TableTests: XCTestCase {
     }
 
     func testJSONFromFile() {
-//        let bundle = Bundle(for: type(of: self))
-//        guard let url = bundle.url(forResource: "catalog", withExtension: "json") else {
-//            XCTFail("File not found to test JSON from file")
-//            return
-//        }
-        let url = getURLWithFileName(fileName: "catalog", fileExtension: "json")
+
+        let url = "\(jsonPath)/catalog.json".testBundleUrl
 
         guard let json = try? JSON(fileURL: url) else {
             XCTFail("File not JSON parsable") // XXX show errors
@@ -132,12 +123,8 @@ class TableTests: XCTestCase {
     }
 
     func testJSONFromUnknownFile() {
-//        let bundle = Bundle(for: type(of: self))
-//        guard let url = bundle.url(forResource: "catalog", withExtension: "json") else {
-//            XCTFail("File not found to test JSON from file")
-//            return
-//        }
-        let url = getURLWithFileName(fileName: "catalog", fileExtension: "json")
+
+        let url = "\(jsonPath)/catalog.json".testBundleUrl
         
         let json = try? JSON(fileURL: url.appendingPathExtension("fake"))
         XCTAssertTrue(json?.isEmpty ?? true)
@@ -154,16 +141,6 @@ class TableTests: XCTestCase {
 
         XCTAssertEqual(dico["dataClasses"] as? String, "name")
     }
-    
-//    func getURL(fileName: String, fileExtension: String) -> URL {
-//        let bundle = Bundle(for: type(of: self))
-//        if let url = bundle.url(forResource: fileName, withExtension: fileExtension) {
-//            return url
-//        } else {
-//            return URL(fileURLWithPath: "Tests/Resources/JSON/\(fileName).\(fileExtension)")
-//        }
-//    }
-
 }
 
 struct TestJSONable: JSONDecodable {
