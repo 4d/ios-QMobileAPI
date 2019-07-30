@@ -327,14 +327,16 @@ extension APIError {
     }
 
     public var responseString: String? {
+        return moyaError?.responseString
+    }
+}
+
+public extension MoyaError {
+    var responseString: String? {
         guard let response = response else {
             return nil
         }
         return String(data: response.data, encoding: .utf8)
-    }
-    // @deprecated, use responseString
-    public var reponseString: String? {
-        return responseString
     }
 }
 
