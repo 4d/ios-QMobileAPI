@@ -22,13 +22,19 @@ public protocol AttributeType: Codable {
 
 /// Represent the attribute type for a relation.
 public struct AttributeRelativeType: RawRepresentable {
+
+    public static let suffix = "Collection"
+
     public typealias RawValue = String
     public var rawValue: String
 
     /// Table destination of relation
-    public var relationTable: String {
+    public lazy var relationTable: String = {
+        if isToMany, rawValue.hasSuffix(AttributeRelativeType.suffix) {
+            return String(rawValue.dropLast(AttributeRelativeType.suffix.count))
+        }
         return rawValue
-    }
+    } ()
     /// Is it a to many relation shipt.
     public var isToMany: Bool = false
     /// Optionnal information to know which field we want to expand for this relation.

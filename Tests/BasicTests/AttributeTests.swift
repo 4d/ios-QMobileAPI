@@ -176,7 +176,17 @@ class AttributeTests: XCTestCase {
 
         let compound = stringFilter && addFilter
         XCTAssertEqual(compound.query, "\(query) AND \(query)")
-   }
+    }
+
+    func testAttributeRelativeType() {
+        let tableName = "table"
+        var type = AttributeRelativeType(rawValue: "table")
+        XCTAssertEqual(type.relationTable, tableName)
+
+        type = AttributeRelativeType(rawValue: "\(tableName)Collection")
+        type.isToMany = true
+        XCTAssertEqual(type.relationTable, tableName)
+    }
 
 }
 
