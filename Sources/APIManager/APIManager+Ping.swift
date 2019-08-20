@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Result
+
 import class Alamofire.NetworkReachabilityManager
 
 public typealias NetworkReachabilityManager = Alamofire.NetworkReachabilityManager

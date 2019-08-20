@@ -9,7 +9,7 @@
 import XCTest
 @testable import QMobileAPI
 import Moya
-import Result
+
 
 class TargetTests: XCTestCase {
     

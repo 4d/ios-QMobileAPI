@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import Prephirences
-import Result
 
 public class ItunesAPI {
     // Lookup application in itunes store.

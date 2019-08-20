@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 extension APIManager {
     public typealias CompletionStatusHandler = ((Result<Status, APIError>) -> Void)

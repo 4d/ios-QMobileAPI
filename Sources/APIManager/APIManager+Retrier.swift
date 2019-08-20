@@ -9,9 +9,14 @@
 import Alamofire
 import Foundation
 
-extension APIManager: RequestRetrier {
+extension APIManager: RequestInterceptor {
+
+    public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        completion(.doNotRetry)
+    }
+
     // Implement mecanism to retry request if some errors occurs
-    public func should(_ manager: SessionManager, retry request: Request, with error: Swift.Error, completion: @escaping RequestRetryCompletion) {
+    /*public func should(_ manager: Session, retry request: Request, with error: Swift.Error, completion: @escaping RequestRetryCompletion) {
         /*// check info from error or request...
         if let retryable = error as? Retryable, let retry = retryable.retry {
             completion(retry.maxAttempts > request.retryCount, retry.interval)
@@ -35,7 +40,7 @@ extension APIManager: RequestRetrier {
         } else {
            */ completion(false, 0)
         /*}*/
-    }
+    }*/
 
     private typealias RefreshCompletion = (_ succeeded: Bool) -> Void
 

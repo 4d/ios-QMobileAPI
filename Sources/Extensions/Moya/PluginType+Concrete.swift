@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 public final class PreparePlugin: PluginType {
     public typealias Closure = (_ request: URLRequest, _ target: TargetType) -> URLRequest

@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 @testable import QMobileAPI
 import Moya
-import Result
+
 
 class RemoteUploadTests: XCTestCase {
     let requestTimeout: TimeInterval = 5

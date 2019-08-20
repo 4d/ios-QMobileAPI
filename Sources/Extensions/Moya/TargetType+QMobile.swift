@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Result
+
 import protocol Alamofire.URLConvertible
 
 // MARK: TargetType stubbed

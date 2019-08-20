@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 /// An error from data store
 public enum APIError: Swift.Error {

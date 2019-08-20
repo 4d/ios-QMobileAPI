@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 extension APIManager {
     public typealias CompletionWebTestInfoHandler = ((Result<WebTestInfo, APIError>) -> Void)

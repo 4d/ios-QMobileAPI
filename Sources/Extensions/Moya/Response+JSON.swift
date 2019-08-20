@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Result
+
 import SwiftyJSON
 
 extension Response {
@@ -43,17 +43,13 @@ extension Response {
     }
 }
 
-// MARK: Result
-extension Result where Error: ErrorConvertible {
-    public static func mapOtherError(_ error: Swift.Error) -> Result<Value, Error> {
-        if let std = error as? Error {
-            return .failure(std)
-        }
-        return .failure(Error.error(from: error))
-    }
+public protocol ErrorConvertible: Swift.Error {
+    static func error(from error: Swift.Error) -> Self
 }
 
-extension Result where Value: Response {
+// MARK: Result
+
+extension Result where Success: Response {
     func map<T: JSONDecodable, E: ErrorConvertible>(to type: T.Type) -> Result<T, E> {
         switch self {
         case .success(let response):

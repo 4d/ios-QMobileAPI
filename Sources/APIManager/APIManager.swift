@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import Alamofire
 import Moya
 import Prephirences
-import Result
 
-import enum Alamofire.ServerTrustPolicy
-import class Alamofire.ServerTrustPolicyManager
 /*import class Alamofire.RequestRetryCompletion*/
 
 /// Main class of framework, which allow to play with the 4D rest api.
@@ -111,7 +109,7 @@ public class APIManager {
     /// URL session configuration. Configure timeout, and other properties
     public lazy var configuration: URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+        configuration.httpAdditionalHeaders = HTTPHeaders.default.dictionary
 
         // TIPS: this properties work only at start up, add a change listener to change that
         if let timeout = Prephirences.sharedInstance["api.request.timeout"] as? TimeInterval {
@@ -136,56 +134,54 @@ public class APIManager {
 
     // MARK: configuration functions
 
-    open func serverTrustPolicyManager() -> ServerTrustPolicyManager? {
+    open func serverTrustManager() -> ServerTrustManager? {
         guard let host = self.base.baseURL.host  else {
             return nil
         }
-        let certificates = ServerTrustPolicy.certificates()
-        let publicKeys = ServerTrustPolicy.publicKeys()
+
+        let certificates =  Bundle.main.af.certificates
+        let publicKeys = Bundle.main.af.publicKeys
 
         if !certificates.isEmpty {
-            let serverTrustPolicies: [String: ServerTrustPolicy] = [
-                host: .pinCertificates(
-                    certificates: certificates,
-                    validateCertificateChain: true,
-                    validateHost: true
-                )
+            let evaluators = [
+                host: PinnedCertificatesTrustEvaluator(certificates: certificates,
+                                                       performDefaultValidation: false,
+                                                       validateHost: true)
             ]
-            return ServerTrustPolicyManager(policies: serverTrustPolicies)
+            return ServerTrustManager(evaluators: evaluators)
         } else if !publicKeys.isEmpty {
-            let serverTrustPolicies: [String: ServerTrustPolicy] = [
-                host: .pinPublicKeys(
-                    publicKeys: publicKeys,
-                    validateCertificateChain: true,
-                    validateHost: true
+            let evaluators: [String: ServerTrustEvaluating] = [
+                host: PublicKeysTrustEvaluator(keys: publicKeys,
+                                                performDefaultValidation: false,
+                                                validateHost: true
                 )
             ]
-            return ServerTrustPolicyManager(policies: serverTrustPolicies)
+            return ServerTrustManager(evaluators: evaluators)
         }
         if Prephirences.sharedInstance["server.trust"] as? Bool ?? Device.current.isSimulator {
-            let serverTrustPolicies: [String: ServerTrustPolicy] = [
-                host: .disableEvaluation
+            let evaluators: [String: ServerTrustEvaluating] = [
+                host: DisabledEvaluator()
             ]
-            return ServerTrustPolicyManager(policies: serverTrustPolicies)
+            return ServerTrustManager(evaluators: evaluators)
         }
         return nil
     }
 
-    /// Create a moya `Manager`
-    open func manager() -> Moya.Manager {
-        let manager = Manager(
+    /// Create a moya `Session`
+    open func session() -> Moya.Session {
+        var manager = Session(
             configuration: configuration,
-            serverTrustPolicyManager: serverTrustPolicyManager()
+            startRequestsImmediately: false,
+            interceptor: (Prephirences.sharedInstance["api.retrier.activated"] as? Bool ?? false) ? self: nil,
+            serverTrustManager: serverTrustManager()
         )
 
-        manager.startRequestsImmediately = false
         if Prephirences.sharedInstance["api.retrier.activated"] as? Bool ?? false {
-            manager.retrier = self
             logger.info("Request retrier mecanism activated")
         }
-        manager.backgroundCompletionHandler = {
-            logger.debug("Session manager end")
-        }
+        /* manager.backgroundCompletionHandler = {
+         logger.debug("Session manager end")
+         }*/
         // configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return manager
     }
@@ -255,7 +251,7 @@ public class APIManager {
     }
 
     /// Log all network info in debug
-    internal func logNetwork(_ separator: String, terminator: String, items: Any...) {
+    internal func logNetwork(_ separator: String, terminator: String, _ target: TargetType, items: Any...) {
         for item in items {
             logger.logln(item, level: self.networkLogLevel)
         }
@@ -319,7 +315,7 @@ extension APIManager {
             endpointClosure: self.endpoint,
             // requestClodure: ,  // XXX could add also requestClosure to modify 
             stubClosure: self.stubClosure(),
-            manager: self.manager(),
+            session: self.session(),
             plugins: self.plugins
         )
     }

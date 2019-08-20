@@ -9,7 +9,6 @@
 import Foundation
 
 import Moya
-import Result
 
 extension APIManager {
     public typealias CompletionAuthTokenHandler = ((Result<AuthToken, APIError>) -> Void)

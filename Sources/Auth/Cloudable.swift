@@ -5,10 +5,9 @@
 //  Created by Eric Marchand on 31/08/2017.
 //  Copyright © 2017 Eric Marchand. All rights reserved.
 //
-
+/*
 import CloudKit
 import Foundation
-import Result
 
 protocol Cloudable {}
 
@@ -30,3 +29,4 @@ extension Cloudable {
         }
     }
 }
+*/

@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 extension APIManager {
     // update a record using json data: string, dictionary, RecordJSON

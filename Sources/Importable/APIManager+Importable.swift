@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 extension APIManager {
     /// Get records using specific object builder.
