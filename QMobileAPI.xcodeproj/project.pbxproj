@@ -91,7 +91,6 @@
 		4816017D1EF8295E0051BD89 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 481601761EF8295E0051BD89 /* Alamofire.framework */; };
 		4816017E1EF8295E0051BD89 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 481601771EF8295E0051BD89 /* Moya.framework */; };
 		481601801EF8295E0051BD89 /* Prephirences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 481601791EF8295E0051BD89 /* Prephirences.framework */; };
-		481601811EF8295E0051BD89 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4816017A1EF8295E0051BD89 /* Result.framework */; };
 		481601821EF8295E0051BD89 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4816017B1EF8295E0051BD89 /* SwiftyJSON.framework */; };
 		481601831EF8295E0051BD89 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4816017C1EF8295E0051BD89 /* XCGLogger.framework */; };
 		4816018E1EF82A090051BD89 /* QMobileAPIStructureMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 4816018C1EF82A090051BD89 /* QMobileAPIStructureMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -163,7 +162,6 @@
 		48509B5E1EF2D25400B47E2E /* Deferred.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48509B5D1EF2D25400B47E2E /* Deferred.swift */; };
 		48509B5F1EF2D25800B47E2E /* Deferred.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48509B5D1EF2D25400B47E2E /* Deferred.swift */; };
 		485271A61E9386B700BABB16 /* Prephirences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A11E9386B700BABB16 /* Prephirences.framework */; };
-		485271A71E9386B700BABB16 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A21E9386B700BABB16 /* Result.framework */; };
 		485271A81E9386B700BABB16 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A31E9386B700BABB16 /* SwiftyJSON.framework */; };
 		485271A91E9386B700BABB16 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A41E9386B700BABB16 /* XCGLogger.framework */; };
 		485493EE1EF2C15E00FDD396 /* QMobileAPIStructure.h in Headers */ = {isa = PBXBuildFile; fileRef = 485493EC1EF2C15E00FDD396 /* QMobileAPIStructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -364,7 +362,6 @@
 		48FB2CC91E93972600F4F685 /* PRODUCTS.json in Resources */ = {isa = PBXBuildFile; fileRef = 482AF3B61E8AB1C800F6E8D3 /* PRODUCTS.json */; };
 		48FB2CCC1E93974A00F4F685 /* ObjcExceptionBridging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A01E9386B700BABB16 /* ObjcExceptionBridging.framework */; };
 		48FB2CCD1E93974A00F4F685 /* Prephirences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A11E9386B700BABB16 /* Prephirences.framework */; };
-		48FB2CCE1E93974A00F4F685 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A21E9386B700BABB16 /* Result.framework */; };
 		48FB2CCF1E93974A00F4F685 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A31E9386B700BABB16 /* SwiftyJSON.framework */; };
 		48FB2CD01E93974A00F4F685 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485271A41E9386B700BABB16 /* XCGLogger.framework */; };
 		48FBBFA41F546E2500E920B6 /* APIManager+Ping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FBBFA31F546E2500E920B6 /* APIManager+Ping.swift */; };
@@ -684,7 +681,6 @@
 				4816017D1EF8295E0051BD89 /* Alamofire.framework in Frameworks */,
 				481601821EF8295E0051BD89 /* SwiftyJSON.framework in Frameworks */,
 				481601831EF8295E0051BD89 /* XCGLogger.framework in Frameworks */,
-				481601811EF8295E0051BD89 /* Result.framework in Frameworks */,
 				481601801EF8295E0051BD89 /* Prephirences.framework in Frameworks */,
 				487F7FEF1F57F8A50064AF4B /* DeviceKit.framework in Frameworks */,
 			);
@@ -714,7 +710,6 @@
 			files = (
 				485271A91E9386B700BABB16 /* XCGLogger.framework in Frameworks */,
 				485271A81E9386B700BABB16 /* SwiftyJSON.framework in Frameworks */,
-				485271A71E9386B700BABB16 /* Result.framework in Frameworks */,
 				485271A61E9386B700BABB16 /* Prephirences.framework in Frameworks */,
 				48B2F0A91EA8D5C600F67871 /* Alamofire.framework in Frameworks */,
 				48B2F0A61EA8D5BD00F67871 /* Moya.framework in Frameworks */,
@@ -730,7 +725,6 @@
 				48B2F0AA1EA8D5C600F67871 /* Alamofire.framework in Frameworks */,
 				48FB2CCC1E93974A00F4F685 /* ObjcExceptionBridging.framework in Frameworks */,
 				48FB2CCD1E93974A00F4F685 /* Prephirences.framework in Frameworks */,
-				48FB2CCE1E93974A00F4F685 /* Result.framework in Frameworks */,
 				48FB2CCF1E93974A00F4F685 /* SwiftyJSON.framework in Frameworks */,
 				48B2F0A71EA8D5BD00F67871 /* Moya.framework in Frameworks */,
 				48FB2CD01E93974A00F4F685 /* XCGLogger.framework in Frameworks */,
@@ -1740,7 +1734,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/ObjcExceptionBridging.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Prephirences.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/XCGLogger.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
@@ -1752,7 +1745,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
