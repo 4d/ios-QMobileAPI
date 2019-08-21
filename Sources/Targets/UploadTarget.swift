@@ -27,6 +27,7 @@ public class UploadTarget: ChildTargetType {
     }
 
     let provider: MultipartFormData.FormDataProvider
+    private let multipart = false // seems to be not supported
     public let name: String
     public let fileName: String
     public let mimeType: String
@@ -35,32 +36,56 @@ public class UploadTarget: ChildTargetType {
     var contentType: String?
     var rawPict: Any?
 
-    var childPath: String {
-        var string = "$upload"
+    let childPath = "$upload"
 
-        if let rawPict = rawPict {
-            string += "?$rawPict=\(rawPict)"
-        } else {
-            string += "?$binary=true"
-        }
-        if let timeout = timeout {
-            string += "&$timeout=\(timeout)"
-        }
-        return string
-    }
     public let method = Moya.Method.post
 
-    public var task: Task {
+    public var parameters: [String: String]? {
+        var parameters: [String: String] = [:]
         if rawPict != nil {
-           return .requestParameters(parameters: ["$rawPict": "true"], encoding: URLEncoding.default)
+            parameters ["$rawPict"] = "true" // XXX maybe allow set rawpicy format if strings
+        } // else  binary = true?
+        if let timeout = timeout {
+            parameters ["$timeout"] = "\(timeout)"
         }
-        return .requestPlain
+        return parameters.isEmpty ? nil: parameters
     }
+
+    public var task: Task {
+        if multipart {
+            if let parameters = parameters {
+                return .uploadCompositeMultipart(multipartBody, urlParameters: parameters) // seems to be not supported
+            }
+            return .uploadMultipart(multipartBody)
+        } else if let bodyData = bodyData {
+            if let parameters = parameters {
+                return .requestCompositeData(bodyData: bodyData, urlParameters: parameters)
+            }
+            return .requestData(bodyData)
+        } else { // no data
+            if let parameters = parameters {
+                return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            }
+            return .requestPlain
+        }
+    }
+
     public var sampleData: Data {
         return stubbedData("restupload")
     }
 
-    public var multipartBody: [MultipartFormData]? {
+    public var bodyData: Data? {
+        switch provider {
+        case .data(let data):
+            return data
+        case .file(let url):
+            return try? Data(contentsOf: url)
+        default:
+            return nil // not implemented
+        }
+    }
+
+    public var multipartBody: [MultipartFormData] {
         return [
             MultipartFormData(provider: provider, name: name, fileName: fileName, mimeType: mimeType)
         ]

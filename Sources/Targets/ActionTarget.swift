@@ -122,7 +122,7 @@ extension UploadResult: ActionParameterEncodable {
         return self.id
     }
     public func metadata() -> Any? {
-        return "uploadedPicture" // XXX maybe uploadedBlob ? so if implemented or maybe have only one key uploaded
+        return "uploaded"
     }
 }
 
