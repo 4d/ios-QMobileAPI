@@ -144,21 +144,11 @@ extension Attribute: JSONDecodable {
             logger.warning("No name in attribute \(json)")
             return nil
         }
-        guard let transformer = AttributeNameTransformer.find(for: name) else {
-            if let kind = json["kind"].attributeKind {
-                switch kind {
-                case .relatedEntity, .relatedEntities:
-                    logger.debug("Invalid attribute \(name). Attribute must contains only alphabetic characters. Attribute will be skipped")
-
-                default:
-                    logger.warning("Invalid attribute \(name). Attribute must contains only alphabetic characters. Attribute will be skipped")
-                }
-            } else {
-                logger.warning("No kind or unknown kind, \(json["kind"]). Attribute \(name) will be skipped")
-            }
-            return nil
+        if let transformer = AttributeNameTransformer.find(for: name) {
+            self.nameTransformer = transformer
+        } else {
+            logger.warning("Invalid attribute \(name). Attribute must contains only alphabetic characters. Attribute will be skipped")
         }
-        self.nameTransformer = transformer
         guard let scope = json["scope"].attributeScope else {
             logger.warning("No scope or unknown scope, \(json["scope"]). Attribute \(name) will be skipped")
             return nil
