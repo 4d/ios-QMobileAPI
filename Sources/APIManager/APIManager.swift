@@ -169,7 +169,7 @@ public class APIManager {
 
     /// Create a moya `Session`
     open func session() -> Moya.Session {
-        var manager = Session(
+        let manager = Session(
             configuration: configuration,
             startRequestsImmediately: false,
             interceptor: (Prephirences.sharedInstance["api.retrier.activated"] as? Bool ?? false) ? self: nil,
