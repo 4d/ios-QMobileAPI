@@ -5,18 +5,27 @@
         "package": "Alamofire",
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
+          "branch": "HEAD",
+          "revision": "ab47c9774e0f4e6f0809de86165726893defef49",
+          "version": null
+        }
+      },
+      {
+        "package": "DeviceKit",
+        "repositoryURL": "https://github.com/devicekit/DeviceKit.git",
+        "state": {
           "branch": null,
-          "revision": "75bba56748359f297a83f620d45f72cf4ebee4e7",
-          "version": "4.8.2"
+          "revision": "24fbc1daad4ab1cd26433add46b6480af018b017",
+          "version": "2.1.0"
         }
       },
       {
         "package": "Moya",
         "repositoryURL": "https://github.com/Moya/Moya.git",
         "state": {
-          "branch": null,
-          "revision": "ae2ca8a51c0e28d67e59c46f55bb43dda89ca0d6",
-          "version": "13.0.1"
+          "branch": "HEAD",
+          "revision": "cdef4ea7ecb7818491c5b710a718077d9513dcbd",
+          "version": null
         }
       },
       {

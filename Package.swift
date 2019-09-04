@@ -36,5 +36,6 @@ let package = Package(
             name: "QMobileAPITests",
             dependencies: ["QMobileAPI"],
             path: "Tests")
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
