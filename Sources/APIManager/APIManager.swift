@@ -198,7 +198,8 @@ public class APIManager {
         #endif
 
         if logger.isEnabledFor(level: networkLogLevel) {
-            plugins.append(NetworkLoggerPlugin(verbose: true, cURL: false, output: self.logNetwork, responseDataFormatter: nil))
+            let configuration = NetworkLoggerPlugin.Configuration(output: self.logNetwork, logOptions: [.verbose])
+            plugins.append(NetworkLoggerPlugin(configuration: configuration))
         }
 
         /*// token: not possible with current Moya implementation
@@ -251,7 +252,7 @@ public class APIManager {
     }
 
     /// Log all network info in debug
-    internal func logNetwork(_ separator: String, terminator: String, _ target: TargetType, items: Any...) {
+    internal func logNetwork(_ target: TargetType, items: [String]) { // NetworkLoggerPlugin.Configuration.OutputType
         for item in items {
             logger.logln(item, level: self.networkLogLevel)
         }

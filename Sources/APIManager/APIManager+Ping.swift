@@ -37,23 +37,17 @@ extension APIManager {
         return cancellable
     }
 
-    public func reachability(handler: @escaping (NetworkReachabilityStatus) -> Void) -> Cancellable? {
+    public func reachability(handler: @escaping NetworkReachabilityManager.Listener) -> Cancellable? {
         if let reachabilityManager = NetworkReachabilityManager(host: base.baseURL.absoluteString) {
-            reachabilityManager.listener = { status in
-                handler(status)
-            }
-            reachabilityManager.startListening()
+            reachabilityManager.startListening(onUpdatePerforming: handler)
             return CancellableReachability(reachabilityManager: reachabilityManager)
         }
         return nil
     }
 
-    public static func reachability(handler: @escaping (NetworkReachabilityStatus) -> Void) -> Cancellable? {
+    public static func reachability(handler: @escaping NetworkReachabilityManager.Listener) -> Cancellable? {
         if let reachabilityManager = NetworkReachabilityManager() {
-            reachabilityManager.listener = { status in
-                handler(status)
-            }
-            reachabilityManager.startListening()
+            reachabilityManager.startListening(onUpdatePerforming: handler)
             return CancellableReachability(reachabilityManager: reachabilityManager)
         }
         return nil
@@ -79,10 +73,10 @@ class CancellableReachability: Cancellable {
 extension NetworkReachabilityStatus {
 
     /// Whether the network is currently reachable.
-    public var isReachable: Bool { return isReachableOnWWAN || isReachableOnEthernetOrWiFi }
+    public var isReachable: Bool { return isReachableOnCellular || isReachableOnEthernetOrWiFi }
 
-    /// Whether the network is currently reachable over the WWAN interface.
-    public var isReachableOnWWAN: Bool { return self == .reachable(.wwan) }
+    /// Whether the network is currently reachable over the cellular interface.
+    public var isReachableOnCellular: Bool { return self == .reachable(.cellular) }
 
     /// Whether the network is currently reachable over Ethernet or WiFi interface.
     public var isReachableOnEthernetOrWiFi: Bool { return self == .reachable(.ethernetOrWiFi) }
