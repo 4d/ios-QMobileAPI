@@ -117,31 +117,20 @@ class DateFormatterTests: XCTestCase {
     }
     
     func testFirstDayOfMonth() {
-        let now = getEpochDate(date: Date())
-        let currentDay = Calendar.current.component(.day, from: now)
-        
-        let firstDayOfMonth = getEpochDate(date: Date.firstDayOfMonth)
-        var dateComponents = DateComponents()
-        dateComponents.setValue(currentDay - 1, for: .day) // +(today's number - first day) day
-        
-        if let shouldBeToday = Calendar.current.date(byAdding: dateComponents, to: firstDayOfMonth) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd-MMM-yyyy"
-            let nowString = formatter.string(from: Date())
-            let shouldBeTodayString = formatter.string(from: shouldBeToday)
-            XCTAssertEqual(nowString, shouldBeTodayString)
-        } else {
-            XCTFail("Failed to retrieve today's date from Date.firstDayOfMonth")
-        }
-    }
-    
-    /*
-     * Get a date with Epoch Calculation to avoid any Timezone inconsistency
-     */
-    func getEpochDate(date: Date) -> Date {
-        let timezoneOffset =  TimeZone.current.secondsFromGMT()
-        let epochDate = date.timeIntervalSince1970
-        let timezoneEpochOffset = (epochDate + Double(timezoneOffset))
-        return Date(timeIntervalSince1970: timezoneEpochOffset)
+        let cal = Calendar.current
+        var components = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
+        components.day = 1
+        components.hour = 0
+        components.minute = 0
+        components.second = 0
+        let firstDay = cal.date(from: components)!
+
+        let formatter =  DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
+        let firstDayString = formatter.string(from: firstDay)
+
+        let firstDayOfMonth = Date.firstDayOfMonth
+        let firstDayOfMonthString = formatter.string(from: firstDayOfMonth)
+        XCTAssertEqual(firstDayString, firstDayOfMonthString)
     }
 }
