@@ -13,12 +13,12 @@ let package = Package(
         .library(name: "QMobileAPI", targets: ["QMobileAPI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .revision("HEAD")),
-        .package(url: "https://github.com/Moya/Moya.git", .revision("HEAD")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.1"),
+        .package(url: "https://github.com/Moya/Moya.git", from: "14.0.0-beta.1"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "7.0.0"),
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
         .package(url: "https://github.com/phimage/Prephirences.git", .revision("HEAD")),
-        .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.1.0")
+        // .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.1.0")
     ],
     targets: [
         .target(
@@ -29,7 +29,7 @@ let package = Package(
                 "XCGLogger",
                 "SwiftyJSON",
                 "Prephirences",
-                "DeviceKit"
+                // "DeviceKit"
             ],
             path: "Sources"),
         .testTarget(
