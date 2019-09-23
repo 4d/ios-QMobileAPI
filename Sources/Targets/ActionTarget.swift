@@ -13,7 +13,7 @@ import Moya
 public typealias ActionParameters = [String: Any]
 
 /// An abstract target to execute actions by its name.
-open class ActionAbstractTarget: ChildTargetType {
+open class ActionAbstractTarget: ChildTargetType, TimeoutTarget {
 
     public enum ActionKey: String {
         case parameters, context, metadata
@@ -33,6 +33,7 @@ open class ActionAbstractTarget: ChildTargetType {
         return name
     }
 
+    public var timeoutInterval: TimeInterval = 5
     open var method = ActionAbstractTarget.defaultMethod
     public static let defaultMethod = Moya.Method.post
 
