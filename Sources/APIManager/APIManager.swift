@@ -222,7 +222,7 @@ public class APIManager {
 
         plugins.append(PreparePlugin { request, target in
             var request = request
-            if let timeoutTarget = target as? TimeoutTarget {
+            if let timeoutTarget = target as? TimeoutTarget, timeoutTarget > 0 {
                 request.timeoutInterval = timeoutTarget.timeoutInterval
             }
             return request

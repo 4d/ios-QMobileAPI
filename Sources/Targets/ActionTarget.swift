@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Prephirences
 
 /// Define alias for action parameters values.
 public typealias ActionParameters = [String: Any]
@@ -27,13 +28,17 @@ open class ActionAbstractTarget: ChildTargetType, TimeoutTarget {
     public init(parentTarget: ActionRootTarget, name: String) {
         self.parentTarget = parentTarget
         self.name = name
+
+        if let timeout = Prephirences.sharedInstance["api.action.timeout"] as? TimeInterval {
+            self.timeoutInterval = timeout
+        }
     }
 
     open var childPath: String {
         return name
     }
 
-    public var timeoutInterval: TimeInterval = 5
+    public var timeoutInterval: TimeInterval = -1
     open var method = ActionAbstractTarget.defaultMethod
     public static let defaultMethod = Moya.Method.post
 
