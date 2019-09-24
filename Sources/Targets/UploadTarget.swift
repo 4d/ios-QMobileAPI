@@ -144,6 +144,8 @@ struct MimeTypes {
         "gif": "image/gif",
         "jpeg": "image/jpeg",
         "jpg": "image/jpeg",
+        "heif": "image/heif",
+        "heic": "image/heic",
         "js": "application/javascript",
         "atom": "application/atom+xml",
         "rss": "application/rss+xml",
