@@ -215,7 +215,10 @@ extension APIError: LocalizedError {
     }
 
     public var failureReason: String? {
-        if let moyaError = self.error as? MoyaError,
+        guard let error = self.error else {
+            return nil
+        }
+        if let moyaError = error as? MoyaError,
             // work only if alamofire validation is activated
             let afError = moyaError.error as? AFError,
             case .responseValidationFailed(let reason) = afError,
@@ -226,12 +229,10 @@ extension APIError: LocalizedError {
             }
             // http error code is cryptic.
             return httpCode.message + " (\(code))"
-        } else if let error = self.error as? LocalizedError {
+        } else if let error = error as? LocalizedError {
             return error.errorDescription
-        } else if let error = self.error {
-            return error.localizedDescription
         }
-        return nil
+        return error.localizedDescription
     }
 
     public var recoverySuggestion: String? {
