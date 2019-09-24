@@ -244,10 +244,7 @@ struct MimeTypes {
     ]
 
     static func mimeType(for ext: String) -> String {
-        if extensionMapping.contains(where: { $0.0 == ext.lowercased() }) {
-            return extensionMapping[ext.lowercased()]!
-        }
-        return MimeTypes.default
+        return extensionMapping[ext.lowercased()] ?? MimeTypes.default
     }
 
     static func isCategory(_ category: MimeTypes.Category, _ mimeType: String) -> Bool {
