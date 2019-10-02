@@ -17,8 +17,8 @@ let package = Package(
         .package(url: "https://github.com/Moya/Moya.git", from: "14.0.0-beta.3"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "7.0.0"),
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
-        .package(url: "https://github.com/phimage/Prephirences.git", .revision("HEAD")),
-        // .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.1.0")
+        .package(url: "https://github.com/phimage/Prephirences.git", from: "5.1.0"),
+        // .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.3.0")
     ],
     targets: [
         .target(
