@@ -183,15 +183,26 @@ public struct ImportableParser {
         }
 
         // All others fields
-        if let dictionary = jsonEntity.dictionary?.filter({ !$0.key.hasPrefix(ImportKey.reserved) }) {
-            for (key, jsonValue) in dictionary {
-                if let attribute = table[key] ?? table.attribute(forSafeName: key) {
-                    importable.set(attribute: attribute, value: jsonValue.object, with: mapper)
+        guard let fieldValueDictionary = jsonEntity.dictionary?.filter({ !$0.key.hasPrefix(ImportKey.reserved) }) else {
+            return
+        }
+        var fieldValues: [(Attribute, Any)] = []
+        var relationValues: [(Attribute, Any)] = []
+        for (key, jsonValue) in fieldValueDictionary {
+            if let attribute = table[key] ?? table.attribute(forSafeName: key) {
+                if attribute.type.isStorage {
+                    fieldValues.append((attribute, jsonValue.object))
                 } else {
-                    logger.debug("Field '\(key)' not defined in table \(tableNameForce ?? self.table.name) structure.")
-                    // logger.debug("Maybe your data structures is not up to date with data server")
+                    relationValues.append((attribute, jsonValue.object))
                 }
+            } else {
+                logger.debug("Field '\(key)' not defined in table \(tableNameForce ?? self.table.name) structure.")
+                // logger.debug("Maybe your data structures is not up to date with data server")
             }
+        }
+        // set storage values before relative ones (primaryKey value must be set before relations)
+        for (attribute, value) in fieldValues + relationValues {
+            importable.set(attribute: attribute, value: value, with: mapper)
         }
     }
 }
