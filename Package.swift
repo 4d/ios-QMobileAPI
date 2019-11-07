@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,18 +7,18 @@ let package = Package(
     name: "QMobileAPI",
     platforms: [
         .macOS(.v10_14),
-        .iOS(.v12)
+        .iOS(.v13)
     ],
     products: [
         .library(name: "QMobileAPI", targets: ["QMobileAPI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2"),
-        .package(url: "https://github.com/Moya/Moya.git", from: "14.0.0-beta.3"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.3"),
+        .package(url: "https://github.com/Moya/Moya.git", from: "14.0.0-beta.5"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "7.0.0"),
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
         .package(url: "https://github.com/phimage/Prephirences.git", from: "5.1.0"),
-        // .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.3.0")
+        .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.3.0")
     ],
     targets: [
         .target(
@@ -29,7 +29,7 @@ let package = Package(
                 "XCGLogger",
                 "SwiftyJSON",
                 "Prephirences",
-                // "DeviceKit"
+                "DeviceKit"
             ],
             path: "Sources"),
         .testTarget(
