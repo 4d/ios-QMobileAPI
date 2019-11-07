@@ -5,9 +5,9 @@
         "package": "Alamofire",
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
-          "branch": null,
+          "branch": "5.0.0-rc.3",
           "revision": "2cbf59935fbb1f26e352ce4db53f1cf9408d5313",
-          "version": "5.0.0-rc.3"
+          "version": null
         }
       },
       {
@@ -23,9 +23,9 @@
         "package": "Moya",
         "repositoryURL": "https://github.com/Moya/Moya.git",
         "state": {
-          "branch": null,
-          "revision": "e31409e1a38c7a18d05dc0b3f0ff0ef3b383780a",
-          "version": "14.0.0-beta.5"
+          "branch": "14.0.0-beta.5",
+          "revision": "088cf56826aed42903241899b9ff750d5837ecea",
+          "version": null
         }
       },
       {
