@@ -20,15 +20,25 @@ extension TargetType {
                 return data
             }
         }
-        var url = URL(fileURLWithPath: "Tests/Resources/Stubbed Responses/\(filename).\(type)")
-        if let data = try? Data(contentsOf: url) {
-            return data
+        let directories = ["Tests/Resources/Stubbed Responses", "Tests/Resources/JSON"]
+        for directory in directories {
+            var url = URL(fileURLWithPath: "\(directory)/\(filename).\(type)")
+            if let data = try? Data(contentsOf: url) {
+                return data
+            }
+            url = Bundle.qMobileApiStubURL.appendingPathComponent("\(directory)/\(filename).\(type)")
+            if let data = try? Data(contentsOf: url) {
+                return data
+            }
         }
-        url = URL(fileURLWithPath: "Tests/Resources/JSON/\(filename).\(type)")
-        if let data = try? Data(contentsOf: url) {
-            return data
-        }
+
         assertionFailure("No stub with name \(filename)")
         return Data()
     }
+}
+
+final class Fixture {
+    let testTargetPath = URL(fileURLWithPath: #file)
+        .deletingLastPathComponent()
+        .deletingLastPathComponent() // ./Tests/IBLinterKitTests
 }

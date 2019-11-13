@@ -35,9 +35,13 @@ extension Bundle {
 
 extension String {
     var testBundleUrl: URL {
+        #if SWIFT_PACKAGE
+        return RemoteConfig.testTargetPath.appendingPathComponent(self)
+        #else
         let bundle = Bundle(for: Utils.self)
         let url = URL(fileURLWithPath: self)
         return bundle.url(forResource: url.deletingPathExtension().lastPathComponent, withExtension: url.pathExtension) ?? url
+        #endif
     }
 }
 

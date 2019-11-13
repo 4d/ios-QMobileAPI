@@ -10,17 +10,24 @@ import Foundation
 @testable import QMobileAPI
 import Moya
 
-struct RemoteConfig {
+class RemoteConfig {
+
+    static let testTargetPath = URL(fileURLWithPath: #file)
+          .deletingLastPathComponent()
+          .deletingLastPathComponent()
+          .deletingLastPathComponent()
 
     static let stub: Bool = true // XXX configure with external properties
 
     static var tableName: String {
-        Bundle.qMobileApiStub = Bundle(for: TestTargetStubDelegate.self)
+        Bundle.qMobileApiStub = Bundle(for: RemoteConfig.self)
+        Bundle.qMobileApiStubURL = testTargetPath
         return RemoteConfig.stub ? "Event"/*stub files*/ : "CLIENTS"/* test on my invoice database*/
     }
 
     static func configure(_ instance: APIManager) {
-        Bundle.qMobileApiStub = Bundle(for: TestTargetStubDelegate.self)
+        Bundle.qMobileApiStub = Bundle(for: RemoteConfig.self)
+        Bundle.qMobileApiStubURL = testTargetPath
         instance.stub = stub
         // instance.stubDelegate = TestTargetStubDelegate()
     }

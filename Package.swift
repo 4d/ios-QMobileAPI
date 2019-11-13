@@ -18,7 +18,7 @@ let package = Package(
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "7.0.0"),
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
         .package(url: "https://github.com/phimage/Prephirences.git", from: "5.1.0"),
-        .package(url: "https://github.com/devicekit/DeviceKit.git", from: "2.3.0")
+        .package(url: "https://github.com/phimage/DeviceKit.git", .branch("feature/macos"))
     ],
     targets: [
         .target(
@@ -31,7 +31,11 @@ let package = Package(
                 "Prephirences",
                 "DeviceKit"
             ],
-            path: "Sources"),
+            path: "Sources",
+            swiftSettings: [
+                .define("DEBUG", .when(configuration: .debug)),
+            ]
+        ),
         .testTarget(
             name: "QMobileAPITests",
             dependencies: ["QMobileAPI"],

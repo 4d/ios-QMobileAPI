@@ -12,11 +12,11 @@
       },
       {
         "package": "DeviceKit",
-        "repositoryURL": "https://github.com/devicekit/DeviceKit.git",
+        "repositoryURL": "https://github.com/phimage/DeviceKit.git",
         "state": {
-          "branch": null,
-          "revision": "4a1c9aa580ae1db763791015e119c4331c95ad02",
-          "version": "2.3.0"
+          "branch": "feature/macos",
+          "revision": "15fa25b33473cfbd5257cb89cae97b980973f1e9",
+          "version": null
         }
       },
       {
