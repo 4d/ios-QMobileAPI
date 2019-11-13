@@ -10,6 +10,9 @@ import Foundation
 import Alamofire
 import Moya
 import Prephirences
+#if os(iOS)
+import UIKit
+#endif
 
 /*import class Alamofire.RequestRetryCompletion*/
 
