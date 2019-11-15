@@ -176,7 +176,7 @@ extension HTTPCode {
     }
 }
 
-/// MARK Error with code
+// MARK: Error with code
 /*
 internal protocol HTTPError: Error {
     var httpCode: HTTPCode { get }
