@@ -132,6 +132,43 @@ extension UploadResult: ActionParameterEncodable {
     }
 }
 
+extension Array: ActionParameterEncodable where Element: ActionParameterEncodable {
+
+    public func encodeForActionParameter() -> Any {
+        return self.map { $0.encodeForActionParameter() }
+    }
+
+    public func metadata() -> Any? {
+        let types = self.compactMap { $0.metadata() }
+        if sameType(types), let first = types.first {
+            return ["collection": first]
+        }
+        return ["collection": self.compactMap { $0.metadata() }]
+    }
+
+    func sameType(_ types: [Any?]) -> Bool {
+        // support string only for the moment
+        let strings = types.compactMap { $0 as? String }
+        if strings.count != types.count {
+            return false
+        }
+        return strings.isElementEquals
+    }
+}
+
+extension Array where Element: Equatable {
+
+    var isElementEquals: Bool {
+        if let firstElem = self.first {
+            for elem in self where elem != firstElem {
+                return false
+            }
+        }
+        return true
+    }
+
+}
+
 /*
 import Alamofire
 struct JSONEncoderEncoding: ParameterEncoding {
