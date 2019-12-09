@@ -204,9 +204,9 @@ extension APIManager {
 
     /// Upload data to the server. Could be an image or a blob.
     /// An id will be returned to use to associate this upload to record field or action parameters.
-    public func upload(data: Data, image: Bool = false, mimeType: String?, completionHandler: @escaping CompletionUploadResultHandler) -> Cancellable {
+    public func upload(data: Data, image: Bool = false, mimeType: String?, callbackQueue: DispatchQueue? = nil, progress: ProgressHandler? = nil, completionHandler: @escaping CompletionUploadResultHandler) -> Cancellable {
         let target = base.upload(data: data, image: image, mimeType: mimeType)
-        return self.request(target, completion: completionHandler)
+        return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
 
     /// Upload file url data to server.
