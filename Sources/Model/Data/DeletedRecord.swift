@@ -17,6 +17,13 @@ public struct DeletedRecord {
     public let stamp: Double
 
     // XXX copy also ImportKey.stamp, ImportKey.key, ImportKey.timeStamp ?
+
+    public init(primaryKey: String, tableNumber: Double?, tableName: String, stamp: Double) {
+        self.primaryKey = primaryKey
+        self.tableName = tableName
+        self.tableNumber = tableNumber
+        self.stamp = stamp
+    }
 }
 
 extension DeletedRecord: Codable {}

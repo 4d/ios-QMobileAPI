@@ -13,6 +13,12 @@ public struct Page {
     public var info: PageInfo
     public var tableName: String
     public var records: [RecordJSON]
+
+    public init(info: PageInfo, tableName: String, records: [RecordJSON]) {
+        self.info = info
+        self.tableName = tableName
+        self.records = records
+    }
 }
 
 extension Page: Codable {}
