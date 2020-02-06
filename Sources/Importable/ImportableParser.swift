@@ -39,11 +39,13 @@ public extension ImportableBuilder {
     }
 }
 
-/// Parser for Data
+/// Parser for JSON Data to Record.
 public struct ImportableParser {
 
+    /// The table associated to this parse.
     public let table: Table
 
+    /// Parsing record error.
     public enum Error: Swift.Error {
         case emptyJSON
         case noTable
@@ -51,12 +53,49 @@ public struct ImportableParser {
         case builderReturnNil
     }
 
+    /// Create a parser with a `table` as reference.
     init(table: Table) {
         self.table = table
     }
 
+    /// Return table name (without any check)
     public static func tableName(for json: JSON) -> String? {
         return json[ImportKey.entityModel].string
+    }
+
+    /// Return table name from json and check coherence.
+    private func parseTableName(json: JSON) throws -> String {
+        guard let tableName = ImportableParser.tableName(for: json) else {
+            if json.isEmpty {
+                logger.warning("No table name specified in json: file empty or have errors")
+                throw ImportableParser.Error.emptyJSON
+            } else {
+                logger.warning("No table name specified in json: \(json)")
+                throw ImportableParser.Error.noTable
+            }
+        }
+
+        guard self.table.name == tableName else { // or assert
+            logger.warning("Incoherent table name. Expected \(self.table.name) but receive \(tableName) ")
+            throw ImportableParser.Error.incoherentTableName(self.table.name, tableName)
+        }
+        return tableName
+    }
+
+    /// Parse one `Importable` from JSON.
+    public func parse<B: ImportableBuilder>(
+        json: JSON,
+        using mapper: AttributeValueMapper = .default,
+        with builder: B) throws -> B.Importable {
+
+        let tableName = try parseTableName(json: json)
+        if let importable = builder.recordInitializer(tableName, json) {
+            parseAttributes(json: json, into: importable, using: mapper, tableName: tableName)
+            return importable
+        } else {
+            logger.warning("No importable object created for table \(tableName)")
+        }
+        throw ImportableParser.Error.builderReturnNil
     }
 
     // XXX: maybe return one by one the importable results if time too long instead of reading all objects
@@ -66,19 +105,8 @@ public struct ImportableParser {
         json: JSON,
         using mapper: AttributeValueMapper = .default,
         with builder: B) throws ->  [B.Importable] {
-        guard let tableName = json[ImportKey.entityModel].string else {
-            if json.isEmpty {
-                logger.warning("No table name specified in json: file empty or have errors")
-                throw ImportableParser.Error.emptyJSON
-            } else {
-                logger.warning("No table name specified in json: \(json)")
-                throw ImportableParser.Error.noTable
-            }
-        }
-        guard self.table.name == tableName else {
-            logger.warning("Incoherent table name. Expected \(self.table.name) but receive \(tableName) ")
-            throw ImportableParser.Error.incoherentTableName(self.table.name, tableName)
-        }
+
+        let tableName = try parseTableName(json: json)
 
         var results = [B.Importable]()
 
@@ -86,7 +114,7 @@ public struct ImportableParser {
             if let entities = json[ImportKey.entities].array {
                 for entity in entities {
                     if let importable = builder.build(tableName, entity) {
-                        self.parse(json: entity, into: importable, using: mapper, tableName: tableName)
+                        self.parseAttributes(json: entity, into: importable, using: mapper, tableName: tableName)
                         results.append(importable)
                     } else {
                         logger.warning("No importable object created for table \(tableName): \(entity)")
@@ -98,33 +126,6 @@ public struct ImportableParser {
         builder.teardown()
 
         return results
-    }
-
-    public func parse<B: ImportableBuilder>(
-        json: JSON,
-        using mapper: AttributeValueMapper = .default,
-        with builder: B) throws -> B.Importable {
-        guard let tableName = json[ImportKey.entityModel].string else {
-            if json.isEmpty {
-                logger.warning("No table name specified in json: file empty or have errors")
-                throw ImportableParser.Error.emptyJSON
-            } else {
-                logger.warning("No table name specified in json: \(json)")
-                throw ImportableParser.Error.noTable
-            }
-        }
-        guard self.table.name == tableName else {
-            logger.warning("Incoherent table name. Expected \(self.table.name) but receive \(tableName) ")
-            throw ImportableParser.Error.incoherentTableName(self.table.name, tableName)
-        }
-
-        if let importable = builder.recordInitializer(tableName, json) {
-            parse(json: json, into: importable, using: mapper, tableName: tableName)
-            return importable
-        } else {
-            logger.warning("No importable object created for table \(tableName)")
-        }
-        throw ImportableParser.Error.builderReturnNil
     }
 
     private func checkTableName(json: JSON, into importable: RecordImportable, tableName tableNameForce: String? = nil) -> Bool {
@@ -150,7 +151,8 @@ public struct ImportableParser {
         return true
     }
 
-    public func parse(json: JSON, into importable: RecordImportable, using mapper: AttributeValueMapper = .default, tableName tableNameForce: String? = nil) {
+    /// Parse attributes and set it into importable object.
+    public func parseAttributes(json: JSON, into importable: RecordImportable, using mapper: AttributeValueMapper = .default, tableName tableNameForce: String? = nil) {
         guard checkTableName(json: json, into: importable, tableName: tableNameForce) else {
             return
         }
@@ -207,7 +209,10 @@ public struct ImportableParser {
     }
 }
 
+// MARK: Image
+
 extension ImportableParser {
+    /// Return the URL of the image.
     public static func parseImage(_ dico: [String: Any]) -> String? {
         //= "{    \"__deferred\" = { image = 1; uri = \"/rest/CLIENTS(1)/Logo?$imageformat=best&$version=10&$expand=Logo\";    };}";
         if let deferred = dico[ImportKey.deferred] as? [String: Any] {
@@ -220,6 +225,8 @@ extension ImportableParser {
         return nil
     }
 }
+
+// MARK: - Table
 
 extension Table {
     /// A parser for specific table
