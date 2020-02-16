@@ -37,7 +37,7 @@ extension ChildTargetType {
     public var headers: [String: String]? {
         return self.parentTarget.headers
     }
-    public var authorizationType: AuthorizationType {
+    public var authorizationType: AuthorizationType? {
         if let parent = self.parentTarget as? AccessTokenAuthorizable {
             return parent.authorizationType
         }
