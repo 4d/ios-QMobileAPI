@@ -26,5 +26,5 @@ public class BaseTarget: SimpleTarget, AccessTokenAuthorizable {
         return stubbedData("status")
     }
 
-    public var authorizationType: AuthorizationType  = .bearer
+    public var authorizationType: AuthorizationType?  = .bearer
 }
