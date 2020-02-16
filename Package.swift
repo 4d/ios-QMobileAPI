@@ -13,8 +13,8 @@ let package = Package(
         .library(name: "QMobileAPI", targets: ["QMobileAPI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .revision("5.0.0-rc.3")),
-        .package(url: "https://github.com/Moya/Moya.git", .revision("14.0.0-beta.5")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .revision("5.0.0")),
+        .package(url: "https://github.com/Moya/Moya.git", .revision("14.0.0")),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "7.0.0"),
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
         .package(url: "https://github.com/phimage/Prephirences.git", from: "5.1.0"),
