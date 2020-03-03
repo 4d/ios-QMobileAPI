@@ -192,13 +192,6 @@ public class APIManager {
     // Init plugins
     open func initPlugins() {
         plugins = []
-        #if os(iOS)
-        plugins.append(NetworkActivityPlugin { change, _ in
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = change == .began
-            }
-        })
-        #endif
 
         if logger.isEnabledFor(level: networkLogLevel) {
             let configuration = NetworkLoggerPlugin.Configuration(output: self.logNetwork, logOptions: [.verbose])
