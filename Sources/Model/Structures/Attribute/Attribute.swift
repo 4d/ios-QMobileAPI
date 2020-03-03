@@ -137,7 +137,7 @@ extension Attribute: Codable {
 
 // MARK: JSON
 extension Attribute: JSONDecodable {
-    // swiftlint:disable:next function_body_length
+
     public init?(json: JSON) {
         // mandatory
         guard let name = json["name"].string else {
@@ -157,37 +157,14 @@ extension Attribute: JSONDecodable {
             logger.warning("No kind or unknown kind, \(json["kind"]). Attribute \(name) will be skipped")
             return nil
         }
-        switch kind {
-        case .relatedEntity, .relatedEntities:
-            guard let type = json["type"].attributeRelativeType else {
-                logger.warning("No type or unknown type, \(json["type"]). Attribute \(name) will be skipped")
-                return nil
-            }
-
-            var relativetype = type
-            switch kind {
-            case .relatedEntity:
-                relativetype.isToMany = false
-
-            case .relatedEntities:
-                relativetype.isToMany = true
-
-            default:
-                assertionFailure("Must not be reach")
-            }
-            self.type = relativetype
-
-        case .storage, .alias, .calculated:
-            guard let type = json["type"].attributeStorageType else {
-                logger.warning("No type or unknown type, \(json["type"]). Attribute \(name) will be skipped")
-                return nil
-            }
-            self.type = type
+        guard let type = Attribute.type(from: json["type"], with: kind) else {
+            logger.warning("No type or unknown type, \(json["type"]). Attribute \(name) will be skipped")
+            return nil
         }
-
         self.name = name
         self.kind = kind
         self.scope = scope
+        self.type = type
 
         // optional
         self.identifying = json["identifying"].bool ?? false
@@ -206,5 +183,28 @@ extension Attribute: JSONDecodable {
 
         self.autoComplete = json["autoComplete"].bool ?? false
         self.defaultFormat = json["defaultFormat"].bool ?? false
+    }
+
+    fileprivate static func type(from json: JSON, with kind: AttributeKind) -> AttributeType? {
+        switch kind {
+        case .relatedEntity, .relatedEntities:
+            guard let type = json.attributeRelativeType else {
+                return nil
+            }
+            var relativetype = type
+            switch kind {
+            case .relatedEntity:
+                relativetype.isToMany = false
+
+            case .relatedEntities:
+                relativetype.isToMany = true
+
+            default:
+                assertionFailure("Must not be reach")
+            }
+            return relativetype
+        case .storage, .alias, .calculated:
+            return json.attributeStorageType
+        }
     }
 }
