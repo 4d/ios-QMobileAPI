@@ -29,7 +29,10 @@ public struct RestKey {
     public static let reserved = "__"
 
     public static let entityModel = "__entityModel"
+    // public static let dataClass = "__DATACLASS" // will replace entityModel?
     public static let count = "__COUNT"
+    public static let sent = "__SENT"
+    public static let first = "__FIRST"
     public static let entities = "__ENTITIES"
     public static let key = "__KEY"
     public static let stamp = "__STAMP"
