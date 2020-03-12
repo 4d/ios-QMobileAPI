@@ -11,12 +11,18 @@ import Foundation
 // MARK: Predicate
 extension Key {
     public func predicate(for importable: RecordImportable, with mapper: AttributeValueMapper = .default, ifNotImportable: Bool = true) -> NSPredicate? {
-        if let attribute = self.attribute, importable.has(attribute: attribute), let value = importable.get(attribute: attribute, with: mapper) {
-            let lhs = NSExpression(forKeyPath: self.safeName)
-            let rhs = NSExpression(forConstantValue: value)
-            return NSComparisonPredicate(leftExpression: lhs, rightExpression: rhs, modifier: .direct, type: .equalTo, options: [])
+        guard let attribute = self.attribute else {
+            return nil
         }
-        return nil
+        guard importable.has(attribute: attribute) else {
+            return nil
+        }
+        guard let value = importable.get(attribute: attribute, with: mapper)else {
+            return nil
+        }
+        let lhs = NSExpression(forKeyPath: self.safeName)
+        let rhs = NSExpression(forConstantValue: value)
+        return NSComparisonPredicate(leftExpression: lhs, rightExpression: rhs, modifier: .direct, type: .equalTo, options: [])
     }
 
     public func predicate(for json: JSON) -> NSPredicate {
