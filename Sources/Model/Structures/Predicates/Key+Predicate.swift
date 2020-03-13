@@ -17,7 +17,8 @@ extension Key {
         guard importable.has(attribute: attribute) else {
             return nil
         }
-        guard let value = importable.get(attribute: attribute, with: mapper)else {
+        guard let value = importable.get(attribute: attribute, with: mapper) else {
+            logger.warning("No \(attribute) for \(importable)")
             return nil
         }
         let lhs = NSExpression(forKeyPath: self.safeName)
