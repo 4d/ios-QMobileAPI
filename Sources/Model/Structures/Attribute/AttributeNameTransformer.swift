@@ -20,7 +20,12 @@ public struct AttributeNameTransformer {
     public var couldManage: (String) -> Bool = { _ in false }
 
     @nonobjc public static var suffixForReserved = "_"
-    @nonobjc public static var reservedSwiftVars: [String] =  ["objectID", "description", "shortDescription", "isDeleted", "isUpdated", "isInserted", "hasChanges", "hasPersistentChangedValues", "entity", "isFault", "public", "private", "init"]
+    @nonobjc public static var reservedSwiftVars = [
+        "entity", "objectID", "description", "shortDescription",
+        "isDeleted", "isUpdated", "isInserted", "isFault",
+        "hasChanges", "hasPersistentChangedValues",
+        "public", "private", "init"
+    ]
 
     @nonobjc public static var suffixForServerReserved = "qmobile"
 
