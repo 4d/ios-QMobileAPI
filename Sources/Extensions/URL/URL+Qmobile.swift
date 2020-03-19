@@ -50,10 +50,22 @@ extension Prephirences {
         set {
             let pref: MutablePreference<String>? = Prephirences.sharedMutableInstance?.preference(forKey: Key.serverURL)
             if pref?.value != newValue {
-                pref?.value = newValue
+                if newValue.isEmpty {
+                    pref?.value = nil // do not store empty string
+                } else {
+                    pref?.value = newValue
+                }
             }
         }
     }
+
+    /*static var serverURLImmutable: String? {
+        guard let compositePref = Prephirences.sharedInstance as? CompositePreferences else {
+            return serverURLInternal
+        }
+        let onlyImmutable = CompositePreferences(compositePref.array.filter({ !($0 is MutablePreferencesType)}))
+        return onlyImmutable.string(forKey: Key.serverURL)
+    }*/
 
     /// The server url has been edited
     public private(set) static var serverURLHasBeenEdited: Bool {
@@ -187,10 +199,10 @@ extension URL {
 
     /// use localhost or not
     static var forceLocalhost: Bool {
-        guard Prephirences.serverURLForceLocalhost else {
-            return false
+        if Prephirences.serverURLForceLocalhost  {
+            return Device.current.isSimulator && !Prephirences.serverURLHasBeenEdited
         }
-        return Device.current.isSimulator && !Prephirences.serverURLHasBeenEdited
+        return false
     }
 
     public static var qmobile: URL {
@@ -203,6 +215,9 @@ extension URL {
         } else {
             // Get from settings or user data
             urlString = Prephirences.serverURL
+            /*if urlString.isEmpty {
+                urlString = Prephirences.serverURLImmutable
+            }*/
 
             // if not defined explicitely, take one from binding urls
             if urlString.isEmpty {
