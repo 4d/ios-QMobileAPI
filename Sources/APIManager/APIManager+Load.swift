@@ -228,4 +228,16 @@ extension APIManager {
      }
      }
      */
+
+    public typealias CompletionUserInfoHandler = ((Result<UserInfoResult, APIError>) -> Void)
+    /// POST userInfo on server
+    public func userInfo(name: String = "success",
+                         parameters: ActionParameters = [:],
+                         callbackQueue: DispatchQueue? = nil,
+                         progress: ProgressHandler? = nil,
+                         completionHandler: @escaping CompletionUserInfoHandler) -> Cancellable {
+        let target: UserInfoTarget = self.base.userInfo(name: name)
+        target.parameters = parameters
+        return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
+    }
 }

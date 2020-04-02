@@ -383,6 +383,11 @@
 		C5A5A0E022DF5A5000C0FB38 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D41E03205295CA00222DB8 /* AuthToken.swift */; };
 		C5A5A0E122DF5A6000C0FB38 /* APIManager+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48708B5521959759005C9C4A /* APIManager+Notification.swift */; };
 		C5A5A0E222DF5D1A00C0FB38 /* AuthTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D41E0620529C1300222DB8 /* AuthTarget.swift */; };
+		C5A5AFF4243495CC00AA5083 /* UserInfoTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5AFF3243495CC00AA5083 /* UserInfoTarget.swift */; };
+		C5A5AFF6243497C000AA5083 /* UserInfoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5AFF5243497C000AA5083 /* UserInfoResult.swift */; };
+		C5DB49E12434CBE000C42CE3 /* restuserinfosuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = C5DB49E02434CBE000C42CE3 /* restuserinfosuccess.json */; };
+		C5DB49E52434CC2F00C42CE3 /* restuserinfofailure.json in Resources */ = {isa = PBXBuildFile; fileRef = C5DB49E42434CC2F00C42CE3 /* restuserinfofailure.json */; };
+		C5DB49E72434D44F00C42CE3 /* RemoteUserInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB49E62434D44F00C42CE3 /* RemoteUserInfoTests.swift */; };
 		FE0A77771F0A815F005DA036 /* cat.json in Resources */ = {isa = PBXBuildFile; fileRef = FE0A77741F0A815F005DA036 /* cat.json */; };
 		FE0A77781F0A815F005DA036 /* catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = FE0A77751F0A815F005DA036 /* catalog.json */; };
 		FE0A77791F0A815F005DA036 /* info.json in Resources */ = {isa = PBXBuildFile; fileRef = FE0A77761F0A815F005DA036 /* info.json */; };
@@ -646,8 +651,13 @@
 		C588A32B22DDB43D003B9E27 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		C588A32D22DDB443003B9E27 /* HTTPCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCodeTests.swift; sourceTree = "<group>"; };
 		C5A59FD422DF0D8900C0FB38 /* RemoteActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteActionTests.swift; sourceTree = "<group>"; };
+		C5A5AFF3243495CC00AA5083 /* UserInfoTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTarget.swift; sourceTree = "<group>"; };
+		C5A5AFF5243497C000AA5083 /* UserInfoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResult.swift; sourceTree = "<group>"; };
 		C5B6769D22E5B0D600A14F9C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		C5B6769E22E5B0FA00A14F9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5DB49E02434CBE000C42CE3 /* restuserinfosuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restuserinfosuccess.json; sourceTree = "<group>"; };
+		C5DB49E42434CC2F00C42CE3 /* restuserinfofailure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restuserinfofailure.json; sourceTree = "<group>"; };
+		C5DB49E62434D44F00C42CE3 /* RemoteUserInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUserInfoTests.swift; sourceTree = "<group>"; };
 		FE0A77711F0A8091005DA036 /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		FE0A77741F0A815F005DA036 /* cat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cat.json; sourceTree = "<group>"; };
 		FE0A77751F0A815F005DA036 /* catalog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
@@ -743,6 +753,7 @@
 				480AB9A91F0A253700087AF8 /* ProgessInfoTarget.swift */,
 				480AB9A31F0A24DE00087AF8 /* SessionInfoTarget.swift */,
 				480AB9A61F0A24F900087AF8 /* SessionReleaseTarget.swift */,
+				C5A5AFF3243495CC00AA5083 /* UserInfoTarget.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -876,6 +887,7 @@
 				482BE8E11EEA74A400BFD423 /* SessionInfo.swift */,
 				48ED35071EAE43C400AF3188 /* Status.swift */,
 				4817DA3B1FE0085F00D1AD07 /* WebTestInfo.swift */,
+				C5A5AFF5243497C000AA5083 /* UserInfoResult.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1142,6 +1154,7 @@
 				48D335C71EC209ED00D0DB69 /* RemoteTargetFromURLTests.swift */,
 				480497321F05282100EF5B04 /* RemoteUploadTests.swift */,
 				C5A59FD422DF0D8900C0FB38 /* RemoteActionTests.swift */,
+				C5DB49E62434D44F00C42CE3 /* RemoteUserInfoTests.swift */,
 				487F80071F582F930064AF4B /* AuthTests */,
 				4892C2CF1FD6F7A50050FED8 /* AppStoreTests.swift */,
 			);
@@ -1172,6 +1185,8 @@
 				48A1E5DC1FE12E5A00C6E0B0 /* actionapplicationinfo.json */,
 				489DAD541FE2CB32002AF9E3 /* ituneslookup.json */,
 				48CCC3ED20B43B7300BEBD14 /* restlogout.json */,
+				C5DB49E02434CBE000C42CE3 /* restuserinfosuccess.json */,
+				C5DB49E42434CC2F00C42CE3 /* restuserinfofailure.json */,
 			);
 			path = "Stubbed Responses";
 			sourceTree = "<group>";
@@ -1677,6 +1692,7 @@
 				FE2658571F0B8FB400282587 /* EntitySetInfo.json in Resources */,
 				FE2658731F0BCFA600282587 /* erreur.json in Resources */,
 				489DAD551FE2CB32002AF9E3 /* ituneslookup.json in Resources */,
+				C5DB49E52434CC2F00C42CE3 /* restuserinfofailure.json in Resources */,
 				48FB2CC41E93972300F4F685 /* INVOICES.catalog.json in Resources */,
 				FE0A77771F0A815F005DA036 /* cat.json in Resources */,
 				4817DA3A1FE0083000D1AD07 /* webtest.json in Resources */,
@@ -1684,6 +1700,7 @@
 				48FB2CC61E93972600F4F685 /* CLIENTS(2).json in Resources */,
 				48FB2CC51E93972300F4F685 /* PRODUCTS.catalog.json in Resources */,
 				480497311F04075000EF5B04 /* restupload.json in Resources */,
+				C5DB49E12434CBE000C42CE3 /* restuserinfosuccess.json in Resources */,
 				FE0A777D1F0A853C005DA036 /* restsessioninfo.json in Resources */,
 				C50E0D7122E0702900D7CB94 /* restactionfailure.json in Resources */,
 				4894609F1EF0294700A4E598 /* restcatalogall.json in Resources */,
@@ -2009,6 +2026,7 @@
 				4837991A1EF0105300F9A726 /* DictionaryConvertible.swift in Sources */,
 				48F8E2BC1F7D0074000080FB /* Emptyable.swift in Sources */,
 				480392D11E92A3B7008CF992 /* RecordImportable.swift in Sources */,
+				C5A5AFF6243497C000AA5083 /* UserInfoResult.swift in Sources */,
 				FE2658441F0B7FFB00282587 /* CacheObject.swift in Sources */,
 				487EC34020AD849100646B5B /* LogOutTarget.swift in Sources */,
 				489460B31EF123BF00A4E598 /* AttributeKind.swift in Sources */,
@@ -2017,6 +2035,7 @@
 				48ED35061EAE3D4D00AF3188 /* APIError.swift in Sources */,
 				489460991EF020C400A4E598 /* APIManager+Load.swift in Sources */,
 				48FAC6971E8AB830003389DC /* Log.swift in Sources */,
+				C5A5AFF4243495CC00AA5083 /* UserInfoTarget.swift in Sources */,
 				FE2658651F0B9A7700282587 /* EntitySet.swift in Sources */,
 				489460BA1EF1243300A4E598 /* JSON+Attribute.swift in Sources */,
 				48C55E631EB86B3D00F9ECAC /* ComputeTarget.swift in Sources */,
@@ -2124,6 +2143,7 @@
 				48FB2CBF1E93971B00F4F685 /* Utils.swift in Sources */,
 				48D335CA1EC20A2900D0DB69 /* RemoteRecordsSetTests.swift in Sources */,
 				4870051221B6DB6C000D47A3 /* CodableTests.swift in Sources */,
+				C5DB49E72434D44F00C42CE3 /* RemoteUserInfoTests.swift in Sources */,
 				C588A32C22DDB43D003B9E27 /* StringTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
