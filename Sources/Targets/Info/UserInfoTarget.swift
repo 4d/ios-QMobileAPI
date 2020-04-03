@@ -9,9 +9,6 @@
 import Foundation
 import Moya
 
-/// Define alias for userInfo parameters values.
-public typealias UserInfoParameters = [String: Any]
-
 public class UserInfoTarget: ChildTargetType {
 
     let parentTarget: TargetType
@@ -28,9 +25,8 @@ public class UserInfoTarget: ChildTargetType {
     public let method = Moya.Method.post
 
     open var task: Task {
-        if parameters.isEmpty {
-            return .requestPlain
-        }
+        var parameters: [String: Any] = [:]
+
         if let userInfo = userInfo {
             parameters["userInfo"] = userInfo
         }
@@ -40,11 +36,9 @@ public class UserInfoTarget: ChildTargetType {
         return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
 
-    open var parameters: UserInfoParameters = [:]
-
     public var sampleData: Data {
         var testFilename = "success"
-        if let userInfo = userInfo, let testFailure = userInfo["failure"] as? Bool, testFailure == true {
+        if let userInfo = userInfo, let testFailure = userInfo["failure"] as? Bool, testFailure {
             testFilename = "failure"
         }
         return stubbedData("restuserinfo\(testFilename)")
