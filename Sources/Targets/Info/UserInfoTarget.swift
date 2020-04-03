@@ -15,12 +15,13 @@ public typealias UserInfoParameters = [String: Any]
 public class UserInfoTarget: ChildTargetType {
 
     let parentTarget: TargetType
+    var userInfo: [String: Any]?
+    var deviceToken: String?
 
-    public let name: String
-
-    init(parentTarget: BaseTarget, name: String) {
+    init(parentTarget: BaseTarget, userInfo: [String: Any]?, deviceToken: String?) {
         self.parentTarget = parentTarget
-        self.name = name
+        self.userInfo = userInfo
+        self.deviceToken = deviceToken
     }
 
     let childPath = "$userInfo"
@@ -30,51 +31,29 @@ public class UserInfoTarget: ChildTargetType {
         if parameters.isEmpty {
             return .requestPlain
         }
+        if let userInfo = userInfo {
+            parameters["userInfo"] = userInfo
+        }
+        if let deviceToken = deviceToken {
+            parameters["device"] = ["token": deviceToken]
+        }
         return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
 
-    open var parameters: UserInfoParameters = [:] {
-        didSet {
-            var edited = false
-            var parameters: UserInfoParameters = self.parameters
-
-            if var userInfoParameters = parameters["parameters"] as? UserInfoParameters {
-                for (key, value) in userInfoParameters {
-                    if let encodable = value as? UserInfoParameterEncodable {
-                        userInfoParameters[key] = encodable.encodeForUserInfoParameter()
-                        edited = true
-                    }
-                }
-                parameters["parameters"] = userInfoParameters
-            }
-
-            if edited {
-                self.parameters = parameters // do not set a non modified element or an infinite loop will occurs
-            }
-        }
-    }
+    open var parameters: UserInfoParameters = [:]
 
     public var sampleData: Data {
-        return stubbedData("restuserinfo\(name)")
-    }
-}
-
-/// Procotol to encode objects in api request.
-public protocol UserInfoParameterEncodable {
-    /// Return a JSON encodable value
-    func encodeForUserInfoParameter() -> Any
-}
-
-extension Array: UserInfoParameterEncodable where Element: UserInfoParameterEncodable {
-
-    public func encodeForUserInfoParameter() -> Any {
-        return self.map { $0.encodeForUserInfoParameter() }
+        var testFilename = "success"
+        if let userInfo = userInfo, let testFailure = userInfo["failure"] as? Bool, testFailure == true {
+            testFilename = "failure"
+        }
+        return stubbedData("restuserinfo\(testFilename)")
     }
 }
 
 extension BaseTarget {
     /// Target to get server info
-    public func userInfo(name: String, parameters: [String: Any] =  [:]) -> UserInfoTarget { return UserInfoTarget(parentTarget: self, name: name) }
+    public func userInfo(userInfo: [String: Any]? = nil, deviceToken: String? = nil) -> UserInfoTarget { return UserInfoTarget(parentTarget: self, userInfo: userInfo, deviceToken: deviceToken) }
 }
 
 extension UserInfoTarget: DecodableTargetType {

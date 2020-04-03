@@ -24,7 +24,7 @@ class RemoteUserInfoTests: XCTestCase {
     func testUserInfoSuccessTrue() {
         let expectation = self.expectation()
         
-        let cancellable = self.instance.userInfo(name: "success", parameters: [:], completionHandler: { result in
+        let cancellable = self.instance.userInfo([:], deviceToken: "abc", completionHandler: { result in
             
             switch result {
             case .success(let userInfoResult):
@@ -44,12 +44,74 @@ class RemoteUserInfoTests: XCTestCase {
     func testUserInfoSuccessFalse() {
         let expectation = self.expectation()
         
-        let cancellable = self.instance.userInfo(name: "failure", parameters: [:], completionHandler: { result in
+        let cancellable = self.instance.userInfo(["failure":true], deviceToken: "abc", completionHandler: { result in
             
             switch result {
             case .success(let userInfoResult):
                 print("\(userInfoResult)")
                 XCTAssertFalse(userInfoResult.success)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("\(error)")
+            }
+        })
+        
+        XCTAssertFalse(cancellable.isCancelled)
+        
+        wait(timeout: requestTimeout)
+    }
+    
+    func testUserInfoNoParameter() {
+        let expectation = self.expectation()
+        
+        let cancellable = self.instance.userInfo(completionHandler: { result in
+            
+            switch result {
+            case .success(let userInfoResult):
+                print("\(userInfoResult)")
+                XCTAssertTrue(userInfoResult.success)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("\(error)")
+            }
+        })
+        
+        XCTAssertFalse(cancellable.isCancelled)
+        
+        wait(timeout: requestTimeout)
+    }
+    
+    func testUserInfoNoUserInfo() {
+        let expectation = self.expectation()
+        
+        let cancellable = self.instance.userInfo(deviceToken: "", completionHandler: { result in
+            
+            switch result {
+            case .success(let userInfoResult):
+                print("\(userInfoResult)")
+                XCTAssertTrue(userInfoResult.success)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("\(error)")
+            }
+        })
+        
+        XCTAssertFalse(cancellable.isCancelled)
+        
+        wait(timeout: requestTimeout)
+    }
+    
+    func testUserInfoNoDeviceToken() {
+        let expectation = self.expectation()
+        
+        let userInfo: [String: Any] = ["userInfo": ["email": "roger@4d.com", "name": "roger"]]
+        
+        let cancellable = self.instance.userInfo(userInfo, completionHandler: { result in
+            
+            switch result {
+            case .success(let userInfoResult):
+                print("\(userInfoResult)")
+                XCTAssertTrue(userInfoResult.success)
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail("\(error)")

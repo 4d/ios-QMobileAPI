@@ -231,13 +231,19 @@ extension APIManager {
 
     public typealias CompletionUserInfoHandler = ((Result<UserInfoResult, APIError>) -> Void)
     /// POST userInfo on server
-    public func userInfo(name: String = "success",
-                         parameters: ActionParameters = [:],
+    public func userInfo(_ userInfo: [String: Any]? = nil,
+                         deviceToken: String? = nil,
                          callbackQueue: DispatchQueue? = nil,
                          progress: ProgressHandler? = nil,
                          completionHandler: @escaping CompletionUserInfoHandler) -> Cancellable {
-        let target: UserInfoTarget = self.base.userInfo(name: name)
-        target.parameters = parameters
+        let target: UserInfoTarget = self.base.userInfo(userInfo: userInfo, deviceToken: deviceToken)
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
+    }
+    /// POST deviceToken on server
+    public func sendDeviceToken(_ deviceToken: String? = nil,
+                                callbackQueue: DispatchQueue? = nil,
+                                progress: ProgressHandler? = nil,
+                                completionHandler: @escaping CompletionUserInfoHandler) -> Cancellable {
+        return userInfo(deviceToken: deviceToken, callbackQueue: callbackQueue, progress: progress, completionHandler: completionHandler)
     }
 }
