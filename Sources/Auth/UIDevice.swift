@@ -174,7 +174,8 @@ extension Device {
             }
         }
         // Simulator or old device
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+        let device = UIDevice.current
+        if let uuid = device.simulatorID ?? device.identifierForVendor?.uuidString {
             completionHandler(.success(uuid))
         } else {
             completionHandler(.failure(.noToken))
@@ -200,6 +201,25 @@ extension Device {
         // Could check also some path with fopen
         return false
     }()
+
+}
+
+extension UIDevice {
+
+    /// If simualtor return the id from env var SIMULATOR_UDID
+    public var simulatorID: String? {
+        let env = ProcessInfo().environment
+        if let name = env["SIMULATOR_UDID"] {
+            return name
+        }
+        if let name = env["XPC_SIMULATOR_LAUNCHD_NAME"], let id = name.split(separator: ".").last {
+            return String(id)
+        }
+        if let name = env["SIMULATOR_LOG_ROOT"], let id = name.split(separator: "/").last {
+            return String(id)
+        }
+        return nil
+    }
 }
 
 fileprivate extension Data {
