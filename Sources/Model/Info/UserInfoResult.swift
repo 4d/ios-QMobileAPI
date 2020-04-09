@@ -28,6 +28,10 @@ extension UserInfoResult {
     public var errors: [Any]? {
         return json["__ERROR"].arrayObject
     }
+
+    public var restError: RestErrors? {
+        return RestErrors(json: json)
+    }
 }
 
 // MARK: JSON

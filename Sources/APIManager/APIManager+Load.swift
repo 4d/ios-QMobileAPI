@@ -239,6 +239,7 @@ extension APIManager {
         let target: UserInfoTarget = self.base.userInfo(userInfo: userInfo, deviceToken: deviceToken)
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
+
     /// POST deviceToken on server
     public func sendDeviceToken(_ deviceToken: String? = nil,
                                 callbackQueue: DispatchQueue? = nil,
