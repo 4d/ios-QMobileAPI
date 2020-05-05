@@ -8,22 +8,6 @@
 
 import Foundation
 
-extension Notification.Name {
-    /// Notify about log in success
-    @available(*, deprecated, message: "Now use `APIManager.loginSuccess`")
-    public static let apiManagerLoginSuccess = APIManager.loginSuccess
-    /// Notify about log in failure
-    @available(*, deprecated, message: "Now use `APIManager.loginFailed`")
-    public static let apiManagerLoginFailed = APIManager.loginFailed
-    /// Notify about log out
-    @available(*, deprecated, message: "Now use `APIManager.logout`")
-    public static let apiManagerLogout = APIManager.logout
-
-    /// Notify default instance change.
-    @available(*, deprecated, message: "Now use `APIManager.didChangeDefaultInstance`")
-    public static let apiManagerDidChangeDefaultInstance = APIManager.didChangeDefaultInstance
-}
-
 extension APIManager {
     /// Notify about log in success
     public static let loginSuccess = Notification.Name("apiManager.login.success")
@@ -50,18 +34,18 @@ extension Notification {
 
 extension APIManager {
     /// Observe `APIManager` on specific event usung closure.
-    public func observe(_ name: Notification.Name, queue: OperationQueue? = nil, using: @escaping (Notification) -> Void) -> NSObjectProtocol {
+    public static func observe(_ name: Notification.Name, queue: OperationQueue? = nil, using: @escaping (Notification) -> Void) -> NSObjectProtocol {
         /// /!\ Could not observer on self because APIManager instance change. (maybe make url changeable instead of changing the singleton instance)
         return NotificationCenter.apiManager.addObserver(forName: name, object: nil/*listen to all instead of self*/, queue: queue, using: using)
     }
 
     /// Unobserve `APIManager` by passing the handle returned by `oberve` function.
-    public func unobserve(_ observer: NSObjectProtocol) {
+    public static func unobserve(_ observer: NSObjectProtocol) {
         NotificationCenter.apiManager.removeObserver(observer)
     }
 
     /// Unobserve `APIManager` by passing the handle returned by `oberve` function.
-    public func unobserve(_ observers: [NSObjectProtocol]) {
+    public static func unobserve(_ observers: [NSObjectProtocol]) {
         for observer in observers {
             unobserve(observer)
         }

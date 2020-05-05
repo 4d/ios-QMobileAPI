@@ -23,7 +23,7 @@ public class APIManager {
         didSet {
             instance.authToken = oldValue.authToken
             oldValue.delegate?.didReplacedAsDefaultInstance(oldValue: oldValue, newValue: instance)
-            Notification(name: APIManager.didChangeDefaultInstance).post()
+            Notification(name: APIManager.didChangeDefaultInstance, object: instance).post()
         }
     }
 

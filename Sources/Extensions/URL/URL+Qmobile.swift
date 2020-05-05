@@ -199,7 +199,7 @@ extension URL {
 
     /// use localhost or not
     static var forceLocalhost: Bool {
-        if Prephirences.serverURLForceLocalhost  {
+        if Prephirences.serverURLForceLocalhost {
             return Device.current.isSimulator && !Prephirences.serverURLHasBeenEdited
         }
         return false
