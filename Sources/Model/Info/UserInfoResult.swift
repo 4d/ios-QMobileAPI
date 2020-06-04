@@ -11,6 +11,9 @@ import Foundation
 /// Authentication token.
 public struct UserInfoResult {
 
+    static let okKey = "ok"
+    static let successKey = "success"
+
     /// The JSON representation
     public let json: JSON
 
@@ -38,7 +41,7 @@ extension UserInfoResult {
 extension UserInfoResult: JSONDecodable {
     public init?(json: JSON) {
         self.json = json
-        self.success = json["success"].boolValue
+        self.success = json[UserInfoResult.okKey].bool ?? json[UserInfoResult.successKey].boolValue
         // XXX decode here known values
     }
 }
