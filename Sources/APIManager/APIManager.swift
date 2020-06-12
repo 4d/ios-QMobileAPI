@@ -72,13 +72,29 @@ public class APIManager {
             saveAuthToken()
         }
     }
+
     private func initAuthToken() {
         let keyChain = KeychainPreferences.sharedInstance
         if let tokenOrNil = ((try? keyChain.decodable(AuthToken.self, forKey: APIManager.authTokenKey)) as AuthToken??),
             let token = tokenOrNil {
             self.authToken = token
+        } else {
+            #if DEBUG
+            // inject from settings
+            if let authTokenDico = UserDefaults.standard["auth.token"] as? [String: Any],
+                let id = authTokenDico["id"] as? String,
+                let token = authTokenDico["token"] as? String {
+                self.authToken = AuthToken(
+                    id: id,
+                    statusText:
+                    authTokenDico["statusText"] as? String,
+                    token: token,
+                    userInfo: authTokenDico["userInfo"] as? [String: Any])
+            }
+            #endif
         }
     }
+
     private func saveAuthToken() {
         let keyChain = KeychainPreferences.sharedInstance
         do {
