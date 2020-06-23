@@ -119,7 +119,11 @@ public class APIManager {
 
     /// Log level for network. By default .verbose.
     /// Pref key: api.network.logLevel
-    public let networkLogLevel: LogLevel = Prephirences.sharedInstance.preference(forKey: "api.network.logLevel").value ?? .verbose
+    public lazy var networkLogLevel: LogLevel = {
+        let networkLogLevelPref: Preference<LogLevel> = Prephirences.sharedInstance.preference(forKey: "api.network.logLevel")
+        networkLogLevelPref.transformation = LogLevel.preferenceTransformation
+        return networkLogLevelPref.value ?? .verbose
+    }()
 
     /// List of Moya plugins.
     public var plugins: [PluginType] = []
