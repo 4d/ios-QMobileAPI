@@ -45,6 +45,8 @@ public struct ImportableParser {
     /// The table associated to this parse.
     public let table: Table
 
+    let managePrivateField = false
+
     /// Parsing record error.
     public enum Error: Swift.Error {
         case emptyJSON
@@ -172,15 +174,17 @@ public struct ImportableParser {
         }
 
         // Private records fields (other wayt to manage private fields, add to Table)
-        for key in [ImportKey.key, ImportKey.stamp, ImportKey.globalStamp] {
-            if let value = jsonEntity[key].int {
-                importable.setPrivateAttribute(key: key, value: value)
+        if managePrivateField {
+            for key in [ImportKey.key, ImportKey.stamp, ImportKey.globalStamp] {
+                if let value = jsonEntity[key].int {
+                    importable.setPrivateAttribute(key: key, value: value)
+                }
             }
-        }
-        if var valueString = jsonEntity[ImportKey.timestamp].string {
-            valueString = valueString.replacingOccurrences(of: "\"", with: "")
-            if let date = valueString.dateFromISO8601 ?? valueString.simpleDate {
-                importable.setPrivateAttribute(key: ImportKey.timestamp, value: date)
+            if var valueString = jsonEntity[ImportKey.timestamp].string {
+                valueString = valueString.replacingOccurrences(of: "\"", with: "")
+                if let date = valueString.dateFromISO8601 ?? valueString.simpleDate {
+                    importable.setPrivateAttribute(key: ImportKey.timestamp, value: date)
+                }
             }
         }
 
