@@ -34,8 +34,6 @@ public struct ActionParameter {
     /// Bind default value to a field.
     public let defaultField: String?
 
-    /// XXX Constraints (format, mandatory, keyboard, boundaries)
-
     /// Placeholder
     public let placeholder: String?
 
@@ -205,10 +203,13 @@ extension ActionParameterRule: Codable {
             return .exactLength(length)
         } else if let value = dictionary["mandatory"] as? Bool, value {
             return .mandatory
+        } else if let value = dictionary["regex"] as? String, !value.isEmpty {
+            return .regex(value)
         } else {
             return nil
         }
     }
+
     fileprivate static func from(name: String) -> ActionParameterRule? {
         switch name {
         case "mandatory":
