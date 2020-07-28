@@ -64,6 +64,7 @@ extension ActionParameter {
 /// Rules to fill action parameter.
 public enum ActionParameterRule {
     public typealias Comparable = Double
+    public typealias IsMultipleOf = Double
     case mandatory
     case min(Comparable)
     case max(Comparable)
@@ -71,6 +72,7 @@ public enum ActionParameterRule {
     case maxLength(Int)
     case exactLength(Int)
     case regex(String)
+    case isMultipleOf(IsMultipleOf)
 }
 
 extension ActionParameter {
@@ -205,6 +207,10 @@ extension ActionParameterRule: Codable {
             return .mandatory
         } else if let value = dictionary["regex"] as? String, !value.isEmpty {
             return .regex(value)
+        } else if let value = dictionary["isMultipleOf"] as? Double {
+            return .isMultipleOf(value)
+        } else if let value = dictionary["isMultipleOf"] as? Int {
+            return .isMultipleOf(Double(value))
         } else {
             return nil
         }
@@ -311,6 +317,8 @@ extension ActionParameterRule: DictionaryConvertible {
             return ["exactLength": value]
         case .regex(let value):
             return ["regex": value]
+        case .isMultipleOf(let value):
+            return ["isMultipleOf": value]
         }
     }
 
@@ -323,4 +331,34 @@ extension ActionParameterRule: DictionaryConvertible {
         }
     }
 
+}
+
+infix operator %%/*<--infix operator is required for custom infix char combos*/
+public protocol IsMultipleOf: Equatable {
+    static func %% (lhs: Self, rhs: Self) -> Self
+    init()
+}
+
+public extension IsMultipleOf {
+    func isMultiple(of value: Self) -> Bool {
+        return (self %% value) == Self()
+    }
+}
+
+extension Int: IsMultipleOf {
+    public static func %% (lhs: Self, rhs: Self) -> Self {
+        return lhs % rhs
+    }
+}
+
+extension Double: IsMultipleOf {
+    public static func %% (lhs: Self, rhs: Self) -> Self {
+        return lhs.truncatingRemainder(dividingBy: rhs)
+    }
+}
+
+extension Float: IsMultipleOf {
+    public static func %% (lhs: Self, rhs: Self) -> Self {
+        return lhs.truncatingRemainder(dividingBy: rhs)
+    }
 }
