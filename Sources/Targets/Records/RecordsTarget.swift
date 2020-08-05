@@ -15,20 +15,25 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
     let parentTarget: TargetType
     public let table: String
     public let attributes: [String]
+    var bodyParameters: [String: Any] = [:]
 
     static let attributeInPath = false
+    static let attributeInBody = false
 
     init(parentTarget: BaseTarget, table: String, attributes: [String] = []) {
         self.parentTarget = parentTarget
         self.table = table
         self.attributes = attributes
-        if !RecordsTarget.attributeInPath {
-            self.attributes(attributes)
+
+        if RecordsTarget.attributeInBody {
+            // smething to do?
+        } else if !RecordsTarget.attributeInPath {
+            self.attributes(attributes) // use $attributes=
         }
     }
 
     var childPath: String {
-        if attributes.isEmpty {
+        if attributes.isEmpty || RecordsTarget.attributeInBody {
             return table
         }
         if RecordsTarget.attributeInPath {
@@ -37,11 +42,14 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
             return table
         }
     }
-    public var method: Moya.Method = .get
+    public var method: Moya.Method = (RecordsTarget.attributeInBody) ? .post: .get
     var parameters: [String: Any] = [:]
     public var task: Task {
         if parameters.isEmpty {
             return .requestPlain
+        }
+        if RecordsTarget.attributeInBody {
+            return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: parameters)
         }
         return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
     }
