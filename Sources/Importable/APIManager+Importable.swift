@@ -14,7 +14,7 @@ extension APIManager {
     /// This avoid passing by an intermediate object RecordObject which contains only JSON data.
     public func records<B: ImportableBuilder>(
         table: Table,
-        attributes: [String] = [],
+        attributes: [String: Any] = [:],
         setID: String? = nil,
         recursive: Bool = true,
         configure: ((RecordsRequest) -> Void)? = nil,
@@ -37,6 +37,7 @@ extension APIManager {
                     }
                     do {
                         let records: [B.Importable] = try table.parser.parseArray(json: json, using: .default, with: initializer)
+                        //let records: [B.Importable] = try initializer.parseArray(json: json, using: .default)
 
                         if recursive && !page.isLast && !cancellable.isCancelled {
                             let nextConfigure: ((RecordsRequest) -> Void)? = { toConfigure in
