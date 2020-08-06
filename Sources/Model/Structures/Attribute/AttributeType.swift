@@ -39,6 +39,7 @@ public struct AttributeRelativeType: RawRepresentable {
     public var isToMany: Bool = false
     /// Optionnal information to know which field we want to expand for this relation.
     public var expand: String?
+    public var filter: String?
 
     public init(rawValue: RawValue) {
         self.rawValue = rawValue

@@ -90,7 +90,7 @@ extension APIManager {
     /// @param configure   closure to configure the request
     public func recordPage(
         table: Table,
-        attributes: [String] = [],
+        attributes: [String: Any] = [:],
         setID: EntitySetIdConvertible? = nil,
         recursive: Bool = false,
         configure: ConfigureRecordsRequest? = nil,
@@ -107,7 +107,7 @@ extension APIManager {
     /// @param configure   closure to configure the request
     public func recordPage(
         tableName: String,
-        attributes: [String] = [],
+        attributes: [String: Any] = [:],
         setID: EntitySetIdConvertible? = nil,
         recursive: Bool = false,
         configure: ConfigureRecordsRequest? = nil,

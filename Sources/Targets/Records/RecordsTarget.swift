@@ -15,20 +15,21 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
     let parentTarget: TargetType
     public let table: String
     public let attributes: [String]
-    var bodyParameters: [String: Any] = [:]
+    public var bodyParameters: [String: Any] = [:]
 
     static let attributeInPath = false
-    static let attributeInBody = false
+    public static let attributeInBody = true
 
-    init(parentTarget: BaseTarget, table: String, attributes: [String] = []) {
+    init(parentTarget: BaseTarget, table: String, attributes: [String: Any] = [:]) {
         self.parentTarget = parentTarget
         self.table = table
-        self.attributes = attributes
+        self.attributes = []
 
         if RecordsTarget.attributeInBody {
-            // smething to do?
+            bodyParameters = attributes
+            method = bodyParameters.isEmpty ? .get: .post
         } else if !RecordsTarget.attributeInPath {
-            self.attributes(attributes) // use $attributes=
+            self.attributes(Array(attributes.keys)) // use $attributes=
         }
     }
 
@@ -42,14 +43,16 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
             return table
         }
     }
-    public var method: Moya.Method = (RecordsTarget.attributeInBody) ? .post: .get
+    public var method: Moya.Method = .get
     var parameters: [String: Any] = [:]
     public var task: Task {
         if parameters.isEmpty {
             return .requestPlain
         }
         if RecordsTarget.attributeInBody {
-            return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: parameters)
+            if !bodyParameters.isEmpty {
+                return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: parameters)
+            }
         }
         return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
     }
@@ -81,17 +84,17 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
 
 extension BaseTarget {
     /// Returns the data for the records of  specified table
-    public func records(from table: String, attributes: [String] = []) -> RecordsTarget {
+    public func records(from table: String, attributes: [String: Any] = [:]) -> RecordsTarget {
         return RecordsTarget(parentTarget: self, table: table, attributes: attributes)
     }
 
     /// Returns the data for the special table for deleted records
     public func deletedRecords() -> RecordsTarget {
-        return RecordsTarget(parentTarget: self, table: DeletedRecordKey.entityName, attributes: [])
+        return RecordsTarget(parentTarget: self, table: DeletedRecordKey.entityName, attributes: [:])
     }
 
     /// Returns the data for the records of  specified table
-    public func records(from table: Table, attributes: [String] = []) -> RecordsTarget {
+    public func records(from table: Table, attributes: [String: Any] = [:]) -> RecordsTarget {
         return RecordsTarget(parentTarget: self, table: table.name, attributes: attributes)
     }
 }
