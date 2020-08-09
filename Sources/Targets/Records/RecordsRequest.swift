@@ -25,6 +25,7 @@ public enum RecordsRequestKey: String {
     case atomic
     case params
     case attributes
+    case extendedAttributes
 }
 
 /// The records request.

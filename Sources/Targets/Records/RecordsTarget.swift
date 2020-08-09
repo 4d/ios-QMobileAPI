@@ -27,7 +27,12 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
 
         if RecordsTarget.attributeInBody {
             bodyParameters = attributes
-            method = bodyParameters.isEmpty ? .get: .post
+            if bodyParameters.isEmpty {
+                method = .get
+            } else {
+                method = .post
+                setParameter(.extendedAttributes, "true")
+            }
         } else if !RecordsTarget.attributeInPath {
             self.attributes(Array(attributes.keys)) // use $attributes=
         }
