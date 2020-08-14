@@ -18,7 +18,7 @@ public final class RecordsTarget: RecordTargetType, RecordsTargetType {
     public var bodyParameters: [String: Any] = [:]
 
     static let attributeInPath = false
-    public static let attributeInBody = true
+    public static let attributeInBody: Bool = Prephirences.sharedInstance["api.records.extendedAttributes"] as? Bool ?? true
 
     init(parentTarget: BaseTarget, table: String, attributes: [String: Any] = [:]) {
         self.parentTarget = parentTarget
