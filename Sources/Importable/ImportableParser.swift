@@ -24,6 +24,8 @@ public protocol ImportableBuilder {
     func build(_ tableName: String, _ json: JSON) -> Importable?
     /// Called when the process finish.
     func teardown()
+
+    func parseArray(json: JSON, using mapper: AttributeValueMapper) throws ->  [Importable]
 }
 
 public extension ImportableBuilder {

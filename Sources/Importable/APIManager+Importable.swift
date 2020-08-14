@@ -36,8 +36,7 @@ extension APIManager {
                         return
                     }
                     do {
-                        let records: [B.Importable] = try table.parser.parseArray(json: json, using: .default, with: initializer)
-                        //let records: [B.Importable] = try initializer.parseArray(json: json, using: .default)
+                        let records: [B.Importable] = try initializer.parseArray(json: json, using: .default)
 
                         if recursive && !page.isLast && !cancellable.isCancelled {
                             let nextConfigure: ((RecordsRequest) -> Void)? = { toConfigure in
