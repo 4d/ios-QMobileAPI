@@ -25,7 +25,7 @@ public protocol ImportableBuilder {
     /// Called when the process finish.
     func teardown()
 
-    func parseArray(json: JSON, using mapper: AttributeValueMapper) throws ->  [Importable]
+    func parseArray(json: JSON, using mapper: AttributeValueMapper) throws -> [Importable]
 }
 
 public extension ImportableBuilder {

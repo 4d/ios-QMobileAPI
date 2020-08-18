@@ -35,7 +35,7 @@ class RemoteRecordsSetTests: XCTestCase {
             let cancellable = self.instance.records(table: table, setID: setID, configure: { builder in
                 builder.limit(limit) // expected more than count
 
-            }, initializer: TestBuilder()) { result  in
+            }, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let (records, page)):
                     print("\(records)")
@@ -68,7 +68,7 @@ class RemoteRecordsSetTests: XCTestCase {
             let cancellable = self.instance.records(table: table, setID: setID, configure: { builder in
                 builder.limit(limit)
 
-            }, initializer: TestBuilder()) { result  in
+            }, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let (records, page)):
                     pageCount += 1

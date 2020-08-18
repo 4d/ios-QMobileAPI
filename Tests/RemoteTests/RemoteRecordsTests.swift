@@ -75,7 +75,7 @@ class RemoteRecordsTests: XCTestCase {
             let cancellable = self.instance.records(table: table, configure: { builder in
                 builder.limit(limit) // expected more than count
 
-            }, initializer: TestBuilder()) { result  in
+            }, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let (records, page)):
                     print("\(records)")
@@ -130,7 +130,7 @@ class RemoteRecordsTests: XCTestCase {
 
         withTable(RemoteConfig.tableName, instance) { table in
 
-            let cancellable = self.instance.loadRecord(table: table, key: self.tablePrimaryKeyValue, initializer: TestBuilder()) { result  in
+            let cancellable = self.instance.loadRecord(table: table, key: self.tablePrimaryKeyValue, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let record):
                     print("\(record)")
@@ -159,7 +159,7 @@ class RemoteRecordsTests: XCTestCase {
             let cancellable = self.instance.records(table: table, configure: { builder in
                 builder.limit(limit)
 
-            }, initializer: TestBuilder()) { result  in
+            }, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let (records, page)):
                     pageCount += 1
@@ -254,7 +254,7 @@ class RemoteRecordsTests: XCTestCase {
                 builder.limit(limit) // expected more than count
                 builder.filter("title = :title")
                 builder.params([["title": "test"]])
-            }, initializer: TestBuilder()) { result  in
+            }, initializer: TestBuilder(table)) { result  in
                 switch result {
                 case .success(let (records, page)):
                     print("\(records)")
@@ -292,6 +292,12 @@ func withTable(_ name: String, _ instance: APIManager, function: String = #funct
 struct TestBuilder: ImportableBuilder {
     typealias Importable = TestJSONWrapper
 
+    var table: Table
+
+    init(_ table: Table) {
+        self.table = table
+    }
+
     func setup(in callback: @escaping () -> Void) {
         callback()
     }
@@ -301,6 +307,10 @@ struct TestBuilder: ImportableBuilder {
         return record
     }
     func teardown() {
+    }
+
+    func parseArray(json: JSON, using mapper: AttributeValueMapper) throws -> [Importable] {
+        return table.parser.parseArray(json: json, with: mapper)
     }
 }
 
