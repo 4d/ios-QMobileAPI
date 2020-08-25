@@ -310,7 +310,7 @@ struct TestBuilder: ImportableBuilder {
     }
 
     func parseArray(json: JSON, using mapper: AttributeValueMapper) throws -> [Importable] {
-        return table.parser.parseArray(json: json, using: mapper, with: self)
+        return try table.parser.parseArray(json: json, using: mapper, with: self)
     }
 }
 
