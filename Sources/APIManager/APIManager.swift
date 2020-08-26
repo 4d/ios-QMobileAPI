@@ -15,7 +15,11 @@ import UIKit
 #endif
 
 /*import class Alamofire.RequestRetryCompletion*/
-
+#if os(macOS)
+let kPersistAuth = false // desactive it for command line tools, must use parameters each times -> do not need to access keychain for nothing
+#else
+let kPersistAuth = true
+#endif
 /// Main class of framework, which allow to play with the 4D rest api.
 public class APIManager {
     /// Default instance of `Self` which use `URL.qmobile` as base url
@@ -74,6 +78,7 @@ public class APIManager {
     }
 
     private func initAuthToken() {
+        guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance
         if let tokenOrNil = ((try? keyChain.decodable(AuthToken.self, forKey: APIManager.authTokenKey)) as AuthToken??),
             let token = tokenOrNil {
@@ -96,6 +101,7 @@ public class APIManager {
     }
 
     private func saveAuthToken() {
+        guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance
         do {
             try keyChain.set(encodable: authToken, forKey: APIManager.authTokenKey) // set work with nil (will remove)
@@ -105,6 +111,7 @@ public class APIManager {
     }
 
     public static func removeAuthToken() {
+        guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance
         keyChain.removeObject(forKey: APIManager.authTokenKey)
     }
