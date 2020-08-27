@@ -77,6 +77,14 @@ public class APIManager {
         }
     }
 
+    /// Return if api shared instance has valid token ie. we are logged
+    public static var isSignIn: Bool {
+        guard let token = self.instance.authToken else {
+            return false
+        }
+        return token.isValidToken
+    }
+
     private func initAuthToken() {
         guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance

@@ -41,7 +41,11 @@ extension APIManager {
             switch result {
             case .success(let authToken):
                 self.authToken = authToken
-                Notification(name: APIManager.loginSuccess, object: self, userInfo: ["token": authToken]).post()
+                if authToken.isValidToken {
+                    Notification(name: APIManager.loginSuccess, object: self, userInfo: ["token": authToken]).post()
+                } else {
+                    Notification(name: APIManager.loginPending, object: self, userInfo: ["token": authToken]).post()
+                }
                 self.delegate?.didLoginSuccess(authToken)
 
             case .failure(let error):

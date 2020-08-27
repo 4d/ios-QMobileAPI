@@ -11,6 +11,8 @@ import Foundation
 extension APIManager {
     /// Notify about log in success
     public static let loginSuccess = Notification.Name("apiManager.login.success")
+    /// Notify about log in wait for validation
+    public static let loginPending = Notification.Name("apiManager.login.pending")
     /// Notify about log in failure
     public static let loginFailed = Notification.Name("apiManager.login.failed")
     /// Notify about log out
