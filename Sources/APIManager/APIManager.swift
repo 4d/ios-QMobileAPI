@@ -272,8 +272,8 @@ public class APIManager {
                 return request
             })
             // Log info about server
-            logger.verbose {
-                plugins.append(ReceivePlugin { result, _ in
+            logger.verbose({
+                self.plugins.append(ReceivePlugin { result, _ in
                     if case .success(let response) = result {
                         if let server = response.header(for: .server) {
                             let restInfo = response.header(for: .restInfo) ?? ""
@@ -281,7 +281,7 @@ public class APIManager {
                         } // else stub?
                     }
                 })
-            }
+            })
         #endif
     }
 

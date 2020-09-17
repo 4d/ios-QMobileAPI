@@ -17,16 +17,16 @@ public protocol LockableBySync: Lockable {}
 
 extension LockableBySync {
     public func lock() -> Bool {
-        logger.verbose { "will lock \(self)" }
+        logger.verbose({ "will lock \(self)" })
         let result = (objc_sync_enter(self))
-        logger.verbose { "did lock \(self)" }
+        logger.verbose({ "did lock \(self)" })
         return Int(result) == OBJC_SYNC_SUCCESS
     }
 
     public func unlock() -> Bool {
-        logger.verbose { "will unlock \(self)" }
+        logger.verbose({ "will unlock \(self)" })
         let result = objc_sync_exit(self)
-        logger.verbose { "did unlock \(self)" }
+        logger.verbose({ "did unlock \(self)" })
         return Int(result) == OBJC_SYNC_SUCCESS
     }
 }
