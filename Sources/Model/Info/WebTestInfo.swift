@@ -29,11 +29,72 @@ public struct WebTestInfo {
 // MARK: Codable
 extension WebTestInfo: Codable {}
 
+public struct ServerVersion {
+
+    public var version: SemVersion
+    public var submit: String?
+    public var commercialVersion: String?
+
+    public init?(_ string: String?) {
+        guard let versionString = string?.replacingOccurrences(of: "4D/", with: "") else {
+            return nil
+        }
+
+        guard let pos = versionString.firstIndex(of: " ") else {
+            logger.warning("Cannot decode server semVersion \(versionString). No space")
+            return nil
+        }
+        let semVer = String(versionString[versionString.startIndex..<pos])
+        self.version =  SemVersion(semVer)
+
+        let build = String(versionString[pos..<versionString.endIndex]).replacingOccurrences(of: "(Build ", with: "").replacingOccurrences(of: ")", with: "")
+        let builds = build.split(separator: ".")
+
+        if builds.count > 1 {
+            self.commercialVersion = String(builds[0])
+            self.submit =  String(builds[1])
+        } else if !builds.isEmpty {
+            self.commercialVersion =  String(builds[0])
+        }
+    }
+}
+
+public struct SemVersion {
+
+    public private(set) var max: Int = 0
+    public private(set) var min: Int = 0
+    public private(set) var patch: Int = 0
+
+    public init(max: Int, min: Int, patch: Int) {
+        self.max = max
+        self.min = min
+        self.patch = patch
+    }
+    public init(_ string: String) {
+        let splitted = string.split(separator: ".")
+        if splitted.count > 2 {
+            self.max = Int(splitted[0]) ?? 0
+            self.min = Int(splitted[1]) ?? 0
+            self.patch = Int(splitted[2]) ?? 0
+        } else if splitted.count > 1 {
+            self.max = Int(splitted[0]) ?? 0
+            self.min = Int(splitted[1]) ?? 0
+        } else if !splitted.isEmpty {
+            self.max = Int(splitted[0]) ?? 0
+        }
+    }
+
+}
+
 // MARK: shortcut
 extension WebTestInfo {
     /// Return server information
     public var server: String? {
-      return info["Server"]
+      return info["Server"] // 4D/18.5.0 (Build 0.255457)
+    }
+
+    public var version: ServerVersion? {
+        return ServerVersion(server)
     }
 
     /// Return true if it's a 4D web server
