@@ -19,6 +19,7 @@ extension APIManager {
                 do {
                     let result = try response.mapString()
                     let info = WebTestInfo(string: result)
+                    self.webTestInfo = info
                     completionHandler(.success(info))
                 } catch {
                     completionHandler(.failure(.stringDecodingFailed(error)))

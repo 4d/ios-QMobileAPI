@@ -65,6 +65,8 @@ public struct SemVersion {
     public private(set) var min: Int = 0
     public private(set) var patch: Int = 0
 
+    public static let V18R5 = SemVersion(max: 18, min: 5, patch: 0)
+
     public init(max: Int, min: Int, patch: Int) {
         self.max = max
         self.min = min
@@ -84,6 +86,26 @@ public struct SemVersion {
         }
     }
 
+}
+extension SemVersion: Equatable {
+    public static func == (left: SemVersion, right: SemVersion) -> Bool {
+        return left.max == right.max && left.min == right.min && left.patch == right.patch
+    }
+}
+
+extension SemVersion: Comparable {
+    static public func < (left: SemVersion, right: SemVersion) -> Bool {
+        if left.max < right.max {
+            return true
+        }
+        if left.min < right.min {
+            return true
+        }
+        if left.patch < right.patch {
+            return true
+        }
+        return false
+    }
 }
 
 // MARK: shortcut

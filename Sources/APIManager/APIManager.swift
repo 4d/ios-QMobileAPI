@@ -66,6 +66,8 @@ public class APIManager {
     public let base: BaseTarget
     /// Target to get info from web server
     public let webTest: WebTestTarget
+    /// Lattest info from server
+    public var webTestInfo: WebTestInfo?
 
     // MARK: Authentication
     private static let authTokenKey = "auth.token"
