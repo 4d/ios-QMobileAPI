@@ -369,6 +369,10 @@
 		48FBBFA61F546E3000E920B6 /* APIManager+Retrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481EDC841F4C7DD400E97960 /* APIManager+Retrier.swift */; };
 		48FBBFA81F546F1500E920B6 /* PingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FBBFA71F546F1500E920B6 /* PingTests.swift */; };
 		48FBBFAB1F5475B300E920B6 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FBBFAA1F5475B300E920B6 /* URLTests.swift */; };
+		C4844BEA2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
+		C4844BEB2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
+		C4844BEC2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
+		C4844BED2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
 		C50E0D7122E0702900D7CB94 /* restactionfailure.json in Resources */ = {isa = PBXBuildFile; fileRef = C50E0D6E22E06F1100D7CB94 /* restactionfailure.json */; };
 		C50E0D7222E0702D00D7CB94 /* restactionsuccessfalse.json in Resources */ = {isa = PBXBuildFile; fileRef = C50E0D6F22E06F1100D7CB94 /* restactionsuccessfalse.json */; };
 		C50E0D7322E0703000D7CB94 /* restactionsuccesstrue.json in Resources */ = {isa = PBXBuildFile; fileRef = C50E0D7022E06F1200D7CB94 /* restactionsuccesstrue.json */; };
@@ -644,6 +648,7 @@
 		48FBBFA71F546F1500E920B6 /* PingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingTests.swift; sourceTree = "<group>"; };
 		48FBBFA91F5471BD00E920B6 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		48FBBFAA1F5475B300E920B6 /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		C4844BE92535D29300EEB131 /* ActionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequest.swift; sourceTree = "<group>"; };
 		C50E0D6E22E06F1100D7CB94 /* restactionfailure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restactionfailure.json; sourceTree = "<group>"; };
 		C50E0D6F22E06F1100D7CB94 /* restactionsuccessfalse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restactionsuccessfalse.json; sourceTree = "<group>"; };
 		C50E0D7022E06F1200D7CB94 /* restactionsuccesstrue.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restactionsuccesstrue.json; sourceTree = "<group>"; };
@@ -1221,11 +1226,12 @@
 		48A1E5D61FE12B9600C6E0B0 /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				48845330222914E60029219E /* Action.swift */,
 				48A1E5D71FE12BAD00C6E0B0 /* ApplicationInfo.swift */,
 				48845332222914FD0029219E /* ActionResult.swift */,
 				486A4BF6225C9EA300BD24E9 /* ActionSheet.swift */,
-				48845330222914E60029219E /* Action.swift */,
 				486A4BF8225C9ED900BD24E9 /* ActionParameter.swift */,
+				C4844BE92535D29300EEB131 /* ActionRequest.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -1796,6 +1802,7 @@
 				4817DA3E1FE00B5000D1AD07 /* WebTestInfo.swift in Sources */,
 				486A4BFE225C9EE100BD24E9 /* ActionParameter.swift in Sources */,
 				4816014A1EF826A20051BD89 /* AttributeKind.swift in Sources */,
+				C4844BEC2535D29300EEB131 /* ActionRequest.swift in Sources */,
 				487F7FF31F57F9BA0064AF4B /* RestErrors.swift in Sources */,
 				481601611EF826B30051BD89 /* URL+Basic.swift in Sources */,
 				481601601EF826B30051BD89 /* String+Extension.swift in Sources */,
@@ -1900,6 +1907,7 @@
 				FE26583D1F0B7F5800282587 /* CacheInfo.swift in Sources */,
 				FE2658421F0B7FF800282587 /* CacheObjects.swift in Sources */,
 				4816019D1EF82A6D0051BD89 /* Table.swift in Sources */,
+				C4844BED2535D29300EEB131 /* ActionRequest.swift in Sources */,
 				FE2658461F0B7FFD00282587 /* CacheObject.swift in Sources */,
 				4816019E1EF82A6D0051BD89 /* Key.swift in Sources */,
 				4816019F1EF82A6D0051BD89 /* Attribute.swift in Sources */,
@@ -1975,6 +1983,7 @@
 				48AE2C6A1F4586DF0013FDEE /* TableMethod.swift in Sources */,
 				FE26585B1F0B92AE00282587 /* EntitySetInfo.swift in Sources */,
 				485494001EF2C18100FDD396 /* JSON+Attribute.swift in Sources */,
+				C4844BEB2535D29300EEB131 /* ActionRequest.swift in Sources */,
 				485494011EF2C18E00FDD396 /* Compute.swift in Sources */,
 				485494021EF2C18E00FDD396 /* PageInfo.swift in Sources */,
 				480AB9B11F0A258C00087AF8 /* UploadUpdate.swift in Sources */,
@@ -1997,6 +2006,7 @@
 				48214F4D1FE1817B004B50B8 /* APIManager+WebTest.swift in Sources */,
 				487F800C1F58322A0064AF4B /* UIDevice.swift in Sources */,
 				FE26583F1F0B7FF600282587 /* CacheObjects.swift in Sources */,
+				C4844BEA2535D29300EEB131 /* ActionRequest.swift in Sources */,
 				48D335CE1EC2190800D0DB69 /* UploadTarget.swift in Sources */,
 				48E22F2C1EB1DA9500A4CE06 /* APIManager+Route.swift in Sources */,
 				4817DA371FE007B100D1AD07 /* WebTestTarget.swift in Sources */,

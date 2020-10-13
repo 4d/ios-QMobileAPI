@@ -39,6 +39,11 @@ public struct Action {
 }
 
 extension Action {
+    /// An empty action without name and parameters.
+    static let empty =  Action(name: "")
+}
+
+extension Action {
     public var preferredLongLabel: String {
         return self.label ??? self.shortLabel ??? self.name
     }

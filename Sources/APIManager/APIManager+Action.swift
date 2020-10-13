@@ -47,4 +47,18 @@ extension APIManager {
                            progress: progress,
                            completionHandler: completionHandler)
     }
+
+    /// Call mobile action request.
+    public func action(_ request: ActionRequest,
+                       httpMethod: Moya.Method = ActionAbstractTarget.defaultMethod,
+                       callbackQueue: DispatchQueue? = nil,
+                       progress: ProgressHandler? = nil,
+                       completionHandler: @escaping CompletionActionHandler) -> Cancellable {
+        return self.action(request.action,
+                           parameters: request.parameters,
+                           httpMethod: httpMethod,
+                           callbackQueue: callbackQueue,
+                           progress: progress,
+                           completionHandler: completionHandler)
+    }
 }
