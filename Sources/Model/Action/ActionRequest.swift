@@ -11,13 +11,15 @@ import Foundation
 /// Represent a mobile action sent 4D server.
 public class ActionRequest {
 
-    /// Unique id.
-    public var id: String = UUID().uuidString + UUID().uuidString
-
     /// The action to request.
     public var action: Action
 
-    public var parameters: ActionParameters = [:]
+    /// Unique id.
+    public var id: String
+    /// Parameters value for the actions.
+    public var actionParameters: ActionParameters?
+    /// Context of action executions (ie. record, table, ...)
+    public var contextParameters: ActionParameters?
 
     /// Creation of request.
     public var creationDate: Date = Date()
@@ -28,16 +30,12 @@ public class ActionRequest {
     /// The result, when has been executed
     public var result: Result<ActionResult, APIError>?
 
-    init(action: Action, parameters: ActionParameters) {
+    /// Create a new action request
+    public init(action: Action, actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String? = nil) {
         self.action = action
-        self.parameters = parameters
-    }
-}
-
-extension Action {
-    /// New request from action.
-    public func newRequest(parameters: ActionParameters = [:]) -> ActionRequest {
-        return ActionRequest(action: self, parameters: parameters)
+        self.actionParameters = actionParameters
+        self.contextParameters = contextParameters
+        self.id = id ?? UUID().uuidString.replacingOccurrences(of: "-", with: "")
     }
 }
 
@@ -54,14 +52,17 @@ extension ActionRequest: Equatable {
 
 extension ActionRequest {
 
-    /// Parameters value for the actions.
-    public var userParameters: ActionParameters? {
-        return parameters["parameters"] as? ActionParameters
-    }
-
-    /// Context of action executions (ie. record, table, ...)
-    public var context: ActionParameters? {
-        return parameters["context"] as? ActionParameters
+    /// The full parameters.
+    public var parameters: ActionParameters {
+        var parameters: ActionParameters = [:]
+        parameters["id"] = self.id
+        if let actionParameters = actionParameters {
+            parameters["parameters"] = actionParameters
+        }
+        if let actionParameters = contextParameters {
+            parameters["context"] = actionParameters
+        }
+        return parameters
     }
 
     /// Return true if action executed and success.
@@ -74,4 +75,40 @@ extension ActionRequest {
         }
     }
 
+    /// Has receive result.
+    public var hasResult: Bool {
+        return result != nil
+    }
+
+    /// Reset result ie. set no nil.
+    public func resetResult() {
+        result = nil
+    }
+
+    /// The action result if any (ie. have result and no error.
+    public var actionResult: ActionResult? {
+        switch result {
+        case .success(let actionResult):
+            return actionResult
+        default:
+            return nil
+        }
+    }
+
+    /// The action result if any (ie. have result and no error.
+    public var apiError: APIError? {
+        switch result {
+        case .failure(let error):
+            return error
+        default:
+            return nil
+        }
+    }
+}
+
+extension Action {
+    /// New request from action.
+    public func newRequest(actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String? = nil) -> ActionRequest {
+        return ActionRequest(action: self, actionParameters: actionParameters, contextParameters: contextParameters, id: id)
+    }
 }
