@@ -23,11 +23,16 @@ extension APIManager {
     public typealias CompletionActionHandler = ((Result<ActionResult, APIError>) -> Void)
     public func action(name: String,
                        parameters: ActionParameters = [:],
+                       encodeParameters: Bool = true,
                        httpMethod: Moya.Method = ActionAbstractTarget.defaultMethod,
                        callbackQueue: DispatchQueue? = nil,
                        progress: ProgressHandler? = nil,
                        completionHandler: @escaping CompletionActionHandler) -> Cancellable {
         let target: ActionTarget = self.base.actionTarget.action(name: name)
+        var parameters = parameters
+        if encodeParameters {
+            ActionRequest.encodeParameters(parameters: &parameters)
+        }
         target.parameters = parameters
         target.method = httpMethod
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
@@ -54,8 +59,9 @@ extension APIManager {
                        callbackQueue: DispatchQueue? = nil,
                        progress: ProgressHandler? = nil,
                        completionHandler: @escaping CompletionActionHandler) -> Cancellable {
-        return self.action(request.action,
+        return self.action(name: request.action.name,
                            parameters: request.parameters,
+                           encodeParameters: false, // already encoded
                            httpMethod: httpMethod,
                            callbackQueue: callbackQueue,
                            progress: progress,

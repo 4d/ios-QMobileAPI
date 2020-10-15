@@ -11,6 +11,12 @@ import Foundation
 /// Represent a mobile action sent 4D server.
 public class ActionRequest {
 
+    public enum ActionParametersKey: String {
+        case parameters, context, metadata
+
+        static let all: [ActionParametersKey] = [.parameters, .context, .metadata]
+    }
+
     /// The action to request.
     public var action: Action
 
@@ -51,19 +57,6 @@ extension ActionRequest: Equatable {
 }
 
 extension ActionRequest {
-
-    /// The full parameters.
-    public var parameters: ActionParameters {
-        var parameters: ActionParameters = [:]
-        parameters["id"] = self.id
-        if let actionParameters = actionParameters {
-            parameters["parameters"] = actionParameters
-        }
-        if let actionParameters = contextParameters {
-            parameters["context"] = actionParameters
-        }
-        return parameters
-    }
 
     /// Return true if action executed and success.
     public var isSuccess: Bool {
