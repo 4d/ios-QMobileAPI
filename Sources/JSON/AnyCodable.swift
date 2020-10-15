@@ -398,3 +398,52 @@ extension _AnyEncodable {
         self.init([AnyHashable: Any](elements, uniquingKeysWith: { (first, _) in first }))
     }
 }
+
+@propertyWrapper
+public struct StringDictContainer {
+    public var wrappedValue: [String: Any]?
+
+    public init(wrappedValue: [String: Any]?) {
+       self.wrappedValue = wrappedValue
+    }
+
+    /// Copied from the standard library (`_DictionaryCodingKey`).
+    private struct CodingKeys: CodingKey {
+        let stringValue: String
+        let intValue: Int?
+
+        public init?(stringValue: String) {
+            self.stringValue = stringValue
+            self.intValue = Int(stringValue)
+        }
+
+        public init?(intValue: Int) {
+            self.stringValue = "\(intValue)"
+            self.intValue = intValue
+        }
+    }
+}
+
+extension StringDictContainer: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in wrappedValue ?? [:] {
+            let codingKey = CodingKeys(stringValue: key)!
+            try container.encode(AnyEncodable(value), forKey: codingKey)
+        }
+    }
+}
+
+extension StringDictContainer: Decodable {
+    public init(from decoder: Decoder) throws {
+        wrappedValue = nil
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys {
+            if wrappedValue == nil {
+                wrappedValue = [:]
+            }
+            let value = try container.decode(AnyDecodable.self, forKey: key)
+            wrappedValue?[key.stringValue] = value.value
+        }
+    }
+}

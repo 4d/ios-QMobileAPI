@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represent a mobile action sent 4D server.
-public class ActionRequest {
+public final class ActionRequest {
 
     public enum ActionParametersKey: String {
         case parameters, context, metadata
@@ -23,12 +23,12 @@ public class ActionRequest {
     /// Unique id.
     public var id: String
     /// Parameters value for the actions.
-    public var actionParameters: ActionParameters?
+    @StringDictContainer public var actionParameters: ActionParameters?
     /// Context of action executions (ie. record, table, ...)
-    public var contextParameters: ActionParameters?
+    @StringDictContainer public var contextParameters: ActionParameters?
 
     /// Creation of request.
-    public var creationDate: Date = Date()
+    public var creationDate: Date
 
     /// Last tentative date.
     public var lastDate: Date?
@@ -42,10 +42,44 @@ public class ActionRequest {
         self.actionParameters = actionParameters
         self.contextParameters = contextParameters
         self.id = id ?? UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        self.creationDate = Date()
     }
 }
 
-// extension ActionRequest: Codable {} -> because of Any, not encodable...
+extension ActionRequest: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case action
+        case id
+        case actionParameters
+        case contextParameters
+        case creationDate
+        case lastDate
+    }
+
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let action = try container.decode(Action.self, forKey: .action)
+        let id = try container.decode(String.self, forKey: .id)
+        let actionParameters = try container.decodeIfPresent(StringDictContainer.self, forKey: .actionParameters)?.wrappedValue
+        let contextParameters = try container.decodeIfPresent(StringDictContainer.self, forKey: .contextParameters)?.wrappedValue
+        self.init(action: action, actionParameters: actionParameters, contextParameters: contextParameters, id: id)
+        self.creationDate = try container.decode(Date.self, forKey: .creationDate)
+        self.lastDate = try container.decodeIfPresent(Date.self, forKey: .lastDate)
+        // TODO Add result but apiError is not encodable
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(action, forKey: .action)
+        try container.encode(id, forKey: .id)
+        try container.encode(StringDictContainer(wrappedValue: actionParameters), forKey: .actionParameters)
+        try container.encode(StringDictContainer(wrappedValue: contextParameters), forKey: .contextParameters)
+        try container.encode(creationDate, forKey: .creationDate)
+        try container.encode(lastDate, forKey: .lastDate)
+    }
+
+}
 
 extension ActionRequest: Equatable {
     public static func == (lhs: ActionRequest, rhs: ActionRequest) -> Bool {

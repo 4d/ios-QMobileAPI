@@ -55,3 +55,7 @@ extension ActionResult: Equatable {
         return lhf.json == rhf.json
     }
 }
+
+extension ActionResult: Codable {
+
+}
