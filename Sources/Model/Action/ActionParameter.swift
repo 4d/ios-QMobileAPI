@@ -106,6 +106,7 @@ public enum ActionParameterFormat: String, Equatable {
     case rating
     case stepper
     case slider
+    case barcode
 
     case check // bool
     case `switch` // bool
