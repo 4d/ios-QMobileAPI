@@ -17,6 +17,14 @@ public struct ActionResult {
     /// Operation success or not.
     public var success: Bool
 
+    /// Create an instance from raw data
+    public init(success: Bool, json: JSON) {
+        self.success = success
+        self.json = json
+    }
+
+    public static let emptySuccess = ActionResult(success: true, json: JSON())
+    public static let emptyFailure = ActionResult(success: false, json: JSON())
 }
 
 extension ActionResult {
