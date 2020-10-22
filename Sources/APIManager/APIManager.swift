@@ -373,23 +373,3 @@ extension APIManager {
         return self.provider(target).requestDecoded(target, callbackQueue: callbackQueue ?? defaultQueue, progress: progress, completion: completion)
     }
 }
-
-extension PreferencesType {
-    public func decodable<T: Decodable>(_ type: T.Type, forKey key: PreferenceKey, decoder: JSONDecoder = JSONDecoder()) throws -> T? {
-        guard let data = data(forKey: key) else {
-            return nil
-        }
-        return try decoder.decode(T.self, from: data)
-    }
-}
-
-extension MutablePreferencesType {
-    public func set<T: Encodable>(encodable value: T?, forKey key: PreferenceKey, encoder: JSONEncoder = JSONEncoder()) throws {
-        if let value = value {
-            let data: Data = try encoder.encode(value)
-            set(data, forKey: key)
-        } else {
-            removeObject(forKey: key)
-        }
-    }
-}
