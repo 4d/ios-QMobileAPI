@@ -121,6 +121,7 @@ public enum ActionParameterFormat: String, Equatable {
     case mediumDate
     case fullDate
 
+    case signature
 }
 
 /// Type of parameters.
