@@ -21,6 +21,35 @@ public final class ActionRequest: ObservableObject {
         case new, inQueue, inProgress, pending, complete
     }
 
+    // Map api error to an encodable error.
+    public struct Error: Swift.Error, Codable {
+
+        public var errorDescription: String
+        public var restErrors: RestErrors?
+        public var failureReason: String?
+        public var isUnauthorized: Bool
+        public var mustRetry: Bool
+
+        public init(_ error: APIError) {
+            self.errorDescription = error.errorDescription ?? ""
+            self.restErrors = error.restErrors
+            if case .sessionTaskFailed(let urlError) = error.afError {
+                self.failureReason = urlError.localizedDescription
+            } else if let failureReason = error.failureReason {
+                self.failureReason = failureReason
+            }
+            self.isUnauthorized = error.isHTTPResponseWith(code: .unauthorized)
+            self.mustRetry = true
+
+            if restErrors != nil { // dev wanted error so no retry
+                self.mustRetry = false
+            }
+        }
+        public var statusText: String? {
+            return self.restErrors?.statusText
+        }
+    }
+
     /// The action to request.
     public var action: Action
 
@@ -40,7 +69,14 @@ public final class ActionRequest: ObservableObject {
     public var lastDate: Date?
 
     /// The result, when has been executed
-    public var result: Result<ActionResult, APIError>?
+    public var result: Result<ActionResult, ActionRequest.Error>? {
+        didSet {
+            tryCount = tryCount + 1
+        }
+    }
+
+    /// Try count
+    public var tryCount: Int = 0
 
     public var summary: String {
         if let result = result {
@@ -65,7 +101,7 @@ public final class ActionRequest: ObservableObject {
         self.contextParameters = contextParameters
         self.id = id ?? UUID().uuidString.replacingOccurrences(of: "-", with: "")
         self.creationDate = Date()
-        self.result = result
+        self.result = result?.mapError { ActionRequest.Error($0) }
     }
 }
 
@@ -78,6 +114,7 @@ extension ActionRequest: Codable {
         case contextParameters
         case creationDate
         case lastDate
+        case tryCount
         case result
     }
 
@@ -90,8 +127,15 @@ extension ActionRequest: Codable {
         self.init(action: action, actionParameters: actionParameters, contextParameters: contextParameters, id: id)
         self.creationDate = try container.decode(Date.self, forKey: .creationDate)
         self.lastDate = try container.decodeIfPresent(Date.self, forKey: .lastDate)
-        // TODO Add result but apiError is not encodable
+        self.tryCount = try container.decode(Int.self, forKey: .tryCount)
 
+        if let actionResult = try container.decodeIfPresent(ActionResult.self, forKey: .result) {
+            self.result = .success(actionResult)
+        } else if let actionRequestError = try container.decodeIfPresent(ActionRequest.Error.self, forKey: .result) {
+            self.result = .failure(actionRequestError)
+        } else {
+            self.result = nil
+        }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -102,17 +146,18 @@ extension ActionRequest: Codable {
         try container.encode(StringDictContainer(wrappedValue: contextParameters), forKey: .contextParameters)
         try container.encode(creationDate, forKey: .creationDate)
         try container.encode(lastDate, forKey: .lastDate)
+        try container.encode(tryCount, forKey: .tryCount)
 
-        /*if let result = self.result {
+        if let result = self.result {
             switch result {
             case .success(let value):
                 try container.encode(value, forKey: .result)
             case .failure(let error):
-
+                try container.encode(error, forKey: .result)
             }
         } else {
             try container.encodeNil(forKey: .result)
-        }*/
+        }
     }
 
 }
@@ -168,15 +213,6 @@ extension ActionRequest {
         }
     }
 
-    /// The action result if any (ie. have result and no error.
-    public var apiError: APIError? {
-        switch result {
-        case .failure(let error):
-            return error
-        default:
-            return nil
-        }
-    }
 }
 
 extension Action {
