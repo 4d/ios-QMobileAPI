@@ -18,7 +18,7 @@ public final class ActionRequest: ObservableObject {
     }
 
     public enum State: String, Codable {
-        case new, inQueue, inProgress, pending, complete
+        case ready, executing, pending, finished, cancelled
     }
 
     // Map api error to an encodable error.
@@ -60,7 +60,7 @@ public final class ActionRequest: ObservableObject {
     /// Context of action executions (ie. record, table, ...)
     @StringDictContainer public var contextParameters: ActionParameters?
 
-    public var state: ActionRequest.State = .new
+    public var state: ActionRequest.State = .ready
 
     /// Creation of request.
     public var creationDate: Date
