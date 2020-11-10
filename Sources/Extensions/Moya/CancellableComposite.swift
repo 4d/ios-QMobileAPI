@@ -18,16 +18,16 @@ public class CancellableComposite {
         self.mode = mode
     }
 
-    fileprivate var list: [Cancellable] = []
+    fileprivate var list: [Moya.Cancellable] = []
     fileprivate var hasRequestedCancel: Bool = false
     public var mode: Mode = .all
 
     public var semaphore = DispatchSemaphore(value: 1)
 }
 
-extension CancellableComposite: Cancellable {
+extension CancellableComposite: Moya.Cancellable {
     @discardableResult
-    public func append(_ cancellable: Cancellable) -> Bool {
+    public func append(_ cancellable: Moya.Cancellable) -> Bool {
         if lock() {
             defer {
                 _ = unlock()
@@ -38,7 +38,7 @@ extension CancellableComposite: Cancellable {
         return false
     }
 
-    public func appendUnlocked(_ cancellable: Cancellable) {
+    public func appendUnlocked(_ cancellable: Moya.Cancellable) {
         if hasRequestedCancel {
             cancellable.cancel()
         }
@@ -102,4 +102,17 @@ extension CancellableComposite: CustomStringConvertible {
 
 extension CancellableComposite: LockableBySemaphore {}
 
-extension DispatchWorkItem: Cancellable {}
+extension DispatchWorkItem: Moya.Cancellable {}
+/*
+import Combine
+
+extension AnyCancellable {
+
+    /// Stores this type-erasing cancellable instance in the specified set.
+    ///
+    /// - Parameter set: The set in which to store this ``AnyCancellable``.
+    final public func store(in composite: CancellableComposite) {
+        self.store(in: &composite.list)
+    }
+}
+*/

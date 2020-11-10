@@ -71,7 +71,7 @@ public final class ActionRequest: ObservableObject {
     /// The result, when has been executed
     public var result: Result<ActionResult, ActionRequest.Error>? {
         didSet {
-            tryCount = tryCount + 1
+            tryCount += 1
         }
     }
 
