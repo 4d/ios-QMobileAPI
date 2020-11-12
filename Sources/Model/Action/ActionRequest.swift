@@ -48,6 +48,7 @@ public final class ActionRequest: ObservableObject {
         public var statusText: String? {
             return self.restErrors?.statusText
         }
+
     }
 
     /// The action to request.
