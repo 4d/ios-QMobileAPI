@@ -85,7 +85,7 @@ extension ActionParameter {
     }
 }
 
-public enum ActionParameterFormat: String, Equatable {
+public enum ActionParameterFormat: RawRepresentable, Equatable {
 
     case email // , emailAddress
     case url //, link
@@ -122,6 +122,94 @@ public enum ActionParameterFormat: String, Equatable {
     case fullDate
 
     case signature
+
+    case custom(String)
+
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "email": self = .email
+        case "url ": self = .url
+        case "phone ": self = .phone
+        case "password": self = .password
+        case "zipCode": self = .zipCode
+        case "textArea": self = .textArea
+        case "comment": self = .comment
+
+        /// capitalized text
+        case "name": self = .name
+        case "account": self = .account
+
+        case "integer": self = .integer
+        case "spellOut": self = .spellOut
+        case "scientific": self = .scientific
+        case "percent": self = .percent
+
+        case "rating": self = .rating
+        case "stepper": self = .stepper
+        case "slider": self = .slider
+        case "barcode": self = .barcode
+
+        case "check ": self = .check
+        case "`switch`": self = .`switch`
+
+        case "energy": self = .energy
+        case "mass": self = .mass
+
+        case "duration ": self = .duration
+
+        case "shortDate": self = .shortDate
+        case "longDate": self = .longDate
+        case "mediumDate": self = .mediumDate
+        case "fullDate": self = .fullDate
+
+        case "signature": self = .signature
+
+        default: self = .custom(rawValue)
+        }
+    }
+
+    public var rawValue: String {
+        switch self {
+        case .email: return "email"
+        case .url : return "url"
+        case .phone : return "phone"
+        case .password: return "password"
+        case .zipCode: return "zipCode"
+        case .textArea: return "textArea"
+        case .comment: return "comment"
+
+        /// capitalized text
+        case .name: return "name"
+        case .account: return "account"
+
+        case .integer: return "integer"
+        case .spellOut: return "spellOut"
+        case .scientific: return "scientific"
+        case .percent: return "percent"
+
+        case .rating: return "rating"
+        case .stepper: return "stepper"
+        case .slider: return "slider"
+        case .barcode: return "barcode"
+
+        case .check : return "check"
+        case .`switch`: return "`switch`"
+
+        case .energy: return "energy"
+        case .mass: return "mass"
+
+        case .duration : return "duration"
+
+        case .shortDate: return "shortDate"
+        case .longDate: return "longDate"
+        case .mediumDate: return "mediumDate"
+        case .fullDate: return "fullDate"
+
+        case .signature: return "signature"
+
+        case .custom(let value): return value
+        }
+    }
 }
 
 /// Type of parameters.
@@ -154,8 +242,22 @@ extension ActionParameter: Codable {
         self.rules = try? values.decode([ActionParameterRule].self, forKey: .rules)
     }
 }
+
 extension ActionParameterType: Codable {}
-extension ActionParameterFormat: Codable {}
+
+extension ActionParameterFormat: Codable {
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self = ActionParameterFormat(rawValue: try container.decode(String.self))!
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.rawValue)
+    }
+
+}
 
 extension ActionParameterRule: Codable {
 
