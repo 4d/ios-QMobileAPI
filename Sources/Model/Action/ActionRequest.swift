@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represent a mobile action sent 4D server.
-public final class ActionRequest: ObservableObject {
+public final class ActionRequest {
 
     public enum ActionParametersKey: String {
         case parameters, context, metadata
@@ -104,6 +104,10 @@ public final class ActionRequest: ObservableObject {
         self.creationDate = Date()
         self.result = result?.mapError { ActionRequest.Error($0) }
     }
+}
+
+@available(iOS 13.0, macOS 10.15, *)
+extension ActionRequest: ObservableObject {
 }
 
 extension ActionRequest: Codable {
