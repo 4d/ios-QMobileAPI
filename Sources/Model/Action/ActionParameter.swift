@@ -123,6 +123,8 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
 
     case signature
 
+    case location
+
     case custom(String)
 
     public init?(rawValue: String) {
@@ -163,6 +165,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case "fullDate": self = .fullDate
 
         case "signature": self = .signature
+        case "location": self = .location
 
         default: self = .custom(rawValue)
         }
@@ -206,6 +209,8 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .fullDate: return "fullDate"
 
         case .signature: return "signature"
+
+        case .location: return "location"
 
         case .custom(let value): return value
         }
