@@ -182,8 +182,15 @@ extension Device {
         }
     }
 
+    public var isSimulatorCase: Bool {
+        if case .simulator = self {
+            return true
+        }
+        return false
+    }
+
     public static var isJailBroken: Bool = {
-        if Device.current.isSimulator {
+        if Device.current.isSimulatorCase {
             return false
         }
         let fileManager = FileManager.default

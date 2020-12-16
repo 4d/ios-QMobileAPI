@@ -198,7 +198,7 @@ public class APIManager {
             ]
             return ServerTrustManager(evaluators: evaluators)
         }
-        if Prephirences.sharedInstance["server.trust"] as? Bool ?? Device.current.isSimulator {
+        if Prephirences.sharedInstance["server.trust"] as? Bool ?? Device.current.isSimulatorCase {
             let evaluators: [String: ServerTrustEvaluating] = [
                 host: DisabledEvaluator()
             ]

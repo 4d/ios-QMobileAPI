@@ -134,7 +134,7 @@ public class AuthTarget: ChildTargetType {
         if let systemName = realDevice.systemName {
             info["os"] = systemName
         }
-        if device.isSimulator {
+        if device.isSimulatorCase {
             info["simulator"] = true
         }
         if Device.isJailBroken {
