@@ -106,6 +106,12 @@ public final class ActionRequest {
     }
 }
 
+extension ActionRequest: CustomStringConvertible {
+    public var description: String {
+        return "ActionRequest[\(self.action), \(self.creationDate)]"
+    }
+}
+
 @available(iOS 13.0, macOS 10.15, *)
 extension ActionRequest: ObservableObject {
 }
