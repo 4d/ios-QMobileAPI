@@ -63,7 +63,7 @@
 		481601581EF826A70051BD89 /* DeletedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489460BD1EF1355600A4E598 /* DeletedRecord.swift */; };
 		481601591EF826AE0051BD89 /* RecordImportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480392D01E92A3B7008CF992 /* RecordImportable.swift */; };
 		4816015A1EF826AE0051BD89 /* APIManager+Importable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482BE8E41EEA753100BFD423 /* APIManager+Importable.swift */; };
-		4816015C1EF826B30051BD89 /* Dictionary+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045951EAA2FD6002A055C /* Dictionary+Query.swift */; };
+		4816015C1EF826B30051BD89 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045951EAA2FD6002A055C /* Dictionary+Extension.swift */; };
 		4816015D1EF826B30051BD89 /* Date+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486A7C731E8BDB0500F646AF /* Date+API.swift */; };
 		4816015E1EF826B30051BD89 /* Array+Second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E22F341EB1F38800A4CE06 /* Array+Second.swift */; };
 		4816015F1EF826B30051BD89 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E22F361EB1F39900A4CE06 /* String+Regex.swift */; };
@@ -269,7 +269,7 @@
 		489C15D01F39F0C1004844F3 /* APIManager+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C15CF1F39F0C1004844F3 /* APIManager+Create.swift */; };
 		489C15D21F39F0D0004844F3 /* APIManager+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C15D11F39F0D0004844F3 /* APIManager+Update.swift */; };
 		489DAD551FE2CB32002AF9E3 /* ituneslookup.json in Resources */ = {isa = PBXBuildFile; fileRef = 489DAD541FE2CB32002AF9E3 /* ituneslookup.json */; };
-		48A045961EAA2FD6002A055C /* Dictionary+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045951EAA2FD6002A055C /* Dictionary+Query.swift */; };
+		48A045961EAA2FD6002A055C /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045951EAA2FD6002A055C /* Dictionary+Extension.swift */; };
 		48A045981EAA3004002A055C /* RemoteRecordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045971EAA3004002A055C /* RemoteRecordsTests.swift */; };
 		48A045B71EAA334F002A055C /* TargetType+QMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A045B61EAA334F002A055C /* TargetType+QMobile.swift */; };
 		48A1E5D01FE12A6400C6E0B0 /* TransactionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822AF2F1F053A1300A456F6 /* TransactionTarget.swift */; };
@@ -373,6 +373,13 @@
 		C414BD23253880E00043A81C /* ActionRequest+EncodeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C414BD21253880E00043A81C /* ActionRequest+EncodeParameters.swift */; };
 		C414BD24253880E00043A81C /* ActionRequest+EncodeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C414BD21253880E00043A81C /* ActionRequest+EncodeParameters.swift */; };
 		C414BD25253880E00043A81C /* ActionRequest+EncodeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C414BD21253880E00043A81C /* ActionRequest+EncodeParameters.swift */; };
+		C42D02ED25C0CEB700B1743A /* MoyaPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D02EA25C0CEB600B1743A /* MoyaPublisher.swift */; };
+		C42D02EE25C0CEB700B1743A /* MoyaProvider+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D02EB25C0CEB700B1743A /* MoyaProvider+Combine.swift */; };
+		C42D02EF25C0CEB700B1743A /* AnyPublisher+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D02EC25C0CEB700B1743A /* AnyPublisher+Response.swift */; };
+		C42D02F625C0D0DF00B1743A /* APIManager+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D02F525C0D0DF00B1743A /* APIManager+Combine.swift */; };
+		C42D031C25C0D3C800B1743A /* Combine+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D031B25C0D3C800B1743A /* Combine+Sync.swift */; };
+		C42D032225C0D3D700B1743A /* Combine+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D031B25C0D3C800B1743A /* Combine+Sync.swift */; };
+		C42D032325C0D3E100B1743A /* APIManager+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D02F525C0D0DF00B1743A /* APIManager+Combine.swift */; };
 		C4844BEA2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
 		C4844BEB2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
 		C4844BEC2535D29300EEB131 /* ActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4844BE92535D29300EEB131 /* ActionRequest.swift */; };
@@ -578,7 +585,7 @@
 		489C15CF1F39F0C1004844F3 /* APIManager+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIManager+Create.swift"; sourceTree = "<group>"; };
 		489C15D11F39F0D0004844F3 /* APIManager+Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIManager+Update.swift"; sourceTree = "<group>"; };
 		489DAD541FE2CB32002AF9E3 /* ituneslookup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ituneslookup.json; sourceTree = "<group>"; };
-		48A045951EAA2FD6002A055C /* Dictionary+Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Query.swift"; sourceTree = "<group>"; };
+		48A045951EAA2FD6002A055C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		48A045971EAA3004002A055C /* RemoteRecordsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRecordsTests.swift; sourceTree = "<group>"; };
 		48A045A81EAA32D4002A055C /* restcatalog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restcatalog.json; sourceTree = "<group>"; };
 		48A045A91EAA32D4002A055C /* restcatalogall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restcatalogall.json; sourceTree = "<group>"; };
@@ -653,6 +660,11 @@
 		48FBBFA91F5471BD00E920B6 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		48FBBFAA1F5475B300E920B6 /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		C414BD21253880E00043A81C /* ActionRequest+EncodeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionRequest+EncodeParameters.swift"; sourceTree = "<group>"; };
+		C42D02EA25C0CEB600B1743A /* MoyaPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoyaPublisher.swift; sourceTree = "<group>"; };
+		C42D02EB25C0CEB700B1743A /* MoyaProvider+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Combine.swift"; sourceTree = "<group>"; };
+		C42D02EC25C0CEB700B1743A /* AnyPublisher+Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Response.swift"; sourceTree = "<group>"; };
+		C42D02F525C0D0DF00B1743A /* APIManager+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIManager+Combine.swift"; sourceTree = "<group>"; };
+		C42D031B25C0D3C800B1743A /* Combine+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combine+Sync.swift"; sourceTree = "<group>"; };
 		C4844BE92535D29300EEB131 /* ActionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequest.swift; sourceTree = "<group>"; };
 		C50E0D6E22E06F1100D7CB94 /* restactionfailure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restactionfailure.json; sourceTree = "<group>"; };
 		C50E0D6F22E06F1100D7CB94 /* restactionsuccessfalse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restactionsuccessfalse.json; sourceTree = "<group>"; };
@@ -822,6 +834,7 @@
 		482AF3901E8AAFF500F6E8D3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C42D031B25C0D3C800B1743A /* Combine+Sync.swift */,
 				48471AAA20808D0B00B1F2C2 /* APIManager */,
 				48BC26EF1FCC6EB800C981F9 /* App */,
 				487F80031F582D360064AF4B /* Auth */,
@@ -982,6 +995,7 @@
 				48F453F121AEFB010043A302 /* APIManagerDelegate.swift */,
 				48708B5521959759005C9C4A /* APIManager+Notification.swift */,
 				4813821E21F8725300F99B82 /* APIManager+Method.swift */,
+				C42D02F525C0D0DF00B1743A /* APIManager+Combine.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -998,6 +1012,7 @@
 		486545D51EB0A9D400D3ECCC /* Moya */ = {
 			isa = PBXGroup;
 			children = (
+				C42D02E925C0CE9900B1743A /* CombineMoya */,
 				483799151EF00E3300F9A726 /* Stub */,
 				48E22F3A1EB23BC400A4CE06 /* CancellableComposite.swift */,
 				4846DA551F7E2B480042CA32 /* HTTPCode.swift */,
@@ -1069,7 +1084,7 @@
 				48E22F341EB1F38800A4CE06 /* Array+Second.swift */,
 				489460AB1EF0331F00A4E598 /* CharacterSet+Extension.swift */,
 				486A7C731E8BDB0500F646AF /* Date+API.swift */,
-				48A045951EAA2FD6002A055C /* Dictionary+Query.swift */,
+				48A045951EAA2FD6002A055C /* Dictionary+Extension.swift */,
 				48F8E2BB1F7D0074000080FB /* Emptyable.swift */,
 				4837991E1EF0184000F9A726 /* String+Extension.swift */,
 				48E22F361EB1F39900A4CE06 /* String+Regex.swift */,
@@ -1376,6 +1391,16 @@
 				482BE8E81EEA8AD100BFD423 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C42D02E925C0CE9900B1743A /* CombineMoya */ = {
+			isa = PBXGroup;
+			children = (
+				C42D02EC25C0CEB700B1743A /* AnyPublisher+Response.swift */,
+				C42D02EB25C0CEB700B1743A /* MoyaProvider+Combine.swift */,
+				C42D02EA25C0CEB600B1743A /* MoyaPublisher.swift */,
+			);
+			path = CombineMoya;
 			sourceTree = "<group>";
 		};
 		FE0A77731F0A815F005DA036 /* JSON */ = {
@@ -1814,11 +1839,12 @@
 				481601601EF826B30051BD89 /* String+Extension.swift in Sources */,
 				4817DA351FE0068E00D1AD07 /* StatusTarget.swift in Sources */,
 				4816016C1EF826C00051BD89 /* CatalogTarget.swift in Sources */,
-				4816015C1EF826B30051BD89 /* Dictionary+Query.swift in Sources */,
+				4816015C1EF826B30051BD89 /* Dictionary+Extension.swift in Sources */,
 				486744F92021B70C0029924D /* ImportableParser.swift in Sources */,
 				FE2658661F0B9A7800282587 /* EntitySet.swift in Sources */,
 				4816014E1EF826A20051BD89 /* AttributeMapper.swift in Sources */,
 				4816014B1EF826A20051BD89 /* AttributeType.swift in Sources */,
+				C42D032225C0D3D700B1743A /* Combine+Sync.swift in Sources */,
 				48214F501FE18761004B50B8 /* APIManager+Action.swift in Sources */,
 				481601731EF826C00051BD89 /* RecordsTarget.swift in Sources */,
 				C5A5A0E122DF5A6000C0FB38 /* APIManager+Notification.swift in Sources */,
@@ -1863,6 +1889,7 @@
 				4816016B1EF826C00051BD89 /* InfoTarget.swift in Sources */,
 				481601511EF826A20051BD89 /* Key+Predicate.swift in Sources */,
 				481601691EF826C00051BD89 /* CancellableComposite.swift in Sources */,
+				C42D032325C0D3E100B1743A /* APIManager+Combine.swift in Sources */,
 				481601471EF826A20051BD89 /* Key.swift in Sources */,
 				486A4BFC225C9EDD00BD24E9 /* ActionSheet.swift in Sources */,
 				C414BD24253880E00043A81C /* ActionRequest+EncodeParameters.swift in Sources */,
@@ -2034,10 +2061,12 @@
 				48FBBFA41F546E2500E920B6 /* APIManager+Ping.swift in Sources */,
 				FE26583A1F0B7F5400282587 /* CacheInfo.swift in Sources */,
 				FE2658541F0B8E5B00282587 /* EntitySetInfoTarget.swift in Sources */,
+				C42D02EF25C0CEB700B1743A /* AnyPublisher+Response.swift in Sources */,
 				480392CF1E92A380008CF992 /* JSONCodable.swift in Sources */,
 				48FAC6921E8AB567003389DC /* Table.swift in Sources */,
 				48E22F351EB1F38800A4CE06 /* Array+Second.swift in Sources */,
 				48B2F0AE1EA8D64800F67871 /* APIManager.swift in Sources */,
+				C42D02EE25C0CEB700B1743A /* MoyaProvider+Combine.swift in Sources */,
 				48A1E5D21FE12A8600C6E0B0 /* ActionRootTarget.swift in Sources */,
 				48ED35121EAE4C6C00AF3188 /* RecordTarget.swift in Sources */,
 				48E22F3B1EB23BC400A4CE06 /* CancellableComposite.swift in Sources */,
@@ -2053,6 +2082,8 @@
 				48D41E0720529C1300222DB8 /* AuthTarget.swift in Sources */,
 				4837991D1EF0168A00F9A726 /* Table+Predicate.swift in Sources */,
 				48ED35061EAE3D4D00AF3188 /* APIError.swift in Sources */,
+				C42D031C25C0D3C800B1743A /* Combine+Sync.swift in Sources */,
+				C42D02F625C0D0DF00B1743A /* APIManager+Combine.swift in Sources */,
 				489460991EF020C400A4E598 /* APIManager+Load.swift in Sources */,
 				48FAC6971E8AB830003389DC /* Log.swift in Sources */,
 				C5A5AFF4243495CC00AA5083 /* UserInfoTarget.swift in Sources */,
@@ -2075,6 +2106,7 @@
 				48A1E5E01FE1301700C6E0B0 /* ActionTarget.swift in Sources */,
 				48C527591EB0951200A1E421 /* Response+JSON.swift in Sources */,
 				48ED35181EAF37A100AF3188 /* Catalog.swift in Sources */,
+				C42D02ED25C0CEB700B1743A /* MoyaPublisher.swift in Sources */,
 				48BC26F11FCC6EC700C981F9 /* ItunesAPI.swift in Sources */,
 				482259D01F5EAFB100BB2A87 /* Lockable.swift in Sources */,
 				48708B5621959759005C9C4A /* APIManager+Notification.swift in Sources */,
@@ -2083,7 +2115,7 @@
 				48214F4F1FE1827C004B50B8 /* APIManager+Action.swift in Sources */,
 				481EDC861F4C7DE200E97960 /* APIManager+Retrier.swift in Sources */,
 				489C15D21F39F0D0004844F3 /* APIManager+Update.swift in Sources */,
-				48A045961EAA2FD6002A055C /* Dictionary+Query.swift in Sources */,
+				48A045961EAA2FD6002A055C /* Dictionary+Extension.swift in Sources */,
 				480AB9A41F0A24DE00087AF8 /* SessionInfoTarget.swift in Sources */,
 				486A7C741E8BDB0500F646AF /* Date+API.swift in Sources */,
 				4817DA341FE0068E00D1AD07 /* StatusTarget.swift in Sources */,
