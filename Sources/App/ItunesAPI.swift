@@ -6,8 +6,6 @@
 //  Copyright © 2017 Eric Marchand. All rights reserved.
 //
 
-#if DEBUG // not used
-
 import Foundation
 import Moya
 import Prephirences
@@ -150,4 +148,3 @@ extension ItunesLookupItem {
             releaseNote: self.releaseNote)
     }
 }
-#endif
