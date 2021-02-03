@@ -61,7 +61,7 @@ public final class ActionRequest {
     /// Context of action executions (ie. record, table, ...)
     @StringDictContainer public var contextParameters: ActionParameters?
 
-    public var state: ActionRequest.State = .ready
+    public var state: ActionRequest.State
 
     /// Creation of request.
     public var creationDate: Date
@@ -96,13 +96,34 @@ public final class ActionRequest {
     }
 
     /// Create a new action request
-    public init(action: Action, actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String? = nil, result: Result<ActionResult, APIError>? = nil) {
+    public init(action: Action, actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String? = nil, state: ActionRequest.State? = nil, result: Result<ActionResult, APIError>? = nil) {
         self.action = action
         self.actionParameters = actionParameters
         self.contextParameters = contextParameters
         self.id = id ?? UUID().uuidString.replacingOccurrences(of: "-", with: "")
         self.creationDate = Date()
+        self.state = state ?? .ready
         self.result = result?.mapError { ActionRequest.Error($0) }
+    }
+}
+
+extension ActionRequest {
+
+    public var statusText: String {
+        return result?.statusText ?? ""
+    }
+
+}
+
+extension Result where Success == ActionResult, Failure == ActionRequest.Error {
+
+    public var statusText: String? {
+        switch self {
+        case .success(let value):
+            return value.statusText
+        case .failure(let error):
+            return error.statusText
+        }
     }
 }
 

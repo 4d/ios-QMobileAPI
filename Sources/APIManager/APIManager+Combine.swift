@@ -102,11 +102,10 @@ public extension APIManager {
             return Just<[URL: Result<Status, APIError>]>([:]).eraseToAnyPublisher()
         }
 
-        typealias FutureTuple = AnyPublisher<(URL, Result<Status, APIError>), Never>
-        var sequence: [FutureTuple] = []
+        var sequence: [AnyPublisher<(URL, Result<Status, APIError>), Never>] = []
         for url in urls {
             let resultified: AnyPublisher<(Result<Status, APIError>), Never> = manager(for: url).status(callbackQueue: callbackQueue, progress: progress).resultify()
-            let future: FutureTuple = resultified.map { (url, $0) }.eraseToAnyPublisher()
+            let future: AnyPublisher<(URL, Result<Status, APIError>), Never> = resultified.map { (url, $0) }.eraseToAnyPublisher()
             sequence.append(future)
         }
         return sequence.sequence().map { dict($0) }.eraseToAnyPublisher()
