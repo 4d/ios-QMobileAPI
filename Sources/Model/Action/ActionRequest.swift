@@ -165,6 +165,7 @@ extension ActionRequest: Codable {
         case lastDate
         case tryCount
         case result
+        case error
         case state
     }
 
@@ -181,7 +182,7 @@ extension ActionRequest: Codable {
         self.state = try container.decode(State.self, forKey: .state)
         if let actionResult = try container.decodeIfPresent(ActionResult.self, forKey: .result) {
             self.result = .success(actionResult)
-        } else if let actionRequestError = try container.decodeIfPresent(ActionRequest.Error.self, forKey: .result) {
+        } else if let actionRequestError = try container.decodeIfPresent(ActionRequest.Error.self, forKey: .error) {
             self.result = .failure(actionRequestError)
         } else {
             self.result = nil
@@ -203,10 +204,10 @@ extension ActionRequest: Codable {
             case .success(let value):
                 try container.encode(value, forKey: .result)
             case .failure(let error):
-                try container.encode(error, forKey: .result)
+                try container.encode(error, forKey: .error)
             }
         } else {
-            try container.encodeNil(forKey: .result)
+            // try container.encodeNil(forKey: .result)
         }
     }
 
