@@ -11,14 +11,14 @@ import Foundation
 /// Represent a mobile action sent 4D server.
 public final class ActionRequest {
 
-    public enum ActionParametersKey: String {
+    public enum ActionParametersRootKey: String {
         case parameters, context, metadata
 
-        static let all: [ActionParametersKey] = [.parameters, .context, .metadata]
+        static let all: [ActionParametersRootKey] = [.parameters, .context, .metadata]
     }
 
     public enum State: String, Codable {
-        case ready, executing, pending, finished, cancelled
+        case ready, executing, /* pending,*/ finished, cancelled
     }
 
     // Map api error to an encodable error.
@@ -80,19 +80,20 @@ public final class ActionRequest {
     public var tryCount: Int = 0
 
     public var summary: String {
-        if let result = result {
-            switch result {
-            case .success(let result):
-                if let statusText = result.statusText {
-                    return statusText
-                }
-                return "\(String(describing: contextParameters))"
-            case .failure(let error):
-                return "\(error.errorDescription)"
-            }
-        } else {
-            return "\(String(describing: contextParameters))"
+        if let statusText = statusText {
+            return statusText
         }
+        var summary = ""
+        if let parameters = self.contextParameters {
+            summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
+        }
+        if let parameters = self.actionParameters {
+            if self.contextParameters != nil {
+                summary += ","
+            }
+            summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
+        }
+        return summary
     }
 
     /// Create a new action request
@@ -107,10 +108,26 @@ public final class ActionRequest {
     }
 }
 
+/// Some well known key for ActionParameters (not public yet)
+public struct ActionParametersKey {
+    public static let table = "dataClass"
+    public static let record = "entity"
+    public static let primaryKey = "primaryKey"
+    public static let parent = "parent"
+    public static let relationName = "relationName"
+}
+
 extension ActionRequest {
 
-    public var statusText: String {
-        return result?.statusText ?? ""
+    public var statusText: String? {
+        return result?.statusText
+    }
+
+    public var tableName: String {
+        guard let context = self.contextParameters else {
+            return ""
+        }
+        return context[ActionParametersKey.table] as? String ?? ""
     }
 
 }
@@ -148,6 +165,7 @@ extension ActionRequest: Codable {
         case lastDate
         case tryCount
         case result
+        case state
     }
 
     public convenience init(from decoder: Decoder) throws {
@@ -160,7 +178,7 @@ extension ActionRequest: Codable {
         self.creationDate = try container.decode(Date.self, forKey: .creationDate)
         self.lastDate = try container.decodeIfPresent(Date.self, forKey: .lastDate)
         self.tryCount = try container.decode(Int.self, forKey: .tryCount)
-
+        self.state = try container.decode(State.self, forKey: .state)
         if let actionResult = try container.decodeIfPresent(ActionResult.self, forKey: .result) {
             self.result = .success(actionResult)
         } else if let actionRequestError = try container.decodeIfPresent(ActionRequest.Error.self, forKey: .result) {
@@ -179,7 +197,7 @@ extension ActionRequest: Codable {
         try container.encode(creationDate, forKey: .creationDate)
         try container.encode(lastDate, forKey: .lastDate)
         try container.encode(tryCount, forKey: .tryCount)
-
+        try container.encode(state, forKey: .state)
         if let result = self.result {
             switch result {
             case .success(let value):

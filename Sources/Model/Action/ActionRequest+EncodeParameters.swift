@@ -15,17 +15,17 @@ extension ActionRequest {
         var parameters: ActionParameters = [:]
         parameters["id"] = self.id
         if let subParameters = actionParameters {
-            parameters[ActionParametersKey.parameters.rawValue] = subParameters
+            parameters[ActionParametersRootKey.parameters.rawValue] = subParameters
         }
         if let subParameters = contextParameters {
-            parameters[ActionParametersKey.context.rawValue] = subParameters
+            parameters[ActionParametersRootKey.context.rawValue] = subParameters
         }
         ActionRequest.encodeParameters(parameters: &parameters)
         return parameters
     }
 
     static func encodeParameters( parameters: inout ActionParameters) {
-        let actionsKeys: [ActionParametersKey] = [.parameters, .context]
+        let actionsKeys: [ActionParametersRootKey] = [.parameters, .context]
         for actionKey in actionsKeys {
             if var actionParameters = parameters[actionKey.rawValue] as? ActionParameters {
                 for (key, value) in actionParameters {
@@ -35,14 +35,14 @@ extension ActionRequest {
 
                         if let metadataForEncodable = encodable.metadata() {
                             // get
-                            var metadata: [String: [String: Any]] = parameters[ActionParametersKey.metadata.rawValue] as? [String: [String: Any]] ?? [:]
+                            var metadata: [String: [String: Any]] = parameters[ActionParametersRootKey.metadata.rawValue] as? [String: [String: Any]] ?? [:]
                             // modify
                             if metadata[actionKey.rawValue] == nil {
                                 metadata[actionKey.rawValue] = [:]
                             }
                             metadata[actionKey.rawValue]?[key] = metadataForEncodable
                             // save
-                            parameters[ActionParametersKey.metadata.rawValue] = metadata
+                            parameters[ActionParametersRootKey.metadata.rawValue] = metadata
                         }
                     }
                 }
