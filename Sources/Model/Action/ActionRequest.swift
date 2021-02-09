@@ -84,9 +84,9 @@ public final class ActionRequest {
             return statusText
         }
         var summary = ""
-        if let parameters = self.contextParameters {
+        /*if let parameters = self.contextParameters {
             summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
-        }
+        }*/
         if let parameters = self.actionParameters {
             if self.contextParameters != nil {
                 summary += ","
