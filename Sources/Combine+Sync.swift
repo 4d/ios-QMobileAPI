@@ -55,7 +55,7 @@ extension Publisher {
     public func result<T>(_ transform: @escaping (Self.Output) -> Result<T, Self.Failure>) -> AnyPublisher<T, Failure> {
         return self.flatMap { output -> AnyPublisher<T, Failure> in
             let result = transform(output)
-            //return result.publisher
+            // return result.publisher
             switch result {
             case .success(let output):
                 return Just(output).setFailureType(to: Failure.self).eraseToAnyPublisher()

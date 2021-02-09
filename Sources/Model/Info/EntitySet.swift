@@ -13,7 +13,7 @@ public struct EntitySet {
     public var tableName: String
     public var selectionSize: Int
     public var sorted: Bool
-    public var refreshed: Date //"2011-11-18T10:30:30Z",
+    public var refreshed: Date // "2011-11-18T10:30:30Z",
     public var expires: Date
 }
 

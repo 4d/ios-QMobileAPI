@@ -38,7 +38,7 @@ public struct ActionParameter {
     public let placeholder: String?
 
     public let choiceList: AnyCodable?
-    //public let choiceType: ActionChoiceType?
+    // public let choiceType: ActionChoiceType?
 
     public let rules: [ActionParameterRule]?
 
@@ -88,7 +88,7 @@ extension ActionParameter {
 public enum ActionParameterFormat: RawRepresentable, Equatable {
 
     case email // , emailAddress
-    case url //, link
+    case url // , link
     case phone // , phoneNumber
     case password
     case zipCode

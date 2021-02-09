@@ -33,7 +33,7 @@ extension DateFormatter {
         return formatter
     }()
 
-    //public var refreshed: Date //"2011-11-18T10:30:30Z",
+    // public var refreshed: Date //"2011-11-18T10:30:30Z",
 
     public static let simpleDateSlash: DateFormatter = {
         let formatter = DateFormatter()

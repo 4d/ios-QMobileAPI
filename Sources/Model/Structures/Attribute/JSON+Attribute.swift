@@ -9,7 +9,7 @@
 import Foundation
 
 extension JSON {
-    //Optional AttributeStorageType
+    // Optional AttributeStorageType
     var attributeStorageType: AttributeStorageType? {
         get {
             switch self.type {
@@ -32,7 +32,7 @@ extension JSON {
         }
     }
 
-    //Optional AttributeRelativeType
+    // Optional AttributeRelativeType
     var attributeRelativeType: AttributeRelativeType? {
         get {
             switch self.type {
@@ -55,7 +55,7 @@ extension JSON {
         }
     }
 
-    //Optional AttributeKind
+    // Optional AttributeKind
     var attributeKind: AttributeKind? {
         get {
             switch self.type {
@@ -78,7 +78,7 @@ extension JSON {
         }
     }
 
-    //Optional AttributeScope
+    // Optional AttributeScope
     var attributeScope: AttributeScope? {
         get {
             switch self.type {

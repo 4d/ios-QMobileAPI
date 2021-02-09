@@ -96,7 +96,7 @@ extension RecordsTargetType {
     }
 
     /// Expands the relational attribute
-    //record $expand=staff relation
+    // record $expand=staff relation
     @discardableResult public func expand(_ relation: String) -> Self {
         setParameter(.expand, relation)
         return self

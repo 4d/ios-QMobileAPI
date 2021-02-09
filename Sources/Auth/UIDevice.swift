@@ -232,8 +232,8 @@ extension UIDevice {
 fileprivate extension Data {
     var deviceToken: String {
         return base64EncodedString()
-        //let tokenParts = self.map { data in String(format: "%02.2hhx", data) }
-        //return tokenParts.joined()
+        // let tokenParts = self.map { data in String(format: "%02.2hhx", data) }
+        // return tokenParts.joined()
     }
 }
 

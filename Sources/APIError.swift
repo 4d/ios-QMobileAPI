@@ -27,7 +27,7 @@ public enum APIError: Swift.Error {
     case stringDecodingFailed(Swift.Error)
 }
 
-//extension APIError: Codable {}
+// extension APIError: Codable {}
 
 extension APIError {
     public func isHTTPResponseWith(code: HTTPCode) -> Bool {

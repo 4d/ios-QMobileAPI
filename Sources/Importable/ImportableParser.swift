@@ -220,7 +220,7 @@ public struct ImportableParser {
 extension ImportableParser {
     /// Return the URL of the image.
     public static func parseImage(_ dico: [String: Any]) -> String? {
-        //= "{    \"__deferred\" = { image = 1; uri = \"/rest/CLIENTS(1)/Logo?$imageformat=best&$version=10&$expand=Logo\";    };}";
+        // = "{    \"__deferred\" = { image = 1; uri = \"/rest/CLIENTS(1)/Logo?$imageformat=best&$version=10&$expand=Logo\";    };}";
         if let deferred = dico[ImportKey.deferred] as? [String: Any] {
             if let image = (deferred["image"] as? NSNumber)?.intValue, image == 1 { // checktype
                 if let uri = deferred["uri"] as? String {
