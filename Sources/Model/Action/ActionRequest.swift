@@ -88,9 +88,9 @@ public final class ActionRequest {
             summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
         }*/
         if let parameters = self.actionParameters {
-            if self.contextParameters != nil {
+            /*if self.contextParameters != nil {
                 summary += ","
-            }
+            }*/
             summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
         }
         return summary
@@ -129,7 +129,14 @@ extension ActionRequest {
         }
         return context[ActionParametersKey.table] as? String ?? ""
     }
-
+    public var recordSummary: String {
+        guard let context = self.contextParameters,
+              let recordContext = context[ActionParametersKey.record] as? [String: Any],
+              let primaryKey = recordContext[ActionParametersKey.primaryKey] else {
+            return ""
+        }
+        return "\(primaryKey)"
+    }
 }
 
 extension Result where Success == ActionResult, Failure == ActionRequest.Error {
