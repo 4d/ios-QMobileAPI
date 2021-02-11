@@ -17,6 +17,15 @@ public final class ActionRequest {
 
     public enum State: String, Codable {
         case ready, executing, /* pending,*/ finished, cancelled
+
+        public var isFinal: Bool {
+            switch self {
+            case .finished, .cancelled:
+                return true
+            default:
+                return false
+            }
+        }
     }
 
     // Map api error to an encodable error.
@@ -46,6 +55,8 @@ public final class ActionRequest {
         public var statusText: String? {
             return self.restErrors?.statusText
         }
+
+        public static let cancelError = ActionRequest.Error(APIError.request(NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError, userInfo: nil)))
 
     }
 
@@ -142,6 +153,9 @@ public final class ActionRequest {
 
     /// Return true if action has been executed without error.
     public var isCompleted: Bool {
+        if state == .cancelled {
+            return true
+        }
         switch result {
         case .success:
             return true
