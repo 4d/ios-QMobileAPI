@@ -401,9 +401,9 @@ extension _AnyEncodable {
 
 @propertyWrapper
 public struct StringDictContainer {
-    public var wrappedValue: [String: Any]?
+    public var wrappedValue: [String: Any]
 
-    public init(wrappedValue: [String: Any]?) {
+    public init(wrappedValue: [String: Any]) {
        self.wrappedValue = wrappedValue
     }
 
@@ -427,7 +427,7 @@ public struct StringDictContainer {
 extension StringDictContainer: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        for (key, value) in wrappedValue ?? [:] {
+        for (key, value) in wrappedValue {
             let codingKey = CodingKeys(stringValue: key)!
             try container.encode(AnyEncodable(value), forKey: codingKey)
         }
@@ -436,14 +436,11 @@ extension StringDictContainer: Encodable {
 
 extension StringDictContainer: Decodable {
     public init(from decoder: Decoder) throws {
-        wrappedValue = nil
+        wrappedValue = [:]
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys {
-            if wrappedValue == nil {
-                wrappedValue = [:]
-            }
             let value = try container.decode(AnyDecodable.self, forKey: key)
-            wrappedValue?[key.stringValue] = value.value
+            wrappedValue[key.stringValue] = value.value
         }
     }
 }

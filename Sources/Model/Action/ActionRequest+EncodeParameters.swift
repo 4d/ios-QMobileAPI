@@ -10,24 +10,10 @@ import Foundation
 
 extension ActionRequest {
 
-    /// The full parameters.
-    public var parameters: ActionParameters {
-        var parameters: ActionParameters = [:]
-        parameters["id"] = self.id
-        if let subParameters = actionParameters {
-            parameters[ActionParametersRootKey.parameters.rawValue] = subParameters
-        }
-        if let subParameters = contextParameters {
-            parameters[ActionParametersRootKey.context.rawValue] = subParameters
-        }
-        ActionRequest.encodeParameters(parameters: &parameters)
-        return parameters
-    }
-
     static func encodeParameters( parameters: inout ActionParameters) {
         let actionsKeys: [ActionParametersRootKey] = [.parameters, .context]
         for actionKey in actionsKeys {
-            if var actionParameters = parameters[actionKey.rawValue] as? ActionParameters {
+            if var actionParameters = parameters[actionKey] as? ActionParameters {
                 for (key, value) in actionParameters {
                     if let encodable = value as? ActionParameterEncodable {
                         actionParameters[key] = encodable.encodeForActionParameter()
@@ -35,14 +21,14 @@ extension ActionRequest {
 
                         if let metadataForEncodable = encodable.metadata() {
                             // get
-                            var metadata: [String: [String: Any]] = parameters[ActionParametersRootKey.metadata.rawValue] as? [String: [String: Any]] ?? [:]
+                            var metadata: [String: [String: Any]] = parameters[ActionParametersRootKey.metadata] as? [String: [String: Any]] ?? [:]
                             // modify
                             if metadata[actionKey.rawValue] == nil {
                                 metadata[actionKey.rawValue] = [:]
                             }
                             metadata[actionKey.rawValue]?[key] = metadataForEncodable
                             // save
-                            parameters[ActionParametersRootKey.metadata.rawValue] = metadata
+                            parameters[ActionParametersRootKey.metadata] = metadata
                         }
                     }
                 }
