@@ -98,8 +98,14 @@ extension SemVersion: Comparable {
         if left.max < right.max {
             return true
         }
+        if left.max > right.max {
+            return false
+        }
         if left.min < right.min {
             return true
+        }
+        if left.min > right.min {
+            return false
         }
         if left.patch < right.patch {
             return true
