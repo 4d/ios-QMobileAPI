@@ -123,7 +123,9 @@ extension _AnyDecodable {
             self.init(array.map { $0.value })
         } else if let dictionary = try? container.decode([String: AnyCodable].self) {
             self.init(dictionary.mapValues { $0.value })
-        } else {
+        } /*else if let value = try? container.decode(AnyWrapperEncodable.self) {
+            self.init(value.codable)
+        }*/ else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "AnyCodable value cannot be decoded")
         }
     }
@@ -213,11 +215,27 @@ protocol _AnyEncodable {
 
 extension AnyEncodable: _AnyEncodable {}
 
+struct AnyWrapperEncodable: Encodable {
+
+    private let codable: Encodable
+
+    public init(_ codable: Encodable) {
+        self.codable = codable
+    }
+
+    func encode(to encoder: Encoder) throws {
+        try codable.encode(to: encoder)
+    }
+
+    /*init(from decoder: Decoder) throws {
+        self.codable = try decoder.unkeyedContainer().decode(Codable.self)
+    }*/
+}
+
 // MARK: - Encodable
 extension _AnyEncodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-
         switch self.value {
         case let number as NSNumber:
             try encode(nsnumber: number, into: &container)
@@ -259,6 +277,8 @@ extension _AnyEncodable {
             try container.encode(array.map { AnyCodable($0) })
         case let dictionary as [String: Any?]:
             try container.encode(dictionary.mapValues { AnyCodable($0) })
+        case let e as Encodable:
+            try container.encode(AnyWrapperEncodable(e))
         default:
             let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "AnyCodable value cannot be encoded")
             throw EncodingError.invalidValue(self.value, context)

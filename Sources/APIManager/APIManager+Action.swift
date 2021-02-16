@@ -61,7 +61,7 @@ extension APIManager {
                        completionHandler: @escaping CompletionActionHandler) -> Cancellable {
         return self.action(name: request.action.name,
                            parameters: request.parameters,
-                           encodeParameters: false, // already encoded
+                           encodeParameters: true, // already encoded
                            httpMethod: httpMethod,
                            callbackQueue: callbackQueue,
                            progress: progress,

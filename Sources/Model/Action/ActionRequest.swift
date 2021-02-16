@@ -96,6 +96,16 @@ public final class ActionRequest {
     public var actionParameters: ActionParameters? {
         return parameters[ActionParametersRootKey.parameters] as? ActionParameters
     }
+    public func setActionParameters(key: String, value: Any) {
+        var actionParameters = (parameters[ActionParametersRootKey.parameters] as? ActionParameters)
+        actionParameters?[key] = value
+        self.parameters[ActionParametersRootKey.parameters] = actionParameters
+    }
+    public func removeActionParameters(key: String) {
+        var actionParameters = (parameters[ActionParametersRootKey.parameters] as? ActionParameters)
+        actionParameters?.removeValue(forKey: key)
+        self.parameters[ActionParametersRootKey.parameters] = actionParameters
+    }
     /// Context of action executions (ie. record, table, ...)
     public var contextParameters: ActionParameters? {
         return parameters[ActionParametersRootKey.context] as? ActionParameters
@@ -179,18 +189,22 @@ public final class ActionRequest {
         }
     }
 
+    public static func generateID() -> String {
+       return UUID().uuidString.replacingOccurrences(of: "-", with: "")
+    }
+
     // MARK: - init
     /// Create a new action request with action and context parameters
     public convenience init(
         action: Action,
         actionParameters: ActionParameters? = nil,
         contextParameters: ActionParameters? = nil,
-        id: String? = nil,
+        id: String,
         state: ActionRequest.State? = nil,
         result: Result<ActionResult, APIError>? = nil) {
 
         var parameters: ActionParameters = [:]
-        parameters["id"] = id ?? UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        parameters["id"] = id
         if let subParameters = actionParameters {
             parameters[ActionParametersRootKey.parameters] = subParameters
         }
@@ -310,7 +324,7 @@ public struct ActionParametersKey {
 
 extension Action {
     /// New request from action.
-    public func newRequest(actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String? = nil) -> ActionRequest {
+    public func newRequest(actionParameters: ActionParameters? = nil, contextParameters: ActionParameters? = nil, id: String) -> ActionRequest {
         return ActionRequest(action: self, actionParameters: actionParameters, contextParameters: contextParameters, id: id)
     }
 }
