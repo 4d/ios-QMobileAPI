@@ -9,6 +9,11 @@
 import Foundation
 
 public struct AnyCodable: Codable {
+
+    enum CodingKeys: String, CodingKey {
+      case className = "__mapped"
+    }
+
     public let value: Any
 
     public init<T>(_ value: T?) {
@@ -122,10 +127,16 @@ extension _AnyDecodable {
         } else if let array = try? container.decode([AnyCodable].self) {
             self.init(array.map { $0.value })
         } else if let dictionary = try? container.decode([String: AnyCodable].self) {
-            self.init(dictionary.mapValues { $0.value })
-        } /*else if let value = try? container.decode(AnyWrapperEncodable.self) {
-            self.init(value.codable)
-        }*/ else {
+            let dico = dictionary.mapValues { $0.value }
+            if let className = dico[AnyCodable.CodingKeys.className.rawValue] as? String,
+               let type = ClassStore.get(className) {
+                self.init(try type.init(from: decoder))
+            } else {
+                self.init(dico)
+            }
+        } else if let codable = try? container.decode(AnyDecodable.self) {
+            self.init(codable.value)
+        } else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "AnyCodable value cannot be decoded")
         }
     }
@@ -215,23 +226,6 @@ protocol _AnyEncodable {
 
 extension AnyEncodable: _AnyEncodable {}
 
-struct AnyWrapperEncodable: Encodable {
-
-    private let codable: Encodable
-
-    public init(_ codable: Encodable) {
-        self.codable = codable
-    }
-
-    func encode(to encoder: Encoder) throws {
-        try codable.encode(to: encoder)
-    }
-
-    /*init(from decoder: Decoder) throws {
-        self.codable = try decoder.unkeyedContainer().decode(Codable.self)
-    }*/
-}
-
 // MARK: - Encodable
 extension _AnyEncodable {
     public func encode(to encoder: Encoder) throws {
@@ -277,8 +271,10 @@ extension _AnyEncodable {
             try container.encode(array.map { AnyCodable($0) })
         case let dictionary as [String: Any?]:
             try container.encode(dictionary.mapValues { AnyCodable($0) })
-        case let e as Encodable:
-            try container.encode(AnyWrapperEncodable(e))
+        case let encodable as VeryCodable:
+            var keyContainer = encoder.container(keyedBy: AnyCodable.CodingKeys.self)
+            try keyContainer.encode(type(of: encodable).codableClassStoreKey, forKey: .className)
+            try encodable.encode(to: encoder)
         default:
             let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "AnyCodable value cannot be encoded")
             throw EncodingError.invalidValue(self.value, context)
@@ -462,5 +458,24 @@ extension StringDictContainer: Decodable {
             let value = try container.decode(AnyDecodable.self, forKey: key)
             wrappedValue[key.stringValue] = value.value
         }
+    }
+}
+
+public protocol VeryCodable: Codable {
+  static var codableClassStoreKey: String { get }
+}
+public extension VeryCodable where Self: AnyObject {
+  static var codableClassStoreKey: String {
+    return NSStringFromClass(self)
+  }
+}
+public struct ClassStore {
+    private init() {}
+    private static var store: [String: VeryCodable.Type] = [:]
+    public static func register(_ clazz: VeryCodable.Type) {
+        store[clazz.codableClassStoreKey] = clazz
+    }
+    public static func get(_ className: String) -> VeryCodable.Type? {
+        return store[className]
     }
 }
