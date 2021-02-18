@@ -94,7 +94,12 @@ public final class ActionRequest {
     }
     /// Parameters value for the actions.
     public var actionParameters: ActionParameters? {
-        return parameters[ActionParametersRootKey.parameters] as? ActionParameters
+        get {
+            return parameters[ActionParametersRootKey.parameters] as? ActionParameters
+        }
+        set {
+            parameters[ActionParametersRootKey.parameters] = newValue
+        }
     }
     public func setActionParameters(key: String, value: Any) {
         var actionParameters = (parameters[ActionParametersRootKey.parameters] as? ActionParameters)
