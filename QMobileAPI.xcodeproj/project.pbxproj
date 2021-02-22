@@ -478,7 +478,6 @@
 		481601771EF8295E0051BD89 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/Mac/Moya.framework; sourceTree = "<group>"; };
 		481601781EF8295E0051BD89 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjcExceptionBridging.framework; path = Carthage/Build/Mac/ObjcExceptionBridging.framework; sourceTree = "<group>"; };
 		481601791EF8295E0051BD89 /* Prephirences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prephirences.framework; path = Carthage/Build/Mac/Prephirences.framework; sourceTree = "<group>"; };
-		4816017A1EF8295E0051BD89 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		4816017B1EF8295E0051BD89 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4816017C1EF8295E0051BD89 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/Mac/XCGLogger.framework; sourceTree = "<group>"; };
 		4816018A1EF82A090051BD89 /* QMobileAPIStructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QMobileAPIStructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,7 +519,6 @@
 		48509B5D1EF2D25400B47E2E /* Deferred.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deferred.swift; sourceTree = "<group>"; };
 		485271A01E9386B700BABB16 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjcExceptionBridging.framework; path = Carthage/Build/iOS/ObjcExceptionBridging.framework; sourceTree = "<group>"; };
 		485271A11E9386B700BABB16 /* Prephirences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prephirences.framework; path = Carthage/Build/iOS/Prephirences.framework; sourceTree = "<group>"; };
-		485271A21E9386B700BABB16 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		485271A31E9386B700BABB16 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		485271A41E9386B700BABB16 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
 		485493EA1EF2C15E00FDD396 /* QMobileAPIStructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QMobileAPIStructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -787,7 +785,6 @@
 				481601771EF8295E0051BD89 /* Moya.framework */,
 				481601781EF8295E0051BD89 /* ObjcExceptionBridging.framework */,
 				481601791EF8295E0051BD89 /* Prephirences.framework */,
-				4816017A1EF8295E0051BD89 /* Result.framework */,
 				4816017B1EF8295E0051BD89 /* SwiftyJSON.framework */,
 				4816017C1EF8295E0051BD89 /* XCGLogger.framework */,
 			);
@@ -933,7 +930,6 @@
 				48B2F0A51EA8D5BD00F67871 /* Moya.framework */,
 				485271A01E9386B700BABB16 /* ObjcExceptionBridging.framework */,
 				485271A11E9386B700BABB16 /* Prephirences.framework */,
-				485271A21E9386B700BABB16 /* Result.framework */,
 				485271A31E9386B700BABB16 /* SwiftyJSON.framework */,
 				485271A41E9386B700BABB16 /* XCGLogger.framework */,
 			);

@@ -106,7 +106,6 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
     case rating
     case stepper
     case slider
-    case barcode
 
     case check // bool
     case `switch` // bool
@@ -121,7 +120,13 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
     case mediumDate
     case fullDate
 
+    case barcode
+    case ocr
+
     case signature
+    case camera
+    case photoLibrary
+    case document
 
     case location
 
@@ -149,22 +154,28 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case "rating": self = .rating
         case "stepper": self = .stepper
         case "slider": self = .slider
-        case "barcode": self = .barcode
 
-        case "check ": self = .check
+        case "check": self = .check
         case "`switch`": self = .`switch`
 
         case "energy": self = .energy
         case "mass": self = .mass
 
-        case "duration ": self = .duration
+        case "duration": self = .duration
 
         case "shortDate": self = .shortDate
         case "longDate": self = .longDate
         case "mediumDate": self = .mediumDate
         case "fullDate": self = .fullDate
 
+        case "barcode": self = .barcode
+        case "ocr": self = .ocr
+
         case "signature": self = .signature
+        case "camera": self = .camera
+        case "photoLibrary": self = .photoLibrary
+        case "document": self = .document
+
         case "location": self = .location
 
         default: self = .custom(rawValue)
@@ -193,7 +204,6 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .rating: return "rating"
         case .stepper: return "stepper"
         case .slider: return "slider"
-        case .barcode: return "barcode"
 
         case .check : return "check"
         case .`switch`: return "`switch`"
@@ -208,7 +218,13 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .mediumDate: return "mediumDate"
         case .fullDate: return "fullDate"
 
+        case .barcode: return "barcode"
+        case .ocr: return "ocr"
+
         case .signature: return "signature"
+        case .camera: return "camera"
+        case .photoLibrary: return "photoLibrary"
+        case .document: return "document"
 
         case .location: return "location"
 
