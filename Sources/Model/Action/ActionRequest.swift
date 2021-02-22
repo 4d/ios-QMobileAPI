@@ -236,6 +236,36 @@ public final class ActionRequest {
         result = nil
     }
 
+    public func encodeParameters() {
+        ActionRequest.encodeParameters(parameters: &parameters)
+    }
+    public func decodeParameters() {
+        // TODO if there is meta and encoded data find the inverse info decode it
+        guard let actionParams = parameters[ActionParametersRootKey.parameters] as? ActionParameters else {
+            return
+        }
+
+        /*  var metaData = parameters[ActionParametersRootKey.metadata] as? ActionParameters
+        metaData = metaData?[ActionParametersRootKey.parameters.rawValue] as? ActionParameters
+
+       for (fieldKey, type) in metaData ?? [:] {
+            if type as? String == "simpleDate", let value = actionParams?[fieldKey] as? String {
+                // actionParams?[fieldKey] = value.simpleDate
+                setActionParameters(key: fieldKey, value: value.simpleDate ?? nil)
+            }
+        }*/
+        for parameter in self.action.parameters ?? [] {
+            switch parameter.type {
+            case .date:
+                // restore data type
+                if let value = actionParams[parameter.name] as? String, let date = value.simpleDate {
+                    setActionParameters(key: parameter.name, value: date)
+                }
+            default:
+                break
+            }
+        }
+    }
 }
 
 // MARK: - protocol implementation
