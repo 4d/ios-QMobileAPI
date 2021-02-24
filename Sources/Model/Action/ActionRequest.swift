@@ -120,23 +120,6 @@ public final class ActionRequest {
         return parameters[ActionParametersRootKey.metadata] as? ActionParameters
     }
 
-    public var summary: String {
-        if let statusText = statusText {
-            return statusText
-        }
-        var summary = ""
-        /*if let parameters = self.contextParameters {
-            summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
-        }*/
-        if let parameters = self.actionParameters {
-            /*if self.contextParameters != nil {
-                summary += ","
-            }*/
-            summary += parameters.values.compactMap({$0 as? String}).joined(separator: ",")
-        }
-        return summary
-    }
-
     public var statusText: String? {
         return result?.statusText
     }
