@@ -177,8 +177,11 @@ public final class ActionRequest {
         }
     }
 
-    public static func generateID() -> String {
-       return UUID().uuidString.replacingOccurrences(of: "-", with: "")
+    public static func generateID(_ action: Action) -> String {
+        if action.isOnlineOnly {
+            return ""
+        }
+        return UUID().uuidString.replacingOccurrences(of: "-", with: "")
     }
 
     // MARK: - init
@@ -200,11 +203,11 @@ public final class ActionRequest {
             parameters[ActionParametersRootKey.context] = subParameters
         }
         ActionRequest.encodeParameters(parameters: &parameters)
-        self.init(action: action, parameters: parameters, id: id, state: state, result: result)
+        self.init(action: action, parameters: parameters, state: state, result: result)
     }
 
     /// Create a new action request with raw attributes
-    public init(action: Action, parameters: ActionParameters? = nil, id: String? = nil, state: ActionRequest.State? = nil, result: Result<ActionResult, APIError>? = nil) {
+    public init(action: Action, parameters: ActionParameters? = nil, state: ActionRequest.State? = nil, result: Result<ActionResult, APIError>? = nil) {
         self.action = action
         self.parameters = parameters ?? [:]
         self.creationDate = Date()

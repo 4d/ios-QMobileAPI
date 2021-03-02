@@ -10,6 +10,10 @@ import Foundation
 
 /// Represent a mobile action sent 4D server.
 public struct Action {
+
+    /// An empty action without name and parameters.
+    static let empty =  Action(name: "")
+
     /// Id of the action
     public let name: String
 
@@ -22,34 +26,40 @@ public struct Action {
     /// Information about icon
     public let icon: String?
 
+    /// Preset data: edit, share, add
+    public let preset: String?
+
     /// Action style.
     public let style: ActionStyle?
 
     /// Action style.
     public let parameters: [ActionParameter]?
 
-    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = []) {
+    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: String? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = []) {
         self.name = name
         self.label = label
         self.shortLabel = shortLabel
         self.icon = icon
+        self.preset = preset
         self.style = style
         self.parameters = parameters
     }
-}
 
-extension Action {
-    /// An empty action without name and parameters.
-    static let empty =  Action(name: "")
-}
+    // MARK: computed properties
 
-extension Action {
+    /// Return long label if any, then short label and finally name
     public var preferredLongLabel: String {
         return self.label ??? self.shortLabel ??? self.name
     }
 
+    /// Return short label if any, then long label and finally name
     public var preferredShortLabel: String {
         return self.shortLabel ??? self.label ??? self.name
+    }
+
+    /// Return `true` if must be online.
+    public var isOnlineOnly: Bool {
+        return self.preset == "share" // we use preset until there maybe a JSON data to force it
     }
 }
 
@@ -121,6 +131,7 @@ extension Action: JSONDecodable {
         }
         self.name = name
         self.icon = json["icon"].string
+        self.preset = json["preset"].string
         self.style = ActionStyle(json: json["style"])
         self.label = json["label"].string ?? name
         self.shortLabel = json["shortLabel"].string ?? name
@@ -155,6 +166,9 @@ extension Action: DictionaryConvertible {
         }
         if let icon = icon {
             dico["icon"] = icon
+        }
+        if let preset = preset {
+            dico["preset"] = preset
         }
         if let parameters = parameters {
             dico["parameters"] = parameters.map { $0.dictionary } // XXX not a pure json
