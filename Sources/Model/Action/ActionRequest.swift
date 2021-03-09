@@ -16,11 +16,11 @@ public final class ActionRequest {
     }
 
     public enum State: String, Codable {
-        case ready, executing, /* pending,*/ finished, cancelled
+        case ready, executing, /* pending,*/ completed, cancelled
 
         public var isFinal: Bool {
             switch self {
-            case .finished, .cancelled:
+            case .completed, .cancelled:
                 return true
             default:
                 return false
@@ -73,7 +73,7 @@ public final class ActionRequest {
     /// Creation of request.
     public var creationDate: Date
 
-    /// Last tentative date.
+    /// Final execution date.
     public var lastDate: Date?
 
     /// The result, when has been executed
