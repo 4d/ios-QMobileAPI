@@ -61,7 +61,7 @@ extension DateFormatter {
 
     static let rfc3339: [DateFormatter] = {
         let formats = [
-            "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ",
+            "yyyy-MM-dd'T'HH:mm:ss",
             "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
             "yyyy-MM-dd HH:mm:ss.SSSZZZZZ",
             "yyyy-MM-dd HH:mm:ssZZZZZ"
