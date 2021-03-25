@@ -79,11 +79,12 @@ extension APIManager {
     public func loadRecord<B: ImportableBuilder>(
         table: Table,
         key: CustomStringConvertible,
-        attributes: [String] = [],
+        attributes: [String: Any] = [:],
         initializer: B,
         queue: DispatchQueue? = nil,
         progress: ProgressHandler? = nil,
         completionHandler: @escaping ((Result<B.Importable, APIError>) -> Void)) -> Cancellable {
+
         let target = base.record(from: table.name, key: key, attributes: attributes)
 
         let completion: Moya.Completion = { result in

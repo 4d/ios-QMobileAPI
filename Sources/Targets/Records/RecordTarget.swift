@@ -23,19 +23,35 @@ public class RecordTarget: RecordTargetType {
     public let table: String
     public let key: CustomStringConvertible
     public let attributes: [String]
+    public var bodyParameters: [String: Any] = [:]
     fileprivate var parametersEncoding: ParameterEncoding = URLEncoding.default
-    init(parentTarget: BaseTarget, table: String, key: CustomStringConvertible, attributes: [String] = []) {
+    init(parentTarget: BaseTarget, table: String, key: CustomStringConvertible, attributes: [String: Any] = [:]) {
         self.parentTarget = parentTarget
         self.table = table
         self.key = key
-        self.attributes = attributes
+        self.attributes = [] // ignore
+        if RecordsTarget.attributeInBody {
+            bodyParameters = attributes
+            if bodyParameters.isEmpty {
+                method = .get
+            } else {
+                method = .post
+                setParameter(.extendedAttributes, "true")
+            }
+        } else if !RecordsTarget.attributeInPath {
+            self.attributes(Array(attributes.keys)) // use $attributes=
+        }
     }
-
+    @discardableResult public func attributes(_ attributes: [String]) -> Self {
+        setParameter(.attributes, "\(attributes.joined(separator: ","))") // XXX maybe encode or espace?
+        return self
+    }
     var childPath: String {
-        if attributes.isEmpty {
+        if !attributes.isEmpty && RecordsTarget.attributeInPath {
+            return "\(table)(\(key))/\(attributes.joined(separator: ","))"
+        } else {
             return "\(table)(\(key))"
         }
-        return "\(table)(\(key))/\(attributes.joined(separator: ","))" // XXX check if moya do encoding
     }
     public var method: Moya.Method  = .get
 
@@ -45,7 +61,12 @@ public class RecordTarget: RecordTargetType {
         if parameters.isEmpty {
             return .requestPlain
         }
-        return .requestParameters(parameters: parameters, encoding: parametersEncoding)
+        if RecordsTarget.attributeInBody {
+            if !bodyParameters.isEmpty {
+                return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: parameters)
+            }
+        }
+        return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
     }
 
     public var sampleData: Data {
@@ -90,7 +111,7 @@ extension RecordTarget {
 
 extension BaseTarget {
     // Returns the data for the specific record defined by the table's primary key
-    public func record(from table: String, key: CustomStringConvertible, attributes: [String] = []) -> RecordTarget {
+    public func record(from table: String, key: CustomStringConvertible, attributes: [String: Any] = [:]) -> RecordTarget {
         return RecordTarget(parentTarget: self, table: table, key: key, attributes: attributes)
     }
 }

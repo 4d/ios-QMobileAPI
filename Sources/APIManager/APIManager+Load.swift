@@ -73,7 +73,7 @@ extension APIManager {
     public func recordJSON(
         table: Table,
         key: CustomStringConvertible,
-        attributes: [String] = [],
+        attributes: [String: Any] = [:],
         callbackQueue: DispatchQueue? = nil,
         progress: ProgressHandler? = nil,
         completionHandler: @escaping CompletionRecordJSONHandler) -> Cancellable {
