@@ -22,6 +22,7 @@ extension Table {
         }
     }
 
+    /// Create a predicate from this table keys to match passed data
     public func predicate(for value: Any) -> NSPredicate? {
         let keys = self.keys.values
         if keys.count == 1, let key = keys.first {
@@ -42,6 +43,7 @@ extension Table {
         }
     }
 
+    /// Create a predicate from this table keys to match passed data
     public func predicate(for json: JSON) -> NSPredicate? {
         var keyMap = self.keys
         keyMap = keyMap.filter { $0.value.attribute != nil }

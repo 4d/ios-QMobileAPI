@@ -10,14 +10,16 @@ import Foundation
 import Moya
 import Prephirences
 
+/// Experimental class to connect to Itunes api.
 public class ItunesAPI {
-    // Lookup application in itunes store.
+    /// Lookup application in itunes store.
     public static func lookup(bundleId: String, completion: @escaping (Result<ItunesLookup, APIError>) -> Void) -> Cancellable? {
         let provider = MoyaProvider<ItunesTarget>()
         return provider.requestDecoded(.lookup(bundleId: bundleId), completion: completion)
     }
 }
 
+/// Endpoints for itunes api.
 public enum ItunesTarget {
     /// http://itunes.apple.com/lookup?bundleId=<bundleID>
     case lookup(bundleId: String)
@@ -61,25 +63,41 @@ extension ItunesTarget: DecodableTargetType {
 
 /// One result of itunes lookup request.
 public struct ItunesLookupItem {
+    /// The item bundle id.
     public var bundleId: String?
+    /// The url.
     public var trackViewUrl: String?
+    /// The search result key version you want to receive back from your search.The default is 2.
     public var version: String?
+    /// The kind of content returned by the search request.
     public var kind: String?
+    /// The description
     public var description: String?
+    /// The name of the artist returned by the search request.
     public var artistName: String?
+    /// track id if any
     public var trackId: Int?
+    /// track name if any
     public var trackName: String?
+    /// The release date
     public var releaseDate: Date?
+    /// The release note
     public var releaseNote: String?
+    /// Current version release date.
     public var currentVersionReleaseDate: Date?
+    /// Minimum OS version
     public var minimumOsVersion: String?
+    /// supported devices
     public var supportedDevices: [String]?
+    /// Screenshot urls
     public var screenshotUrls: [URL]?
 }
 
 /// Results of itunes lookup request.
 public struct ItunesLookup {
+    /// The result count
     public var resultCount: Int
+    /// The items returned.
     public var results: [ItunesLookupItem]
 }
 
@@ -134,6 +152,7 @@ extension ItunesLookupItem: DictionaryConvertible {
 }
 
 extension ItunesLookupItem {
+    /// Convert to `ApplicationInfo`
     public var applicationInfo: ApplicationInfo {
         return ApplicationInfo(
             bundleId: self.bundleId,

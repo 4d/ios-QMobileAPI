@@ -45,6 +45,7 @@ extension APIManager {
         return nil
     }
 
+    /// Start reachability task.
     public static func reachability(handler: @escaping NetworkReachabilityManager.Listener) -> Cancellable? {
         if let reachabilityManager = NetworkReachabilityManager() {
             reachabilityManager.startListening(onUpdatePerforming: handler)

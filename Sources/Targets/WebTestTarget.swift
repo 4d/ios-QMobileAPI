@@ -24,5 +24,6 @@ public class WebTestTarget: SimpleTarget {
 }
 
 extension WebTestTarget {
+    /// Define decoded type as `WebTestInfo`.
     public typealias ResultType = WebTestInfo
 }

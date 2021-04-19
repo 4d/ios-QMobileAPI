@@ -10,10 +10,14 @@ import Foundation
 
 /// Simple object which contains a Page and record objects.
 public struct Page {
+    /// The page info
     public var info: PageInfo
+    /// The table name for this page
     public var tableName: String
+    /// All record info as JSON
     public var records: [RecordJSON]
 
+    /// Create a page instance
     public init(info: PageInfo, tableName: String, records: [RecordJSON]) {
         self.info = info
         self.tableName = tableName

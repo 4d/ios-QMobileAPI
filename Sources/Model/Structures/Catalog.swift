@@ -52,6 +52,7 @@ extension Catalog: JSONDecodable {
 }
 
 extension Catalog {
+    /// Return all Catalog objects from json
     public static func all(json: JSON) -> [Catalog] {
         var tables = [Catalog]()
         if let dataClasses = json[.dataClasses].array {
@@ -64,6 +65,7 @@ extension Catalog {
         return tables
     }
 
+    /// Return all Catalog objects from json
     public static func array(json: JSON) -> [Catalog]? {
         if json[.dataClasses].array != nil {
             return all(json: json)

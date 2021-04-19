@@ -50,7 +50,7 @@ enum ActionChoiceType {
 */
 extension ActionParameter {
 
-    // shortcut to known if there is a .mandatory rule
+    /// shortcut to known if there is a .mandatory rule
     public var mandatory: Bool {
         return rules?.contains(where: { rule in
             if case .mandatory = rule {
@@ -63,23 +63,36 @@ extension ActionParameter {
 
 /// Rules to fill action parameter.
 public enum ActionParameterRule {
+    /// alias for object comparable with min and max rule
     public typealias Comparable = Double
+    /// alias for isMultipleOf rule data
     public typealias IsMultipleOf = Double
+    /// mandatory rule, must fill the data.
     case mandatory
+    /// min rule
     case min(Comparable)
+    /// max rule
     case max(Comparable)
+    /// minimum length rule
     case minLength(Int)
+    /// maximum length rule
     case maxLength(Int)
+    /// exact  length rule
     case exactLength(Int)
+    /// regex  rule
     case regex(String)
+    /// IsMultipleOf rule
     case isMultipleOf(IsMultipleOf)
 }
 
 extension ActionParameter {
+
+    /// Return  label if any, otherwise short label if any, otherwise the name
     public var preferredLongLabel: String {
         return self.label ??? self.shortLabel ??? self.name
     }
 
+    /// Return short label if any, otherwise label if any, otherwise the name
     public var preferredShortLabel: String {
         return self.shortLabel ??? self.label ??? self.name
     }
@@ -465,6 +478,7 @@ public protocol IsMultipleOf: Equatable {
 }
 
 public extension IsMultipleOf {
+    /// Return `true` if is multipble of passed value.
     func isMultiple(of value: Self) -> Bool {
         return (self %% value) == Self()
     }

@@ -67,6 +67,7 @@ extension String {
 
 // MAbRK: bulder
 extension URL {
+    /// Return a new url from this one but change the scheme.
     public func with(scheme: String) -> URL {
         if var compo = self.components() {
             compo.scheme = scheme
@@ -75,6 +76,7 @@ extension URL {
         return self
     }
 
+    /// Return a new url from this one but change the host.
     public func with(host: String) -> URL {
         if var compo = self.components() {
             compo.host = host

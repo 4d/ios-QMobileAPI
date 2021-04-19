@@ -10,18 +10,22 @@ import Foundation
 import Moya
 
 public class CancellableComposite {
+    /// all mode possible to manage list of cancellable
     public enum Mode {
         case all, one, requested
     }
 
+    /// Init a cancellable composite.
     public init( mode: Mode = .all) {
         self.mode = mode
     }
 
     fileprivate var list: [Moya.Cancellable] = []
     fileprivate var hasRequestedCancel: Bool = false
+    /// The current mode.
     public var mode: Mode = .all
 
+    /// A semaphore to manage asynchronous code.
     public var semaphore = DispatchSemaphore(value: 1)
 }
 

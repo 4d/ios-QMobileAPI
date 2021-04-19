@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 extension APIManager {
-    // create new record
+    /// create new record
     public func createRecordJSON(
         table: Table,
         key: CustomStringConvertible,
@@ -21,6 +21,7 @@ extension APIManager {
         return self.request(target, completion: completionHandler)
     }
 
+    /// Create or update a record
     public func createOrUpdate(
         recordJSON: RecordJSON,
         callbackQueue: DispatchQueue? = nil,
@@ -36,6 +37,7 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, completion: completion)
     }
 
+    /// Alias for [RecordJSON]
     public typealias CompletionRecordJSONsHandler = ((Result<[RecordJSON], APIError>) -> Void)
     public func createOrUpdate(
         recordJSONs: [RecordJSON],
@@ -60,7 +62,7 @@ extension APIManager {
         return cancellable
     }
 
-    // create a new entityset (could be done by using configuration of RecordsRequest of `loadPage``)
+    /// create a new entityset (could be done by using configuration of RecordsRequest of `loadPage``)
     public func createEntitySet(
         tableName: String,
         callbackQueue: DispatchQueue? = nil,

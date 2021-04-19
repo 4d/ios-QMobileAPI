@@ -38,6 +38,7 @@ extension ApplicationInfoTarget: DecodableTargetType {
 }
 
 extension ActionRootTarget {
+    /// Create an `ApplicationInfoTarget` from this.
     public func applicationInfo(actionName: String, bundleId: String) -> ApplicationInfoTarget {
         return ApplicationInfoTarget(parentTarget: self, actionName: actionName, bundleId: bundleId)
     }

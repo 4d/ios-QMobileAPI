@@ -26,7 +26,7 @@ extension Future {
         }
     }
 
-    // materialize?
+    /// Return a publisher with `Result` and no more error.
     public func resultify() -> AnyPublisher<Result<Output, Failure>, Swift.Never> {
         return self.result { result in
             return .success(Result.success(result))
@@ -49,7 +49,7 @@ extension Sequence where Iterator.Element: Publisher {
         return self.first(where: { _ in return true })!.eraseToAnyPublisher()
     }*/
 }
-
+// swiftlint:disable missing_docs
 extension Publisher {
 
     public func result<T>(_ transform: @escaping (Self.Output) -> Result<T, Self.Failure>) -> AnyPublisher<T, Failure> {
@@ -75,6 +75,7 @@ extension Publisher {
         }.eraseToAnyPublisher()
     }
 
+    /// Remove data publisher.
     public func asVoid() -> AnyPublisher<Void, Failure> { // ignoreOutput eq?
         return self.map { _ in return () }.eraseToAnyPublisher()
     }
@@ -153,3 +154,4 @@ public class OnPublisher<P: Publisher> {
         })
     }
 }
+// swiftlint:enable missing_docs

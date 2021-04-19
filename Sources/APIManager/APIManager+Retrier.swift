@@ -64,11 +64,16 @@ extension APIManager: RequestInterceptor {
 
 // MARK: retry
 
+/// Define some info to customize retry behavioue.
 public struct Retry {
+    /// Time interval before retry.
     public var interval: TimeInterval = 10
+    /// The number of max retry attemps.
     public var maxAttempts: UInt = 5
 }
+/// Protocol to define rety info
 public protocol Retryable {
+    /// Return the retry parametes info.
     var retry: Retry? { get }
 }
 

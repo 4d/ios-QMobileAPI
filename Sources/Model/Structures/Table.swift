@@ -16,13 +16,18 @@ public struct Table {
     public var scope: String?
     public var dataURI: String?
 
+    /// The table attributes
     public var attributes: [String: Attribute] = [:]
+    /// The table attributes applying formatter to name
     public var attributesBySafeName: [String: Attribute] = [:]
 
+    /// Return the keys.
     public var keys: [String: Key] = [:]
 
+    /// Return available table server method.
     public var methods: [TableMethod] = []
 
+    /// Create an instance of table by its name.
     public init(name: String) {
         self.name = name
     }
@@ -38,6 +43,7 @@ extension Table {
         return attributes[key]
     }
 
+    /// Return an attribute of this table from safe name.
     public func attribute(forSafeName key: String) -> Attribute? {
         // XXX cache info to optimize
         /*for attribute in self.attributes.values {
@@ -161,6 +167,7 @@ extension Table: JSONDecodable {
 }
 
 extension Table {
+    /// Return all tables from api JSON info.
     public static func all(json: JSON) -> [Table] {
         var tables = [Table]()
         if let dataClasses = json[.dataClasses].array {
@@ -173,6 +180,7 @@ extension Table {
         return tables
     }
 
+    /// Return all tables from api JSON info.
     public static func array(json: JSON) -> [Table]? {
         if json[.dataClasses].array != nil {
             return all(json: json)
@@ -185,6 +193,7 @@ extension Table {
 }
 
 extension Table {
+    /// Filter attributes according to type.
     public func attributes(of type: AttributeStorageType) -> [Attribute] {
         return self.attributes.values.filter {
             $0.storageType == type

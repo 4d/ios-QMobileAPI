@@ -56,7 +56,9 @@ public protocol RecordsRequest {
     /// Limit the number of records returned.
     @discardableResult func limit(_ value: Int) -> Self
 
+    /// https://developer.4d.com/docs/en/REST/distinct.html
     @discardableResult func distinct() -> Self
+    /// https://developer.4d.com/docs/en/REST/distinct.html
     @discardableResult func distinct(_ value: Bool) -> Self
 
     /// Filter the records. (orda notation)
@@ -68,19 +70,25 @@ public protocol RecordsRequest {
 
     /// Activate query path.
     @discardableResult func querypath() -> Self
+    /// Activate query path.
     @discardableResult func querypath(_ value: Bool) -> Self
 
     /// Activate query plan.
     @discardableResult func queryplan() -> Self
+    /// Activate query plan.
     @discardableResult func queryplan(_ value: Bool) -> Self
 
     /// Expand specific relations (separated by comma).
     @discardableResult func expand(_ relation: String) -> Self
 
+    /// The image format wanted.
     @discardableResult func imageformat(_ format: ImageFormat) -> Self
 
+    /// https://developer.4d.com/docs/en/REST/method.html
     @discardableResult func restMethod(_ method: Method) -> Self
+    /// https://developer.4d.com/docs/en/REST/atomic_$atonce.html
     @discardableResult func atomic() -> Self
+    /// https://developer.4d.com/docs/en/REST/atomic_$atonce.html
     @discardableResult func atomic(_ value: Bool) -> Self
 
 }

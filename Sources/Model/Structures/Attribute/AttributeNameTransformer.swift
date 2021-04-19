@@ -10,13 +10,13 @@ import Foundation
 
 /// Defines rules to transform name from JSON to CoreData
 public struct AttributeNameTransformer {
-    // An info name
+    /// An info name
     public var name: String
-    // Map to the wanted field
+    /// Map to the wanted field
     public var decode: (String) -> String = { $0 }
-    // Encode for network
+    /// Encode for network
     public var encode: (String) -> String = { $0 }
-    // Transformer could manage this case
+    /// Transformer could manage this case
     public var couldManage: (String) -> Bool = { _ in false }
 
     @nonobjc public static var suffixForReserved = "_"
@@ -29,6 +29,7 @@ public struct AttributeNameTransformer {
 
     @nonobjc public static var suffixForServerReserved = "qmobile"
 
+    /// Init a transformer passing closures.
     public init(name: String, decode: @escaping (String) -> String, encode: @escaping (String) -> String, couldManage: @escaping (String) -> Bool = { _ in true }) {
         self.name = name
         self.decode = decode
@@ -85,6 +86,7 @@ public struct AttributeNameTransformer {
         }
         return false
         })
+    /// A transformer to capitalize.
     public static var capitalizedRuntimeReservedVariable = AttributeNameTransformer(
         name: "capitalizedReservedVariable",
         decode: { key -> String in
@@ -99,6 +101,7 @@ public struct AttributeNameTransformer {
         return false
         })
 
+/// A transformer to remove some reserved keyword.
     public static var serverReservedVariable = AttributeNameTransformer(
         name: "serverReservedVariable",
         decode: { key -> String in
@@ -155,6 +158,7 @@ extension AttributeNameTransformer: Equatable {
 }
 
 extension Attribute {
+    /// Encode attribute name to be safe for iOS.
     public var safeName: String {
         return nameTransformer.decode(name)
     }

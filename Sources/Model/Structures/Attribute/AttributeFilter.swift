@@ -14,13 +14,16 @@ extension Attribute {
         init() {
             _query = ""
         }
+        /// Create a filter from query string.
         public init(query: String) {
             _query = query
         }
+        /// The query of filter
         public var query: String {
             return _query
         }
 
+        /// `true` if query empty
         public var isEmpty: Bool {
             return query.isEmpty
         }
@@ -112,13 +115,14 @@ extension Attribute {
 }
 
 extension String {
+    /// Return a new `Attribute.Filter.Expression` from text.
     public var expression: Attribute.Filter.Expression {
         return Attribute.Filter.Expression(forKeyPath: self)
     }
 }
 
 // MARK: operators
-
+// swiftlint:disable missing_docs
 public func == (left: Attribute, right: Attribute.ValueType) -> Attribute.Filter {
     return left.expression == left.expression(for: right)
 }
@@ -219,3 +223,5 @@ public func || (left: Attribute.Filter, right: Attribute.Filter) -> Attribute.Fi
 prefix public func ! (predicate: Attribute.Filter) -> Attribute.Filter {
     return Attribute.CompoundFilter(filters: [predicate], conjunction: .except)
 }
+
+// swiftlint:enable missing_docs

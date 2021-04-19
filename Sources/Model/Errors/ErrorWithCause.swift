@@ -54,6 +54,7 @@ extension ErrorWithCause {
 }
 
 extension Swift.Error {
+    /// Return the ns error underlying error if any.
     public var userInfoUnderlyingError: Swift.Error? {
         if let error = self as? CustomNSError {
             return error.errorUserInfo[NSUnderlyingErrorKey] as? Swift.Error

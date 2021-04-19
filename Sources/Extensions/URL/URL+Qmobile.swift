@@ -270,6 +270,7 @@ extension URL {
         return finalUrl
     }
 
+    /// Return the url defined to reach the servers.
     public static var qmobileURLs: [URL]? {
         guard let urlsString = Prephirences.serverURLs else {
             guard let urlString = Prephirences.serverURL, let url = URL(string: urlString) else {

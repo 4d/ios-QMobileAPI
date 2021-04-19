@@ -11,4 +11,5 @@ import XCGLogger
 
 let logger = XCGLogger.default
 
+/// Alias to define log level.
 public typealias LogLevel = XCGLogger.Level

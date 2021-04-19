@@ -12,6 +12,7 @@ import Moya
 import SwiftyJSON
 
 extension Response {
+    /// Decode json response to object.
     public func map<T: JSONDecodable>(to type: T.Type) throws -> T {
         let jsonObject = try mapJSON()
 
@@ -22,6 +23,7 @@ extension Response {
         return mappedObject
     }
 
+    /// Decode json response to array of objects.
     public func map<T: JSONDecodable>(to type: [T.Type]) throws -> [T] {
         let jsonObject = try mapJSON()
 
@@ -34,10 +36,14 @@ extension Response {
 }
 
 extension Response {
+    /// Return all headers.
     public var httpHeader: [String: String]? {
         return self.request?.allHTTPHeaderFields
     }
 
+    /// Get specific header value.
+    /// - Parameter key: the header key
+    /// - Returns: the header value
     public func header(for key: HTTPResponseHeader) -> String? {
         return httpHeader?[key.rawValue]
     }

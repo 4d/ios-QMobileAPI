@@ -34,7 +34,7 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, completion: completion)
     }
 
-    // delete records
+    /// delete records
     public func deleteRecords(
         tableName: String,
         configure: ConfigureRecordsRequest? = nil,
@@ -52,10 +52,11 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, completion: completion)
     }
 
-    // delete entity set
+    /// delete entity set
     public func delete(entitySet: EntitySet, callbackQueue: DispatchQueue? = nil, completionHandler: CompletionStatusHandler? = nil) -> Cancellable {
        return self.deleteEntitySet(tableName: entitySet.tableName, setID: entitySet.id, completionHandler: completionHandler)
     }
+    /// delete entity set
     public func deleteEntitySet(
         tableName: String,
         setID: String,
@@ -73,9 +74,11 @@ extension APIManager {
 
     // release entity set from cache
 
+    /// release entity set
     public func release(entitySet: EntitySet, callbackQueue: DispatchQueue? = nil, completionHandler: CompletionStatusHandler? = nil) -> Cancellable {
         return self.releaseEntitySet(tableName: entitySet.tableName, setID: entitySet.id, completionHandler: completionHandler)
     }
+    /// release entity set
     public func releaseEntitySet(
         tableName: String,
         setID: String,

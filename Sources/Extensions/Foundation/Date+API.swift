@@ -35,6 +35,7 @@ extension DateFormatter {
 
     // public var refreshed: Date //"2011-11-18T10:30:30Z",
 
+    /// a simple date format with / "dd/MM/yyyy"
     public static let simpleDateSlash: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -43,6 +44,7 @@ extension DateFormatter {
         return formatter
     }()
 
+    /// a date formatter to match with 4d one "dd!MM!yyyy"
     public static let simpleDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -98,6 +100,7 @@ extension Date {
         return tomorrow! // swiftlint:disable:this
     }
 
+    /// Return yesterday date.
     public static var yesterday: Date {
         var dateComponents = DateComponents()
         dateComponents.setValue(-1, for: .day) // -1 day
@@ -108,6 +111,7 @@ extension Date {
         return yesterday! // swiftlint:disable:this
     }
 
+    /// Return two day ago date.
     public static var twoDaysAgo: Date {
         var dateComponents = DateComponents()
         dateComponents.setValue(-2, for: .day) // -2 day
@@ -117,6 +121,8 @@ extension Date {
 
         return yesterday! // swiftlint:disable:this
     }
+
+    /// Return the first day of this month.
     public static var firstDayOfMonth: Date {
         let now = Date() // Current date
         let calendar = Calendar.current

@@ -73,15 +73,18 @@ extension PageInfo: Equatable {
 
 // MARK: Utility methods
 extension PageInfo {
+    /// Return true if no record in page.
     public var isEmpty: Bool {
         // swiftlint:disable:next empty_count
         return count == 0
     }
 
+    /// Last page index
     public var last: Int {
         return next - 1
     }
 
+    /// id of next page.
     public var next: Int {
         return first + sent
     }
@@ -91,6 +94,7 @@ extension PageInfo {
         return first == 0
     }
 
+    /// `true` if this page is the last one.
     public var isLast: Bool {
         return first + sent == count
     }

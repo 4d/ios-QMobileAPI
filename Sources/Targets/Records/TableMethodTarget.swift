@@ -38,6 +38,7 @@ public class TableMethodTarget: ChildTargetType {
 }
 
 extension RecordsTarget {
+    /// Create a `TableMethodTarget` from this records target.
     public func method(name: String) -> TableMethodTarget { return TableMethodTarget(parentTarget: self, name: name) }
 }
 

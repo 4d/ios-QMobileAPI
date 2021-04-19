@@ -9,7 +9,7 @@
 import Foundation
 
 extension Bundle {
-    // Bundle used to stub file
+    /// Bundle used to stub file
     @nonobjc public static var qMobileApiStub = Bundle(for: APIManager.self)
     @nonobjc public static var qMobileApiStubURL = URL(fileURLWithPath: #file)
 }

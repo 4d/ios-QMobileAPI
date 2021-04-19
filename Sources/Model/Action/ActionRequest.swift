@@ -68,6 +68,7 @@ public final class ActionRequest {
     /// All parameters
     @StringDictContainer public var parameters: ActionParameters
 
+    /// The request state.
     public var state: ActionRequest.State
 
     /// Creation of request.
@@ -101,11 +102,13 @@ public final class ActionRequest {
             parameters[ActionParametersRootKey.parameters] = newValue
         }
     }
+    /// Set an action parameter value.
     public func setActionParameters(key: String, value: Any) {
         var actionParameters = (parameters[ActionParametersRootKey.parameters] as? ActionParameters)
         actionParameters?[key] = value
         self.parameters[ActionParametersRootKey.parameters] = actionParameters
     }
+    /// Remove an action parameter value.
     public func removeActionParameters(key: String) {
         var actionParameters = (parameters[ActionParametersRootKey.parameters] as? ActionParameters)
         actionParameters?.removeValue(forKey: key)
@@ -120,16 +123,20 @@ public final class ActionRequest {
         return parameters[ActionParametersRootKey.metadata] as? ActionParameters
     }
 
+    /// Return the result status text if task finish and have status text from server.
     public var statusText: String? {
         return result?.statusText
     }
 
+    /// Return the table name from context.
     public var tableName: String {
         guard let context = self.contextParameters else {
             return ""
         }
         return context[ActionParametersKey.table] as? String ?? ""
     }
+
+    /// Compute a summary information of record (ie. primary id)
     public var recordSummary: String {
         guard let context = self.contextParameters,
               let recordContext = context[ActionParametersKey.record] as? [String: Any],
@@ -177,6 +184,7 @@ public final class ActionRequest {
         }
     }
 
+    /// Generate an ir for action.
     public static func generateID(_ action: Action) -> String {
         if action.isOnlineOnly {
             return ""
@@ -222,9 +230,11 @@ public final class ActionRequest {
         result = nil
     }
 
+    /// Encode current parmeters for request.
     public func encodeParameters() {
         ActionRequest.encodeParameters(parameters: &parameters)
     }
+    /// Decode current parametes for request.
     public func decodeParameters() {
         // TODO if there is meta and encoded data find the inverse info decode it
         guard let actionParams = parameters[ActionParametersRootKey.parameters] as? ActionParameters else {
@@ -334,10 +344,15 @@ extension ActionRequest: Equatable {
 
 /// Some well known key for ActionParameters (not public yet)
 public struct ActionParametersKey {
+    /// Api key for table/dataClass
     public static let table = "dataClass"
+    /// Api key for record/entity
     public static let record = "entity"
+    /// Api key for primary key
     public static let primaryKey = "primaryKey"
+    /// Api key or paret
     public static let parent = "parent"
+    /// Api key for relation.
     public static let relationName = "relationName"
 }
 
@@ -354,6 +369,7 @@ extension Action {
 
 extension Result where Success == ActionResult, Failure == ActionRequest.Error {
 
+    /// Return `statusText` from server response if any.
     public var statusText: String? {
         switch self {
         case .success(let value):

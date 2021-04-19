@@ -110,6 +110,7 @@ public class APIManager {
         }
     }
 
+    /// Save the auth token.
     private func saveAuthToken() {
         guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance
@@ -120,6 +121,7 @@ public class APIManager {
         }
     }
 
+    /// Remove auth token from keychain.
     public static func removeAuthToken() {
         guard kPersistAuth else { return }
         let keyChain = KeychainPreferences.sharedInstance
@@ -130,6 +132,7 @@ public class APIManager {
 
     /// Activate stub response for test.
     public var stub: Bool = Prephirences.sharedInstance["stub.activate"] as? Bool ?? false
+    /// A delegate to customize stub feature to test.
     public weak var stubDelegate: StubDelegate?
 
     // MARK: attributes
@@ -174,6 +177,7 @@ public class APIManager {
 
     // MARK: configuration functions
 
+    /// Return the `ServerTrustManager`
     open func serverTrustManager() -> ServerTrustManager? {
         guard let host = self.base.baseURL.host  else {
             return nil
@@ -358,6 +362,14 @@ extension APIManager {
     }
 
     // MARK: request methods
+
+    /// Make a request.
+    /// - Parameters:
+    ///   - target: the target.
+    ///   - callbackQueue: an optional  queue for callback
+    ///   - progress: callback to receive progression info
+    ///   - completion: completion callback to receive raw moya response.
+    /// - Returns: a cancellable object for this request.
     public func request<T: TargetType>(_ target: T, callbackQueue: DispatchQueue? = nil, progress: ProgressHandler? = nil, completion: @escaping APIManager.Completion) -> Cancellable {
         return self.provider(target).request(target, callbackQueue: callbackQueue ?? defaultQueue, progress: progress) { result in
             completion(result.mapError { APIError.error(from: $0) })
@@ -366,9 +378,23 @@ extension APIManager {
     func request<T: TargetType>(_ target: T, queue: DispatchQueue? = nil, progress: ProgressHandler? = nil, completion: @escaping Moya.Completion) -> Cancellable {
         return self.provider(target).request(target, callbackQueue: queue ?? defaultQueue, progress: progress, completion: completion)
     }
+    /// Make a request.
+    /// - Parameters:
+    ///   - target: the target.
+    ///   - callbackQueue: an optional  queue for callback
+    ///   - progress: callback to receive progression info
+    ///   - completion: completion callback to receive data as decoded object.
+    /// - Returns: a cancellable object for this request.
     public func request<T: DecodableTargetType>(_ target: T, callbackQueue: DispatchQueue? = nil, progress: ProgressHandler? = nil, completion: @escaping (Result<T.ResultType, APIError>) -> Void) -> Cancellable {
         return self.provider(target).requestDecoded(target, callbackQueue: callbackQueue ?? defaultQueue, progress: progress, completion: completion)
     }
+    /// Make a request.
+    /// - Parameters:
+    ///   - target: the target.
+    ///   - callbackQueue: an optional  queue for callback
+    ///   - progress: callback to receive progression info
+    ///   - completion: completion callback to receive data as a collection of decoded object.
+    /// - Returns: a cancellable object for this request.
     public func request<T: DecodableTargetType>(_ target: T, callbackQueue: DispatchQueue? = nil, progress: ProgressHandler? = nil, completion: @escaping (Result<[T.ResultType], APIError>) -> Void) -> Cancellable {
         return self.provider(target).requestDecoded(target, callbackQueue: callbackQueue ?? defaultQueue, progress: progress, completion: completion)
     }

@@ -11,13 +11,18 @@ import Foundation
 /// Generic record object which contains JSON representation of your record.
 public struct DeletedRecord {
 
+    /// The primary key of deleted record.
     public let primaryKey: String
+    /// the identiier of the remote table.
     public let tableNumber: Double?
+    /// The table name.
     public let tableName: String
+    /// The stamp when the record has been deleted.
     public let stamp: Double
 
     // XXX copy also ImportKey.stamp, ImportKey.key, ImportKey.timeStamp ?
 
+    /// create an instance
     public init(primaryKey: String, tableNumber: Double?, tableName: String, stamp: Double) {
         self.primaryKey = primaryKey
         self.tableName = tableName
@@ -28,13 +33,19 @@ public struct DeletedRecord {
 
 extension DeletedRecord: Codable {}
 
+/// Define some key for DeletedRecord rest api
 public struct DeletedRecordKey {
 
+    /// The entity name.
     public static let entityName = "__DeletedRecords"
 
+    /// The primary key.
     public static let primaryKey = "__PrimaryKey"
+    /// The table name.
     public static let tableName = "__TableName"
+    /// The table  number.
     public static let tableNumber = "__TableNumber"
+    /// The stamp
     public static let stamp = "__Stamp"
 }
 

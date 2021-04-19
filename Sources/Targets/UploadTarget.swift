@@ -106,6 +106,7 @@ extension UploadTarget: DecodableTargetType {
 }
 
 extension BaseTarget {
+    /// Upload data on server.
     public func upload(data: Data, image: Bool = false, mimeType: String?) -> UploadTarget {
         let target = UploadTarget(parentTarget: self, provider: .data(data), mimeType: mimeType ?? MimeTypes.default)
         if image {
@@ -114,6 +115,7 @@ extension BaseTarget {
         return target
     }
 
+    /// Upload a file on server.
     public func upload(url: URL) -> UploadTarget {
         assert(url.isFileURL)
         let mimeType = url.mimeType()

@@ -30,6 +30,7 @@ public enum APIError: Swift.Error {
 // extension APIError: Codable {}
 
 extension APIError {
+    ///  Return true if error correspond to the pass HTTP code.
     public func isHTTPResponseWith(code: HTTPCode) -> Bool {
         guard let response = self.response else {
             return false
@@ -37,6 +38,7 @@ extension APIError {
         return response.statusCode == code.rawValue
     }
 
+    /// Return true if error correospond to one of passed HTTP codes.
     public func isHTTPResponseWith(codes: [HTTPCode]) -> Bool {
         guard let response = self.response else {
             return false
@@ -49,6 +51,8 @@ extension APIError {
 }
 
 extension APIError {
+
+    /// Return `true` if one of underlying error is an `URLError`.
     public var isUrlError: Bool {
         if self.underlyingError is URLError {
             return true
@@ -67,6 +71,7 @@ extension APIError {
         return false
     }
 
+    /// Return the underlying error if its an `URLError`.
     public var urlError: URLError? {
         if let urlError = self.underlyingError as? URLError {
             return urlError
@@ -85,31 +90,44 @@ extension APIError {
         return nil
     }
 
+    /// Check if contains the specifyed error code.
+    /// - Parameter code: the code
+    /// - Returns: `true` if this error contains the code.
     public func isUrlError(with code: URLError.Code) -> Bool {
         return isUrlError(with: [code])
     }
 
+    /// Check if contains the specifyed one the specifyed error code.
+    /// - Parameter codes: the codes to check
+    /// - Returns: `true` if this error contains one of the codes.
     public func isUrlError(with codes: [URLError.Code]) -> Bool {
         if let urlError = self.urlError {
             return codes.contains(urlError.code)
         }
         return false
     }
+
+    /// Is `.timedOut` error.
     public var isTimedOut: Bool {
         return isUrlError(with: .timedOut)
     }
+
+    /// Is `.cannotConnectToHost` error.
     public var isCannotConnectToHost: Bool {
         return isUrlError(with: .cannotConnectToHost)
     }
 
+    /// Is `.notConnectedToInternet` error.
     public var isNotConnectedToInternet: Bool {
         return isUrlError(with: .notConnectedToInternet)
     }
 
+    /// Is `.cancelled` error.
     public var isCancelled: Bool {
         return isUrlError(with: .cancelled) // XXX could add other case
     }
 
+    /// Is `.userAuthenticationRequired` error.
     public var isUserAuthenticationRequired: Bool {
         return isUrlError(with: .userAuthenticationRequired)
     }
@@ -181,11 +199,16 @@ extension APIError {
 }
 
 extension APIError {
+
+    /// Check if this error match the request case.
+    /// - Parameter case: the request case to check
+    /// - Returns: `true` if error match the request case
     public func isRequestCase(_ case: RequestCase) -> Bool {
         let codes = `case`.codes
         return isUrlError(with: codes)
     }
 
+    /// the underlying request case if any.
     public var requestCase: RequestCase? {
         if case .request(let error) = self {
             if let urlError = error as? URLError {
@@ -197,6 +220,8 @@ extension APIError {
 }
 
 extension APIError: LocalizedError {
+
+    /// The localized error description.
     public var errorDescription: String? {
         switch self {
         case .jsonMappingFailed:
@@ -298,6 +323,7 @@ extension APIError {
         return nil
     }
 
+    /// The underlying `MoyaError` from Moya api if any.
     public var moyaError: MoyaError? {
         if let moyaError = self.error as? MoyaError {
             return moyaError
@@ -305,6 +331,7 @@ extension APIError {
         return nil
     }
 
+    /// The underlying `AFError`from Alamofire  if any.
     public var afError: AFError? {
         if let moyaError = self.error as? MoyaError {
             if let afError = moyaError.error as? AFError {
@@ -317,6 +344,7 @@ extension APIError {
         return nil
     }
 
+    /// The underlying url if any.
     public var url: URL? {
         if let url = afError?.url {
             return url
@@ -324,16 +352,19 @@ extension APIError {
         return response?.request?.url
     }
 
+    /// The underlying url as url convertible if any.
     public var urlConvertible: URLConvertible? {
         return afError?.urlConvertible
     }
 
+    /// The server response as string if any.
     public var responseString: String? {
         return moyaError?.responseString
     }
 }
 
 public extension MoyaError {
+    /// The server response as string if any.
     var responseString: String? {
         guard let response = response else {
             return nil
@@ -343,6 +374,7 @@ public extension MoyaError {
 }
 
 extension APIError {
+    /// Create `APIError` from `MoyaError`
     public static func moya(_ moyaError: MoyaError) -> APIError {
         /*if let error = moyaError.error {
             return .request(error) // deencapsulate
@@ -373,6 +405,7 @@ extension MoyaError: ErrorWithCause {
 
 // MARK: RestError
 extension MoyaError {
+    /// Get `RestErrors` from this error data.
     public var restErrors: RestErrors? {
         if let data = self.response?.data {
             return RestErrors(data: data)
@@ -380,6 +413,7 @@ extension MoyaError {
         return nil
     }
 
+    /// `true` if there is rest errors. If you need to know that and use `restErrors`, prefer use `restErrors` directly.
     public var isRestError: Bool {
         // XXX could optimize by not creating objects
         return restErrors != nil
@@ -387,6 +421,7 @@ extension MoyaError {
 }
 
 extension APIError {
+    /// `true` if there is rest errors. If you need to know that and use `restErrors`, prefer use `restErrors` directly.
     public var isRestError: Bool {
         if let moyaError = self.error as? MoyaError {
             return moyaError.isRestError
@@ -394,6 +429,7 @@ extension APIError {
         return false
     }
 
+    /// Get `RestErrors` from this error data.
     public var restErrors: RestErrors? {
         if let moyaError = self.error as? MoyaError {
             return moyaError.restErrors
@@ -401,6 +437,9 @@ extension APIError {
         return nil
     }
 
+    /// Check if match rest error code.
+    /// - Parameter code: the code to chec;
+    /// - Returns: `true` if match
     public func match(_ code: RestErrorCode) -> Bool {
         return restErrors?.match(code) ?? false
     }

@@ -40,6 +40,7 @@ extension CodingKey {
 
 // MARK: UserInfo
 extension AuthToken {
+    /// Return the origin email of token if any
     public var email: String? {
         return userInfo?["email"] as? String
     }
@@ -112,6 +113,7 @@ extension AuthToken: Equatable {
 // MARK: JWTToken
 
 extension AuthToken {
+    /// `true` if there is a valid token.
     public var isValidToken: Bool {
         guard let token = self.token else {
             return false
@@ -122,6 +124,7 @@ extension AuthToken {
         return true // self.token?.components(separatedBy: ".").count == 3
     }
 
+    /// Is expired token. (for know we will check only if valid.
     public var isExpiredToken: Bool {
         return isValidToken // TODO : if token contains expiration information, implement isExpiredToken
     }

@@ -85,6 +85,8 @@ public class RecordTarget: RecordTargetType {
 
 extension RecordTarget {
     // MARK: record $method
+
+    /// Set the $method.
     @discardableResult public func restMethod(_ method: Method) -> Self {
         self.setParameter(.method, method.rawValue)
         self.method = method.method
@@ -101,6 +103,7 @@ extension RecordTarget {
         return parameters[kRecordsRequestKey + key.rawValue]
     }
 
+    /// Return the current rest `Method`
     public var restMethod: Method? {
         guard let string = getParameter(.method) as? String else {
             return nil

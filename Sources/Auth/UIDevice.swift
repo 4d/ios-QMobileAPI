@@ -182,6 +182,7 @@ extension Device {
         }
     }
 
+    /// `true` if device is an simulator.
     public var isSimulatorCase: Bool {
         if case .simulator = self {
             return true
@@ -189,6 +190,7 @@ extension Device {
         return false
     }
 
+    /// `true` if device is a jailbroken one.
     public static var isJailBroken: Bool = {
         if Device.current.isSimulatorCase {
             return false
@@ -238,6 +240,7 @@ fileprivate extension Data {
 }
 
 import DeviceKit
+/// Alias or DeviceKit api.
 public typealias Device = DeviceKit.Device
 
 #endif

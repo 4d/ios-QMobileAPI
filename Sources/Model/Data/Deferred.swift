@@ -8,9 +8,13 @@
 
 import Foundation
 
+/// Define info from rest api that must requested by another request ie. deferred, such as image, relation info.
 public struct Deferred {
+    /// The uri to request.
     public let uri: String
+    /// `true` if is an image.
     public let image: Bool
+    /// An identiier key.
     public let key: String?
 
     public init(uri: String, image: Bool = false, key: String? = nil) {

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable missing_docs
 public struct AnyCodable: Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -479,3 +480,5 @@ public struct ClassStore {
         return store[className]
     }
 }
+
+// swiftlint:enable missing_docs

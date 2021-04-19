@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Alias for importable object key.
 public typealias ImportKey = RestKey
 
 /// Create the importable object with tablename and json information.
@@ -25,6 +26,7 @@ public protocol ImportableBuilder {
     /// Called when the process finish.
     func teardown()
 
+    /// Parse JSON as importable record object.
     func parseArray(json: JSON, using mapper: AttributeValueMapper) throws -> [Importable]
 }
 

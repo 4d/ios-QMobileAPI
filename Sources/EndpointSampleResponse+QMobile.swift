@@ -16,10 +16,12 @@ extension Moya.EndpointSampleResponse {
         return .networkResponse(code, data)
     }
 
+    /// Create a networkResponse with specified code and data from string
     public static func string(_ code: Int, _ string: String) -> Moya.EndpointSampleResponse {
         return networkResponse(code, string.data(using: .utf8) ?? Data())
     }
 
+    /// Create a networkResponse with specified code and data from JSON
     public static func json(_ code: Int, _ json: JSON) -> Moya.EndpointSampleResponse {
         return networkResponse(code, "\(json.object)".data(using: .utf8) ?? Data())
     }

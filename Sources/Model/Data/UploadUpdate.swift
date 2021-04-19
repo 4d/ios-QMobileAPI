@@ -14,8 +14,10 @@ import Foundation
 public struct UploadUpdate {
     public let key: String
     public let stamp: String
+    /// the photo result
     public let photo: UploadResult
 
+    /// Create an instance.
     public init(key: String, stamp: String, photo: UploadResult) {
         self.key = key
         self.stamp = stamp
@@ -57,6 +59,7 @@ extension UploadUpdate: Equatable {
 
 // MARK: Builder
 extension UploadResult {
+    /// Create an `UploadUpdate` from this  result.
     public func update(on key: String, stamp: String) -> UploadUpdate {
         return UploadUpdate(key: key, stamp: stamp, photo: self)
     }

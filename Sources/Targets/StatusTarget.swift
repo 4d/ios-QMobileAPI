@@ -27,7 +27,9 @@ public class StatusTarget: ChildTargetType {
     }
 }
 
+/// A protocol for Moya target to specify a custom timeout.
 public protocol TimeoutTarget {
+    /// The timeout defined by the target.
     var timeoutInterval: TimeInterval { get }
 }
 
@@ -36,6 +38,7 @@ extension StatusTarget: TimeoutTarget {
 }
 
 extension BaseTarget {
+    /// Create a status target from base target.
     public var status: StatusTarget { return StatusTarget(parentTarget: self) }
 }
 

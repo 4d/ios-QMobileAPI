@@ -69,14 +69,17 @@ extension RecordSetTarget: DecodableTargetType {
 
 // MARK: RecordsTargetType
 extension RecordSetTarget {
+    /// Fill one parameter.
     public func setParameter(_ key: RecordsRequestKey, _ value: Any) {
         parameters[kRecordsRequestKey + key.rawValue] = value
     }
 
+    /// Get one parameter value.
     public func getParameter(_ key: RecordsRequestKey) -> Any? {
         return parameters[kRecordsRequestKey + key.rawValue]
     }
 
+    /// Defined the HTTP method of the request.
     public func setHTTPMethod(_ method: Moya.Method) {
         self.method = method
     }

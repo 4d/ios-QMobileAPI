@@ -29,6 +29,7 @@ public struct WebTestInfo {
 // MARK: Codable
 extension WebTestInfo: Codable {}
 
+/// An object to represend a server version.
 public struct ServerVersion {
 
     public var version: SemVersion
@@ -59,19 +60,26 @@ public struct ServerVersion {
     }
 }
 
+/// A class to represent a version
 public struct SemVersion {
 
+    /// max value
     public private(set) var max: Int = 0
+    /// min value
     public private(set) var min: Int = 0
+    /// patch value.
     public private(set) var patch: Int = 0
 
+    /// 18R5 version
     public static let V18R5 = SemVersion(max: 18, min: 5, patch: 0)
 
+    /// Create an instance from numbers
     public init(max: Int, min: Int, patch: Int) {
         self.max = max
         self.min = min
         self.patch = patch
     }
+    /// Create an instance from string.
     public init(_ string: String) {
         let splitted = string.split(separator: ".")
         if splitted.count > 2 {
@@ -121,6 +129,7 @@ extension WebTestInfo {
       return info["Server"] // 4D/18.5.0 (Build 0.255457)
     }
 
+    /// The server version
     public var version: ServerVersion? {
         return ServerVersion(server)
     }

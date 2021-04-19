@@ -28,10 +28,12 @@ extension UserInfoResult {
         return json[key].rawValue
     }
 
+    /// The return error value from server data
     public var errors: [Any]? {
         return json["__ERROR"].arrayObject
     }
 
+    /// The return rest errors if any.
     public var restError: RestErrors? {
         return RestErrors(json: json)
     }

@@ -58,6 +58,7 @@ extension APIManager {
         return self.request(base.catalog.all, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
 
+    /// Alias for table result.
     public typealias CompletionTableHandler = ((Result<Table, APIError>) -> Void)
     /// Get one table by name
     /// @param table     the wanted table name
@@ -65,6 +66,7 @@ extension APIManager {
         return self.request(base.catalog.table(name), callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
 
+    /// Alias for record json result.
     public typealias CompletionRecordJSONHandler = ((Result<RecordJSON, APIError>) -> Void)
     /// Get one record into simple structures
     /// @param table   the table
@@ -81,6 +83,7 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
 
+    /// Alias for `Page` result.
     public typealias CompletionPageHandler = ((Result<Page, APIError>) -> Void)
     /// Get the records into simple structures.
     /// You must get information from page to configure next request.
@@ -168,6 +171,7 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
 
+    /// Alias for compute result.
     public typealias CompletionComputeHandler = ((Result<Compute, APIError>) -> Void)
     /// Compute an operation on specific attribute of one table.
     /// @param table   the table
@@ -198,6 +202,7 @@ extension APIManager {
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
     }
 
+    /// Alias for `UploadResult`request result
     public typealias CompletionUploadResultHandler = ((Result<UploadResult, APIError>) -> Void)
 
     // MARK: - Upload
@@ -229,6 +234,7 @@ extension APIManager {
      }
      */
 
+    /// Alias for UserInfoResult
     public typealias CompletionUserInfoHandler = ((Result<UserInfoResult, APIError>) -> Void)
     /// POST userInfo on server
     public func userInfo(_ userInfo: [String: Any]? = nil,

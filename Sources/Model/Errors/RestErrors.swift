@@ -71,10 +71,12 @@ public struct RestError: Swift.Error, JSONDecodable {
 }
 
 extension RestError {
+    /// Return the rest error error code.
     public var code: RestErrorCode? {
         return RestErrorCode(rawValue: self.errCode)
     }
 
+    /// Check if matching the rest error code.
     public func match(_ code: RestErrorCode) -> Bool {
         return code.rawValue == self.errCode
     }

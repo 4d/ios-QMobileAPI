@@ -25,19 +25,31 @@ extension RecordJSON: Codable {
     // TODO : specify coding key (remove tableName and use only raw json one
 }
 
+/// Rest api key.
 public struct RestKey {
+    /// Prefix fo reserved key ie. __
     public static let reserved = "__"
 
+    /// entity model key
     public static let entityModel = "__entityModel"
     // public static let dataClass = "__DATACLASS" // will replace entityModel?
+    /// count key
     public static let count = "__COUNT"
+    /// send key
     public static let sent = "__SENT"
+    /// first key
     public static let first = "__FIRST"
+    /// entity key
     public static let entities = "__ENTITIES"
+    /// key for key
     public static let key = "__KEY"
+    /// stamp key
     public static let stamp = "__STAMP"
+    /// timestamp key
     public static let timestamp = "__TIMESTAMP"
+    /// deferred key
     public static let deferred = "__deferred"
+    /// global stamp
     public static let globalStamp = "__GlobalStamp"
 }
 
@@ -78,6 +90,7 @@ extension RecordJSON {
         return json[RestKey.globalStamp].int
     }
 
+    /// Get JSON data for a key.
     public func deferredJSON(_ key: String) -> JSON? {
         let deferred = json[key][RestKey.deferred]
         if deferred.isEmpty {
@@ -86,6 +99,7 @@ extension RecordJSON {
         return deferred
     }
 
+    /// Get Deferred object for a key.
     public func deferred(_ key: String) -> Deferred? {
         guard let json = deferredJSON(key) else {
             return nil
@@ -113,10 +127,12 @@ extension RecordJSON {
 }
 
 extension RecordJSON {
+    /// Return data as dictionar
     public var dictionaryObject: [String: Any]? {
         return self.json.dictionaryObject
     }
 
+    /// Return all key of records.
     public var keys: [String]? {
         guard let keys = self.json.dictionaryObject?.keys else {
             return nil

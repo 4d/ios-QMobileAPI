@@ -9,10 +9,12 @@
 import Foundation
 
 public struct EntitySet {
+    /// The entity set id.
     public var id: String
     public var tableName: String
     public var selectionSize: Int
     public var sorted: Bool
+    /// Return date of set refresh
     public var refreshed: Date // "2011-11-18T10:30:30Z",
     public var expires: Date
 }
@@ -65,7 +67,9 @@ extension EntitySet: Equatable {
 }
 
 // MARK: EntitySetIdConvertible
+/// Object that defined an entity set.
 public protocol EntitySetIdConvertible {
+    /// Return the entity set id.
     var entitySetID: String { get }
 }
 

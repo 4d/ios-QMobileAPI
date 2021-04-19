@@ -9,13 +9,16 @@
 import Foundation
 
 public protocol Lockable {
+    /// Lock the object.
     func lock() -> Bool
+    /// Unlock the object.
     func unlock() -> Bool
 }
 
 public protocol LockableBySync: Lockable {}
 
 extension LockableBySync {
+    /// Lock the object.
     public func lock() -> Bool {
         logger.verbose({ "will lock \(self)" })
         let result = (objc_sync_enter(self))
@@ -23,6 +26,7 @@ extension LockableBySync {
         return Int(result) == OBJC_SYNC_SUCCESS
     }
 
+    /// Unlock the object.
     public func unlock() -> Bool {
         logger.verbose({ "will unlock \(self)" })
         let result = objc_sync_exit(self)
@@ -36,16 +40,19 @@ public protocol LockableBySemaphore: Lockable {
 }
 
 extension LockableBySemaphore {
+    /// Lock the object.
     public func lock() -> Bool {
         return semaphore.wait(timeout: DispatchTime.distantFuture) == .success
     }
 
+    /// Unlock the object.
     public func unlock() -> Bool {
         return semaphore.signal() != 0
     }
 }
 
 extension Lockable {
+    /// Perform task under lock.
     public func perform(lockedTask task: () -> Void) -> Bool {
         if lock() {
             defer {

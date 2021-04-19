@@ -9,6 +9,7 @@
 import Foundation
 
 extension Encodable {
+    /// Encode object to json.
     public func toJSON(encoder: JSONEncoder = JSONEncoder()) -> String? {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
         return String(data: data, encoding: .utf8)
@@ -16,6 +17,7 @@ extension Encodable {
 }
 
 extension Decodable {
+    /// Decode an object from json string.
     public static func decode(fromJSON string: String, decoder: JSONDecoder = JSONDecoder()) -> Self? {
         if string.isEmpty { return nil }
         guard let data = string.data(using: .utf8) else { return nil }
