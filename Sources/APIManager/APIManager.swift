@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import Moya
 import Prephirences
-import DeviceKit
+
 #if os(iOS)
 import UIKit
 #endif

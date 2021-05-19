@@ -20,9 +20,6 @@
          location = "group:Carthage/Checkouts/Moya/Moya.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Carthage/Checkouts/DeviceKit/DeviceKit.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:Carthage/Checkouts/Alamofire/Alamofire.xcodeproj">
       </FileRef>
    </Group>

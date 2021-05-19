@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import Prephirences
-import DeviceKit
 
 // MARK: authentificate
 ///  mobileapp/$authenticate/

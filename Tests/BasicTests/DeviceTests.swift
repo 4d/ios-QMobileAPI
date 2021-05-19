@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 @testable import QMobileAPI
 #if(os(iOS))
-import DeviceKit
+ 
 #endif
 class DeviceTests: XCTestCase {
 

@@ -218,8 +218,6 @@
 		487E39891EA63E05002C9DA7 /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487E39881EA63E05002C9DA7 /* DateFormatterTests.swift */; };
 		487E398B1EA64B2B002C9DA7 /* AttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487E398A1EA64B2B002C9DA7 /* AttributeTests.swift */; };
 		487EC34020AD849100646B5B /* LogOutTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC33F20AD849100646B5B /* LogOutTarget.swift */; };
-		487F7FEE1F57F8A50064AF4B /* DeviceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F7FED1F57F8A50064AF4B /* DeviceKit.framework */; };
-		487F7FEF1F57F8A50064AF4B /* DeviceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F7FED1F57F8A50064AF4B /* DeviceKit.framework */; };
 		487F7FF11F57F9BA0064AF4B /* RestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F7FF01F57F9BA0064AF4B /* RestErrors.swift */; };
 		487F7FF21F57F9BA0064AF4B /* RestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F7FF01F57F9BA0064AF4B /* RestErrors.swift */; };
 		487F7FF31F57F9BA0064AF4B /* RestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F7FF01F57F9BA0064AF4B /* RestErrors.swift */; };
@@ -712,7 +710,6 @@
 				481601821EF8295E0051BD89 /* SwiftyJSON.framework in Frameworks */,
 				481601831EF8295E0051BD89 /* XCGLogger.framework in Frameworks */,
 				481601801EF8295E0051BD89 /* Prephirences.framework in Frameworks */,
-				487F7FEF1F57F8A50064AF4B /* DeviceKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,7 +740,6 @@
 				485271A61E9386B700BABB16 /* Prephirences.framework in Frameworks */,
 				48B2F0A91EA8D5C600F67871 /* Alamofire.framework in Frameworks */,
 				48B2F0A61EA8D5BD00F67871 /* Moya.framework in Frameworks */,
-				487F7FEE1F57F8A50064AF4B /* DeviceKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,7 +1784,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/XCGLogger.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/DeviceKit.framework",
 			);
 			name = carthage;
 			outputPaths = (
