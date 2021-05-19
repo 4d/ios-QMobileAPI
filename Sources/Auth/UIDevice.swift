@@ -126,6 +126,7 @@ enum Device {
 
 import DeviceCheck
 import UIKit
+import DeviceKit
 
 extension Device {
     /// Alias for Device token.

@@ -8,6 +8,7 @@
 
 import Foundation
 import Prephirences
+import DeviceKit
 
 extension Prephirences {
     struct Key {

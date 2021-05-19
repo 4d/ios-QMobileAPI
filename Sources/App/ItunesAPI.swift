@@ -127,7 +127,6 @@ extension ItunesLookupItem: JSONDecodable {
         description = json["description"].stringValue
         trackId = json["trackId"].intValue
         trackName = json["trackName"].stringValue
-        trackViewUrl = json["trackViewUrl"].stringValue
         releaseDate = json["releaseDate"].stringValue.dateFromRFC3339
         releaseNote = json["releaseNote"].stringValue
         currentVersionReleaseDate = json["currentVersionReleaseDate"].stringValue.dateFromRFC3339

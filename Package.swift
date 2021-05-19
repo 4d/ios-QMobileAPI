@@ -34,7 +34,7 @@ let package = Package(
             ],
             path: "Sources",
             swiftSettings: [
-                .define("DEBUG", .when(configuration: .debug)),
+                .define("DEBUG", .when(configuration: .debug))
             ]
         ),
         .testTarget(
