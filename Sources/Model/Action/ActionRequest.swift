@@ -169,6 +169,16 @@ public final class ActionRequest {
         }
     }
 
+    /// Return true if the action has been  executed and is failure.
+    public var isFailure: Bool {
+        switch result {
+        case .success(let actionResult):
+            return !actionResult.success
+        default:
+            return false
+        }
+    }
+
     /// Has receive result.
     public var hasResult: Bool {
         return result != nil
