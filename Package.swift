@@ -28,8 +28,7 @@ let package = Package(
                 "Moya",
                 "XCGLogger",
                 "SwiftyJSON",
-                "Prephirences",
-                "DeviceKit"
+                "Prephirences"
             ],
             path: "Sources",
             swiftSettings: [
