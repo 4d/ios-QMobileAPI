@@ -10,9 +10,7 @@ import Foundation
 
 import XCTest
 @testable import QMobileAPI
-#if(os(iOS))
- 
-#endif
+
 class DeviceTests: XCTestCase {
 
     let requestTimeout: TimeInterval = 5
@@ -28,15 +26,6 @@ class DeviceTests: XCTestCase {
     func testCurrent() {
         let current = Device.current
         XCTAssertNotNil(current)
-    }
-
-    func testUnderlying() {
-        let model = Device.current.realDevice
-        #if os(iOS)
-        if case .simulator = Device.current {
-            XCTAssertNotEqual(Device.current, model)
-        }
-        #endif
     }
 
     func testToken() {
