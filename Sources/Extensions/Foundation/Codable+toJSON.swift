@@ -81,3 +81,34 @@ extension KeyedDecodingContainer where Key == DynamicKey {
     }
 
 }
+
+@propertyWrapper
+public struct OptionalDecodable<T: RawRepresentable>: Codable where T.RawValue: Codable {
+
+    public var wrappedValue: T?
+
+    public init(wrappedValue: T?) {
+        self.wrappedValue = wrappedValue
+    }
+
+    public init(from decoder: Decoder) throws {
+        self.wrappedValue = try? T(rawValue: T.RawValue.init(from: decoder))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(wrappedValue?.rawValue)
+    }
+}
+
+extension OptionalDecodable: Equatable where T: Equatable {
+    public static func == (lhs: OptionalDecodable<T>, rhs: OptionalDecodable<T>) -> Bool {
+        return lhs.wrappedValue == rhs.wrappedValue
+    }
+}
+
+extension OptionalDecodable: Hashable where T: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(wrappedValue)
+    }
+}

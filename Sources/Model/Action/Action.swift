@@ -26,8 +26,8 @@ public struct Action {
     /// Information about icon
     public let icon: String?
 
-    /// Preset data: edit, share, add
-    public let preset: String?
+    /// Preset data: edit, share, adding, sort
+    @OptionalDecodable public var preset: ActionPreset?
 
     /// Action style.
     public let style: ActionStyle?
@@ -35,7 +35,7 @@ public struct Action {
     /// Action style.
     public let parameters: [ActionParameter]?
 
-    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: String? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = []) {
+    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: ActionPreset? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = []) {
         self.name = name
         self.label = label
         self.shortLabel = shortLabel
@@ -59,7 +59,30 @@ public struct Action {
 
     /// Return `true` if must be online.
     public var isOnlineOnly: Bool {
-        return self.preset == "share" // we use preset until there maybe a JSON data to force it
+        return self.preset?.isOnlineOnly ?? false // we use preset until there maybe a JSON data to force it
+    }
+}
+
+/// Action preset that could change the default behaviour.
+public enum ActionPreset: String, Codable {
+    /// Attempt to create a new record/entity
+    case add
+    /// Edit a record/entity
+    case edit
+    /// Delete a record/entity
+    case delete
+    /// Share current entity asking a link from server
+    case share
+    /// Sort locally the record (no remote request)
+    case sort
+
+    var isOnlineOnly: Bool {
+        return self == .share
+    }
+
+    /// Action executed in local mobile phone, not on remote server
+    public var isLocal: Bool {
+        return self == .sort
     }
 }
 
@@ -131,7 +154,7 @@ extension Action: JSONDecodable {
         }
         self.name = name
         self.icon = json["icon"].string
-        self.preset = json["preset"].string
+        self.preset = ActionPreset(rawValue: json["preset"].stringValue)
         self.style = ActionStyle(json: json["style"])
         self.label = json["label"].string ?? name
         self.shortLabel = json["shortLabel"].string ?? name
@@ -168,7 +191,7 @@ extension Action: DictionaryConvertible {
             dico["icon"] = icon
         }
         if let preset = preset {
-            dico["preset"] = preset
+            dico["preset"] = preset.rawValue
         }
         if let parameters = parameters {
             dico["parameters"] = parameters.map { $0.dictionary } // XXX not a pure json
