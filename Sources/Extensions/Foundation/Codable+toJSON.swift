@@ -112,3 +112,10 @@ extension OptionalDecodable: Hashable where T: Hashable {
         hasher.combine(wrappedValue)
     }
 }
+
+extension KeyedDecodingContainer {
+
+    func decode<T>(_ type: OptionalDecodable<T>.Type, forKey key: Self.Key) throws -> OptionalDecodable <T> where T: Decodable & RawRepresentable {
+        return try decodeIfPresent(type, forKey: key) ?? OptionalDecodable <T>(wrappedValue: nil)
+    }
+}
