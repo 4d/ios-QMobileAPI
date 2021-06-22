@@ -127,6 +127,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
     case segmented
     case popover
     case sheet
+    case picker
 
     case energy
     case mass
@@ -180,6 +181,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case "segmented": self = .segmented
         case "popover": self = .popover
         case "sheet": self = .sheet
+        case "picker": self = .picker
             
         case "energy": self = .energy
         case "mass": self = .mass
@@ -235,6 +237,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .segmented: return "segmented"
         case .popover: return "popover"
         case .sheet: return "sheet"
+        case .picker: return "picker"
 
         case .energy: return "energy"
         case .mass: return "mass"
