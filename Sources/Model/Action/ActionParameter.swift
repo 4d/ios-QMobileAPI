@@ -37,17 +37,17 @@ public struct ActionParameter {
     /// Placeholder
     public let placeholder: String?
 
+    /// Possible values for parameter.
     public let choiceList: AnyCodable?
-    // public let choiceType: ActionChoiceType?
 
+    /// Specify how to interpret choiceList
+    public let binding: String?
+
+    /// Some to apply to parameter.
     public let rules: [ActionParameterRule]?
 
 }
-/*
-enum ActionChoiceType {
- case push, segmented, popover
-}
-*/
+
 extension ActionParameter {
 
     /// shortcut to known if there is a .mandatory rule
@@ -292,6 +292,7 @@ extension ActionParameter: Codable {
         self.placeholder = try? values.decode(String.self, forKey: .placeholder)
         self.choiceList = try? values.decode(AnyCodable.self, forKey: .choiceList)
         self.rules = try? values.decode([ActionParameterRule].self, forKey: .rules)
+        self.binding = try? values.decode(String.self, forKey: .binding)
     }
 }
 
@@ -419,6 +420,7 @@ extension ActionParameter: JSONDecodable {
         self.defaultField = json["placeholder"].string
         self.rules = json["rules"].array(of: ActionParameterRule.self)
         self.choiceList = AnyCodable(json["choiceList"].rawValue)
+        self.binding = json["binding"].string
     }
 }
 
