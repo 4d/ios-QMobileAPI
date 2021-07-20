@@ -154,8 +154,8 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
     public init?(rawValue: String) {
         switch rawValue {
         case "email": self = .email
-        case "url ": self = .url
-        case "phone ": self = .phone
+        case "url": self = .url
+        case "phone": self = .phone
         case "password": self = .password
         case "zipCode": self = .zipCode
         case "textArea": self = .textArea
