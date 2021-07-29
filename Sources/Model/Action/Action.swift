@@ -59,7 +59,7 @@ public struct Action {
 
     /// Return `true` if must be online.
     public var isOnlineOnly: Bool {
-        return self.preset?.isOnlineOnly ?? false // we use preset until there maybe a JSON data to force it
+        return self.preset?.isOnlineOnly ?? self.style?.isOnlineOnly ?? false // we use preset until there maybe a JSON data to force it
     }
 }
 
@@ -104,6 +104,15 @@ public extension ActionStyle {
             return properties
         default:
             return nil
+        }
+    }
+
+    var isOnlineOnly: Bool {
+        switch self {
+        case .custom(let properties):
+            return properties["onlineOnly"] as? Bool ?? false
+        default:
+            return false
         }
     }
 }
