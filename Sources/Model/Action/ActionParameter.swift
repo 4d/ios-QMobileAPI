@@ -122,7 +122,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
 
     case check // bool
     case `switch` // bool
-    
+
     case push
     case segmented
     case popover
@@ -182,7 +182,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case "popover": self = .popover
         case "sheet": self = .sheet
         case "picker": self = .picker
-            
+
         case "energy": self = .energy
         case "mass": self = .mass
 
