@@ -63,9 +63,12 @@ extension Table {
 }
 
 extension Table {
-    public func predicate(forDeletedRecord deletedRecord: DeletedRecord) -> NSPredicate {
-        let keys = self.keys.values
-        if keys.count == 1, let key = keys.first {
+    public func predicate(forDeletedRecord deletedRecord: DeletedRecord) -> NSPredicate? {
+        let keys = self.keys.values.filter { !$0.safeName.isEmpty }
+        if keys.isEmpty {
+            logger.warning("No key for table \(self.name): \(self.keys.values.map({ $0.name }))")
+            return nil
+        } else if keys.count == 1, let key = keys.first {
             return key.predicate(forDeletedRecord: deletedRecord)
         } else {
             let predicates = keys.map { key in
