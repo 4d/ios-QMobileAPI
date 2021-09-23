@@ -19,7 +19,7 @@ protocol RecordTargetType: ChildTargetType {
 //  /rest/<table>(<key>)/<attributes,>
 /// Returns the data for the specific record defined by the table's primary key
 public class RecordTarget: RecordTargetType, RecordsTargetType {
-‹‡
+
     let parentTarget: TargetType
     public let table: String
     public let key: CustomStringConvertible

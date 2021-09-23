@@ -85,11 +85,11 @@ extension APIManager {
         configure: ((RecordsTargetType) -> Void)? = nil,
         progress: ProgressHandler? = nil,
         completionHandler: @escaping ((Result<B.Importable, APIError>) -> Void)) -> Cancellable {
-            
+
             let target = base.records(from: table.name, attributes: attributes)
             configure?(target)
             target.appendToFilter("\(table.keys.first?.key ?? "")=\(key)")
-            
+
             let completion: Moya.Completion = { result in
                 switch result {
                 case .success(let response):
@@ -109,12 +109,12 @@ extension APIManager {
                     } catch {
                         completionHandler(.failure(.jsonDecodingFailed(error)))
                     }
-                    
+
                 case .failure(let error):
                     completionHandler(.failure(.moya(error)))
                 }
             }
-            
+
             return self.request(target, queue: queue, progress: progress, completion: completion)
         }
 }
