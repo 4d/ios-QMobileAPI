@@ -18,7 +18,8 @@ protocol RecordTargetType: ChildTargetType {
 
 //  /rest/<table>(<key>)/<attributes,>
 /// Returns the data for the specific record defined by the table's primary key
-public class RecordTarget: RecordTargetType {
+public class RecordTarget: RecordTargetType, RecordsTargetType {
+‹‡
     let parentTarget: TargetType
     public let table: String
     public let key: CustomStringConvertible
@@ -54,6 +55,9 @@ public class RecordTarget: RecordTargetType {
         }
     }
     public var method: Moya.Method  = .get
+    public func setHTTPMethod(_ method: Moya.Method) {
+        self.method = method
+    }
 
     public var parameters: [String: Any] = [:]
 
@@ -95,11 +99,11 @@ extension RecordTarget {
         return self
     }
 
-    func setParameter(_ key: RecordsRequestKey, _ value: Any) {
+    public func setParameter(_ key: RecordsRequestKey, _ value: Any) {
         parameters[kRecordsRequestKey + key.rawValue] = value
     }
 
-    func getParameter(_ key: RecordsRequestKey) -> Any? {
+    public func getParameter(_ key: RecordsRequestKey) -> Any? {
         return parameters[kRecordsRequestKey + key.rawValue]
     }
 

@@ -17,7 +17,7 @@ public protocol RecordsTargetType: TargetType, RecordsRequest {
     func getParameter(_ key: RecordsRequestKey) -> Any?
 }
 
-// MARK: Configure request
+// MARK: Configure requestRecordsRequest
 let kRecordsRequestKey = "$"
 
 extension RecordsTargetType {

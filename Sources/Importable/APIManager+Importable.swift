@@ -82,33 +82,39 @@ extension APIManager {
         attributes: [String: Any] = [:],
         initializer: B,
         queue: DispatchQueue? = nil,
+        configure: ((RecordsTargetType) -> Void)? = nil,
         progress: ProgressHandler? = nil,
         completionHandler: @escaping ((Result<B.Importable, APIError>) -> Void)) -> Cancellable {
-
-        let target = base.record(from: table.name, key: key, attributes: attributes)
-
-        let completion: Moya.Completion = { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let jsonObject = try response.mapJSON()
-                    let json = JSON(jsonObject)
-
+            
+            let target = base.records(from: table.name, attributes: attributes)
+            configure?(target)
+            target.appendToFilter("\(table.keys.first?.key ?? "")=\(key)")
+            
+            let completion: Moya.Completion = { result in
+                switch result {
+                case .success(let response):
                     do {
-                        let record = try table.parser.parse(json: json, using: .default, with: initializer)
-                        completionHandler(.success(record))
-                    } catch let error as ImportableParser.Error {
-                        completionHandler(.failure(.recordsDecodingFailed(json, error)))
+                        let jsonObject = try response.mapJSON()
+                        let json = JSON(jsonObject)
+                        do {
+                            let records = try table.parser.parseArray(json: json, using: .default, with: initializer)
+                            if let record = records.first {
+                                completionHandler(.success(record))
+                            } else {
+                                completionHandler(.failure(.jsonMappingFailed(json, B.Importable.self)))
+                            }
+                        } catch let error as ImportableParser.Error {
+                            completionHandler(.failure(.recordsDecodingFailed(json, error)))
+                        }
+                    } catch {
+                        completionHandler(.failure(.jsonDecodingFailed(error)))
                     }
-                } catch {
-                    completionHandler(.failure(.jsonDecodingFailed(error)))
+                    
+                case .failure(let error):
+                    completionHandler(.failure(.moya(error)))
                 }
-
-            case .failure(let error):
-                completionHandler(.failure(.moya(error)))
             }
+            
+            return self.request(target, queue: queue, progress: progress, completion: completion)
         }
-
-        return self.request(target, queue: queue, progress: progress, completion: completion)
-    }
 }
