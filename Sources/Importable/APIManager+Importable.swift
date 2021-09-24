@@ -88,7 +88,11 @@ extension APIManager {
 
             let target = base.records(from: table.name, attributes: attributes)
             configure?(target)
-            target.appendToFilter("\(table.keys.first?.key ?? "")=\(key)")
+            if let string = key as? String, string.contains(" ") {
+                target.appendToFilter("\(table.keys.first?.key ?? "")='\(key)'")
+            } else {
+                target.appendToFilter("\(table.keys.first?.key ?? "")=\(key)")
+            }
 
             let completion: Moya.Completion = { result in
                 switch result {
