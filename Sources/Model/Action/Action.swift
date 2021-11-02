@@ -75,6 +75,8 @@ public enum ActionPreset: String, Codable {
     case share
     /// Sort locally the record (no remote request)
     case sort
+    /// Display an url
+    case url
 
     var isOnlineOnly: Bool {
         return self == .share

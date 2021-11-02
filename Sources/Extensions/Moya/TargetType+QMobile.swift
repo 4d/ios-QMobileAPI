@@ -73,6 +73,10 @@ public class SimpleTarget: TargetType {
     convenience init(baseURL: URLConvertible, path: String, method: Moya.Method = .get, task: Task = .requestPlain) throws {
         self.init(baseURL: try baseURL.asURL(), path: path, method: method, task: task)
     }
+
+    public var url: URL {
+        return self.baseURL.appendingPathComponent(path)
+    }
 }
 
 // MARK: Decodable content
