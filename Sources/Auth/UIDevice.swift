@@ -33,6 +33,7 @@ public struct Device {
 extension Device {
 
     var isSimulator: Bool { return false }
+    var isSimulatorCase: Bool { return false }
 
     static let isJailBroken: Bool = false
 
