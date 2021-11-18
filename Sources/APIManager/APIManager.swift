@@ -169,7 +169,7 @@ public class APIManager {
         // configuration.urlCredentialStorage = .shared
         // configuration.urlCache
         // configuration.requestCachePolicy
-        // configuration.httpShouldSetCookies = true
+        configuration.httpShouldSetCookies = true
         // configuration.shouldUseExtendedBackgroundIdleMode = true
         // configuration.waitsForConnectivity = true // ios11 beta
 
