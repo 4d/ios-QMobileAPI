@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Prephirences
 
 public enum DeviceError: Error {
     case noToken
@@ -560,17 +561,23 @@ extension Device {
     public private(set) static var token: Token? {
         get {
             if _token == nil {
-                let semaphore = DispatchSemaphore(value: 0)
-                fetchToken { result in
-                    _token = try? result.get()
-                    semaphore.signal()
+                let keyChain = KeychainPreferences.sharedInstance
+                _token = keyChain["deviceToken"] as? Token
+                if _token == nil {
+                    let semaphore = DispatchSemaphore(value: 0)
+                    fetchToken { result in
+                        _token = try? result.get()
+                        semaphore.signal()
+                    }
+                    semaphore.wait()
                 }
-                semaphore.wait()
             }
             return _token
         }
         set {
             _token = newValue
+            let keyChain = KeychainPreferences.sharedInstance
+            keyChain["deviceToken"] = newValue
         }
     }
 
@@ -580,9 +587,25 @@ extension Device {
             Device.token = try? result.get() // register token if success.
             completionHandler(result)
         }
+
         if #available(iOS 11, *) {
+            /*let service = DCAppAttestService.shared
+            if service.isSupported {
+                service.generateKey { data, error in
+                    if let error = error {
+                        completionHandler(.failure(DeviceError.underlying(error)))
+                    } else if let data = data {
+                        let token = data
+                        completionHandler(.success(token))
+                    } else {
+                        assertionFailure("No data or error when getting device token")
+                        completionHandler(.failure(.noToken))
+                    }
+                }
+            }*/
+
             let current = DCDevice.current
-            if current.isSupported {
+            if current.isSupported && !Device.current.isSimulatorCase {
                 current.generateToken { data, error in
                     if let error = error {
                         completionHandler(.failure(DeviceError.underlying(error)))
