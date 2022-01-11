@@ -562,7 +562,7 @@ extension Device {
         get {
             if _token == nil {
                 let keyChain = KeychainPreferences.sharedInstance
-                _token = keyChain["deviceToken"] as? Token
+                _token = keyChain.string(forKey: "deviceToken")
                 if _token == nil {
                     let semaphore = DispatchSemaphore(value: 0)
                     fetchToken { result in
