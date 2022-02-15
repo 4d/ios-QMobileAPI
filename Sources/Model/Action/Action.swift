@@ -35,7 +35,13 @@ public struct Action {
     /// Action style.
     public let parameters: [ActionParameter]?
 
-    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: ActionPreset? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = []) {
+    /// Scope
+    public let scope: String?
+
+    /// Table Name if scope need it
+    public let tableName: String?
+
+    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: ActionPreset? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = [], scope: String? = nil, tableName: String? = nil) {
         self.name = name
         self.label = label
         self.shortLabel = shortLabel
@@ -43,6 +49,8 @@ public struct Action {
         self.preset = preset
         self.style = style
         self.parameters = parameters
+        self.scope = scope
+        self.tableName = tableName
     }
 
     // MARK: computed properties
@@ -170,6 +178,8 @@ extension Action: JSONDecodable {
         self.label = json["label"].string ?? name
         self.shortLabel = json["shortLabel"].string ?? name
         self.parameters = json["parameters"].array(of: ActionParameter.self) ?? []
+        self.scope = json["scope"].string
+        self.tableName = json["tableName"].string
     }
 }
 
@@ -209,6 +219,12 @@ extension Action: DictionaryConvertible {
         }
         if let style = style {
             dico["style"] = style.dictionary // XXX not a pure json
+        }
+        if let scope = scope {
+            dico["scope"] = scope
+        }
+        if let tableName = tableName {
+            dico["tableName"] = tableName
         }
         return dico
     }
