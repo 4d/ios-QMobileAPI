@@ -1550,9 +1550,9 @@
 			buildConfigurationList = 48ECC8F11E8A9AF50086E4A5 /* Build configuration list for PBXNativeTarget "QMobileAPI" */;
 			buildPhases = (
 				48EE8AC21F446F2A002C3F08 /* swiftlint autocorrect */,
+				48ECC8E61E8A9AF50086E4A5 /* Headers */,
 				48ECC8E41E8A9AF50086E4A5 /* Sources */,
 				48ECC8E51E8A9AF50086E4A5 /* Frameworks */,
-				48ECC8E61E8A9AF50086E4A5 /* Headers */,
 				48ECC8E71E8A9AF50086E4A5 /* Resources */,
 				485271B21E93931700BABB16 /* swiftlint */,
 			);

@@ -84,7 +84,7 @@ public class AuthTarget: ChildTargetType {
         return [
             "name": bundle[.CFBundleDisplayName] ?? "",
             "id": bundle.bundleIdentifier ?? "",
-            "version": bundle [.CFBundleVersion] ?? ""
+            "version": bundle[.CFBundleVersion] ?? ""
         ]
     }
 

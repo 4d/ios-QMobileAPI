@@ -43,10 +43,10 @@ public class UploadTarget: ChildTargetType {
     public var parameters: [String: String]? {
         var parameters: [String: String] = [:]
         if rawPict != nil {
-            parameters ["$rawPict"] = "true" // XXX maybe allow set rawpicy format if strings
+            parameters["$rawPict"] = "true" // XXX maybe allow set rawpicy format if strings
         } // else  binary = true?
         if let timeout = timeout {
-            parameters ["$timeout"] = "\(timeout)"
+            parameters["$timeout"] = "\(timeout)"
         }
         return parameters.isEmpty ? nil: parameters
     }
