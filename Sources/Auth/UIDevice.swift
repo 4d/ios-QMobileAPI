@@ -152,9 +152,6 @@ extension Device {
     public var systemVersion: String? { return UIDevice.current.systemVersion }
     public var systemName: String? { return UIDevice.current.systemName}
     public var description: String {
-        if isSimulatorCase {
-            return "Simulator (\(model.description))"
-        }
         return model.description
     }
 
