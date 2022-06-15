@@ -27,8 +27,14 @@ extension Key {
     }
 
     public func predicate(for json: JSON) -> NSPredicate {
-        let value = json[self.name].object
-        return predicate(for: value)
+        var jsonAttr = json[self.name]
+        if jsonAttr == JSON.null {
+            jsonAttr = json["__KEY"] // take a chance to use default key
+            if jsonAttr == JSON.null {
+                return nil
+            }
+        }
+        return predicate(for: jsonAttr.object)
     }
 
     public func predicate(for value: Any) -> NSPredicate {
