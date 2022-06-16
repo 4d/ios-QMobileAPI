@@ -54,7 +54,7 @@ extension Table {
         if keys.count == 1, let key = keys.first {
             return key.predicate(for: json)
         } else {
-            let predicates = keys.map { key in
+            let predicates = keys.compactMap { key in
                 key.predicate(for: json)
             }
             return NSCompoundPredicate(type: .and, subpredicates: Array(predicates))
