@@ -26,7 +26,7 @@ extension Key {
         return NSComparisonPredicate(leftExpression: lhs, rightExpression: rhs, modifier: .direct, type: .equalTo, options: [])
     }
 
-    public func predicate(for json: JSON) -> NSPredicate {
+    public func predicate(for json: JSON) -> NSPredicate? {
         var jsonAttr = json[self.name]
         if jsonAttr == JSON.null {
             jsonAttr = json["__KEY"] // take a chance to use default key
