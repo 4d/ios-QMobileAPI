@@ -66,6 +66,7 @@ extension APIManager {
         let target: LogOutTarget = base.logout(token: token)
         let completionHandler: CompletionLogOutHandler = { result in
             self.authToken = nil
+            HTTPCookieStorage.shared.deleteCookies()
             Notification(name: APIManager.logout, object: self).post()
             self.delegate?.didLogout()
             completionHandler(result)
