@@ -29,6 +29,9 @@ public struct Action {
     /// Preset data: edit, share, adding, sort
     @OptionalDecodable public var preset: ActionPreset?
 
+    /// Id of the action
+    public let description: String?
+
     /// Action style.
     public let style: ActionStyle?
 
@@ -41,12 +44,22 @@ public struct Action {
     /// Table Name if scope need it
     public let tableName: String?
 
-    public init(name: String, label: String? = nil, shortLabel: String? = nil, icon: String? = nil, preset: ActionPreset? = nil, style: ActionStyle? = nil, parameters: [ActionParameter] = [], scope: String? = nil, tableName: String? = nil) {
+    public init(name: String,
+                label: String? = nil,
+                shortLabel: String? = nil,
+                icon: String? = nil,
+                preset: ActionPreset? = nil,
+                description: String? = nil,
+                style: ActionStyle? = nil,
+                parameters: [ActionParameter] = [],
+                scope: String? = nil,
+                tableName: String? = nil) {
         self.name = name
         self.label = label
         self.shortLabel = shortLabel
         self.icon = icon
         self.preset = preset
+        self.description = description
         self.style = style
         self.parameters = parameters
         self.scope = scope
@@ -68,6 +81,12 @@ public struct Action {
     /// Return `true` if must be online.
     public var isOnlineOnly: Bool {
         return self.preset?.isOnlineOnly ?? self.style?.isOnlineOnly ?? false // we use preset until there maybe a JSON data to force it
+    }
+
+    /// Return the url for `openURL`.
+    public var url: String? {
+        guard self.preset == .openURL else { return nil }
+        return self.description
     }
 }
 
@@ -180,6 +199,7 @@ extension Action: JSONDecodable {
         self.parameters = json["parameters"].array(of: ActionParameter.self) ?? []
         self.scope = json["scope"].string
         self.tableName = json["tableName"].string
+        self.description = json["description"].string
     }
 }
 
@@ -225,6 +245,9 @@ extension Action: DictionaryConvertible {
         }
         if let tableName = tableName {
             dico["tableName"] = tableName
+        }
+        if let description = description {
+            dico["description"] = description
         }
         return dico
     }
