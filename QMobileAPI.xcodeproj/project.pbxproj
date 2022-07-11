@@ -319,8 +319,6 @@
 		48E22F371EB1F39900A4CE06 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E22F361EB1F39900A4CE06 /* String+Regex.swift */; };
 		48E22F391EB2111600A4CE06 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E22F381EB2111600A4CE06 /* PageInfo.swift */; };
 		48E22F3B1EB23BC400A4CE06 /* CancellableComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E22F3A1EB23BC400A4CE06 /* CancellableComposite.swift */; };
-		48E396A22865DF230093EDDC /* HTTPCookieStorage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E396A12865DF230093EDDC /* HTTPCookieStorage+Ext.swift */; };
-		48E396A32865DF230093EDDC /* HTTPCookieStorage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E396A12865DF230093EDDC /* HTTPCookieStorage+Ext.swift */; };
 		48EA557622291982002E8D18 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48845330222914E60029219E /* Action.swift */; };
 		48EA557722291983002E8D18 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48845330222914E60029219E /* Action.swift */; };
 		48EA557822291983002E8D18 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48845330222914E60029219E /* Action.swift */; };
@@ -340,6 +338,8 @@
 		48ED35181EAF37A100AF3188 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED35171EAF37A100AF3188 /* Catalog.swift */; };
 		48F453F221AEFB010043A302 /* APIManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F453F121AEFB010043A302 /* APIManagerDelegate.swift */; };
 		48F453F321AEFB010043A302 /* APIManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F453F121AEFB010043A302 /* APIManagerDelegate.swift */; };
+		48F53735287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F53734287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift */; };
+		48F53736287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F53734287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift */; };
 		48F8E2BC1F7D0074000080FB /* Emptyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8E2BB1F7D0074000080FB /* Emptyable.swift */; };
 		48F8E2BD1F7D0074000080FB /* Emptyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8E2BB1F7D0074000080FB /* Emptyable.swift */; };
 		48F8E2BE1F7D0074000080FB /* Emptyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8E2BB1F7D0074000080FB /* Emptyable.swift */; };
@@ -632,7 +632,6 @@
 		48E22F361EB1F39900A4CE06 /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		48E22F381EB2111600A4CE06 /* PageInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		48E22F3A1EB23BC400A4CE06 /* CancellableComposite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableComposite.swift; sourceTree = "<group>"; };
-		48E396A12865DF230093EDDC /* HTTPCookieStorage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HTTPCookieStorage+Ext.swift"; path = "../../../../../../4edimension/QMobile/QMobileAPI/Sources/Extensions/Foundation/HTTPCookieStorage+Ext.swift"; sourceTree = "<group>"; };
 		48ECC8E91E8A9AF50086E4A5 /* QMobileAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QMobileAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48ECC8EC1E8A9AF50086E4A5 /* QMobileAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMobileAPI.h; sourceTree = "<group>"; };
 		48ECC8ED1E8A9AF50086E4A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -648,6 +647,7 @@
 		48ED35151EAF298000AF3188 /* URL+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Basic.swift"; sourceTree = "<group>"; };
 		48ED35171EAF37A100AF3188 /* Catalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		48F453F121AEFB010043A302 /* APIManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManagerDelegate.swift; sourceTree = "<group>"; };
+		48F53734287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Ext.swift"; sourceTree = "<group>"; };
 		48F8E2BB1F7D0074000080FB /* Emptyable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emptyable.swift; sourceTree = "<group>"; };
 		48FAC6931E8AB80A003389DC /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		48FAC6961E8AB830003389DC /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -1082,7 +1082,7 @@
 				4837991E1EF0184000F9A726 /* String+Extension.swift */,
 				48E22F361EB1F39900A4CE06 /* String+Regex.swift */,
 				4888CA9D222FD261003EC733 /* Codable+toJSON.swift */,
-				48E396A12865DF230093EDDC /* HTTPCookieStorage+Ext.swift */,
+				48F53734287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1882,7 +1882,7 @@
 				4816016B1EF826C00051BD89 /* InfoTarget.swift in Sources */,
 				481601511EF826A20051BD89 /* Key+Predicate.swift in Sources */,
 				481601691EF826C00051BD89 /* CancellableComposite.swift in Sources */,
-				48E396A32865DF230093EDDC /* HTTPCookieStorage+Ext.swift in Sources */,
+				48F53736287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift in Sources */,
 				C42D032325C0D3E100B1743A /* APIManager+Combine.swift in Sources */,
 				481601471EF826A20051BD89 /* Key.swift in Sources */,
 				486A4BFC225C9EDD00BD24E9 /* ActionSheet.swift in Sources */,
@@ -2042,7 +2042,7 @@
 				4817DA371FE007B100D1AD07 /* WebTestTarget.swift in Sources */,
 				486A4BF9225C9ED900BD24E9 /* ActionParameter.swift in Sources */,
 				487F7FF61F57FA300064AF4B /* ErrorWithCause.swift in Sources */,
-				48E396A22865DF230093EDDC /* HTTPCookieStorage+Ext.swift in Sources */,
+				48F53735287C6AB600FD74A6 /* HTTPCookieStorage+Ext.swift in Sources */,
 				48A045B71EAA334F002A055C /* TargetType+QMobile.swift in Sources */,
 				48ED350E1EAE4B8800AF3188 /* CatalogTarget.swift in Sources */,
 				48FAC6941E8AB80A003389DC /* Attribute.swift in Sources */,
