@@ -84,10 +84,10 @@ public enum ActionPreset: String, Codable {
     /// Sort locally the record (no remote request)
     case sort
     /// Display an url
-    case url
+    case openURL
 
     var isOnlineOnly: Bool {
-        return self == .share
+        return self == .share || self == .openURL
     }
 
     /// Action executed in local mobile phone, not on remote server
