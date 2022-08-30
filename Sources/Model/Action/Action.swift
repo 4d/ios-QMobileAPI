@@ -113,6 +113,11 @@ public enum ActionPreset: String, Codable {
     public var isLocal: Bool {
         return self == .sort
     }
+
+    /// This action preset do not launch an action on server and wait a result (so no pending status for request)
+    public var couldNotBePending: Bool {
+        return isLocal || self == .openURL
+    }
 }
 
 /// Description of type of opeation
