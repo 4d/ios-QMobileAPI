@@ -56,6 +56,10 @@ public final class ActionRequest {
             return self.restErrors?.statusText
         }
 
+        public var isNoLicences: Bool {
+            self.restErrors?.match(.mobile_no_licenses) ?? false
+        }
+
         public static let cancelError = ActionRequest.Error(APIError.request(NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError, userInfo: nil)))
 
     }

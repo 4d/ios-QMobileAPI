@@ -151,6 +151,21 @@ public enum RestErrorCode: Int {
     // db entity model
     case entity_attribute_not_found = 1_500
 
+    // mobile app
+    case mobile_malformed_json = 1_901
+    case mobile_function_not_defined = 1_902
+    case mobile_error_4dfunction = 1_903
+    case mobile_bad_request = 1_904
+    case mobile_error_main_thread = 1_905
+    case mobile_forbidden = 1_906
+    case mobile_unauthorized = 1_907
+    case mobile_max_number_sessions_reached = 1_908
+    case mobile_malformed_url = 1_909
+    case mobile_method_not_applicable = 1_910
+    case mobile_method_called_with_get = 1_911
+    case mobile_success_false  = 1_912
+    case mobile_no_licenses = 1_913
+
     public var message: String {
         return String(describing: self)
     }
