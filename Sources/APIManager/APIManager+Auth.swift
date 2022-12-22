@@ -13,22 +13,22 @@ import Moya
 extension APIManager {
     public typealias CompletionAuthTokenHandler = ((Result<AuthToken, APIError>) -> Void)
     /// Authentificate with login and password.
-    open func authentificate(login: String,
-                             password: String? = nil,
-                             send: AuthTarget.Send = .link,
-                             parameters: [String: Any]? = nil,
-                             callbackQueue: DispatchQueue? = nil,
-                             progress: ProgressHandler? = nil,
-                             completionHandler: @escaping CompletionAuthTokenHandler) -> Cancellable {
+    public func authentificate(login: String,
+                               password: String? = nil,
+                               send: AuthTarget.Send = .link,
+                               parameters: [String: Any]? = nil,
+                               callbackQueue: DispatchQueue? = nil,
+                               progress: ProgressHandler? = nil,
+                               completionHandler: @escaping CompletionAuthTokenHandler) -> Cancellable {
         let target: AuthTarget = base.authentificate(login: login, password: password, send: send, parameters: parameters)
         return self.authentificate(target, callbackQueue: callbackQueue, progress: progress, completionHandler: completionHandler)
     }
 
     /// Authentificate with token.
-    open func authentificate(token: String,
-                             callbackQueue: DispatchQueue? = nil,
-                             progress: ProgressHandler? = nil,
-                             completionHandler: @escaping CompletionAuthTokenHandler) -> Cancellable {
+    public func authentificate(token: String,
+                               callbackQueue: DispatchQueue? = nil,
+                               progress: ProgressHandler? = nil,
+                               completionHandler: @escaping CompletionAuthTokenHandler) -> Cancellable {
         let target: AuthVerificationTarget = base.authentificate(token: token)
         return self.authentificate(target, callbackQueue: callbackQueue, progress: progress, completionHandler: completionHandler)
     }
@@ -59,10 +59,10 @@ extension APIManager {
 
     /// Logout using token in headers or passed token.
     public typealias CompletionLogOutHandler = ((Result<Status, APIError>) -> Void)
-    open func logout(token: String? = nil,
-                     callbackQueue: DispatchQueue? = nil,
-                     progress: ProgressHandler? = nil,
-                     completionHandler: @escaping CompletionLogOutHandler) -> Cancellable {
+    public func logout(token: String? = nil,
+                       callbackQueue: DispatchQueue? = nil,
+                       progress: ProgressHandler? = nil,
+                       completionHandler: @escaping CompletionLogOutHandler) -> Cancellable {
         let target: LogOutTarget = base.logout(token: token)
         let completionHandler: CompletionLogOutHandler = { result in
             self.authToken = nil
@@ -73,4 +73,18 @@ extension APIManager {
         }
         return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
     }
+
+    /// Get info about license for guest mode.
+    public typealias CompletionLicenseCheckHandler = ((Result<Status, APIError>) -> Void)
+    public func licenseCheck(token: String? = nil,
+                             callbackQueue: DispatchQueue? = nil,
+                             progress: ProgressHandler? = nil,
+                             completionHandler: @escaping CompletionLicenseCheckHandler) -> Cancellable {
+        let target: LicenseCheckTarget = base.licenseCheck()
+        let completionHandler: CompletionLicenseCheckHandler = { result in
+            completionHandler(result)
+        }
+        return self.request(target, callbackQueue: callbackQueue, progress: progress, completion: completionHandler)
+    }
+
 }

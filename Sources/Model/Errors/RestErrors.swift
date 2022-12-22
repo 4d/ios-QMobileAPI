@@ -14,7 +14,7 @@ public struct RestErrors: Swift.Error, JSONDecodable, ErrorWithCause {
 
     public init?(json: JSON) {
         statusText = json["statusText"].string
-        if let array = json["__ERROR"].array ?? json["errors"].array {
+        if let array = json["__ERROR"].array ?? json["errors"].array ?? json["__ERRORS"].array {
             errors = array.compactMap { RestError(json: $0) }
         } else if let string = json["__ERROR"].string {
             errors = [RestError(code: .login_failed,
@@ -28,10 +28,8 @@ public struct RestErrors: Swift.Error, JSONDecodable, ErrorWithCause {
 
     // Return true if one error match the code
     public func match(_ code: RestErrorCode) -> Bool {
-        for error in errors {
-            if error.match(code) {
-                return true
-            }
+        for error in errors where error.match(code) {
+            return true
         }
         return false
     }
