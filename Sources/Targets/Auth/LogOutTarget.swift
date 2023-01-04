@@ -57,7 +57,7 @@ extension LogOutTarget: DecodableTargetType {
     public typealias ResultType = Status
 }
 extension BaseTarget {
-    open func logout(token: String? = nil) -> LogOutTarget {
+    public func logout(token: String? = nil) -> LogOutTarget {
         return LogOutTarget(parentTarget: self, token: token)
     }
 }

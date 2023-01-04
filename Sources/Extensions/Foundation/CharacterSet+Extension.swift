@@ -22,10 +22,8 @@ extension CharacterSet {
     ///
     /// - returns: `true` if string match requierement, `false` otherwise
     func isSuperset(ofCharactersIn string: String) -> Bool {
-        for uni in string.unicodeScalars {
-            if !self.contains(uni) {
-                return false
-            }
+        for uni in string.unicodeScalars where !self.contains(uni) {
+            return false
         }
         return true
 

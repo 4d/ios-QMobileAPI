@@ -100,7 +100,7 @@ extension String {
         var randomString: String = ""
 
         for _ in 0..<length {
-            let randomValue = arc4random_uniform(UInt32(base.count))
+            let randomValue = arc4random_uniform(UInt32(base.count)) // swiftlint:disable:this legacy_random
             randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
         }
         return randomString

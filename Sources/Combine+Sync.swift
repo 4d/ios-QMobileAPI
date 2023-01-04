@@ -91,7 +91,7 @@ extension Publisher {
         return OnPublisher(publisher: self).onFailure(callback)
     }
 
-    public func onComplete(_ callback:  @escaping (Result<Output, Failure>) -> Void) -> OnPublisher<Self> {
+    public func onComplete(_ callback: @escaping (Result<Output, Failure>) -> Void) -> OnPublisher<Self> {
         return OnPublisher(publisher: self).onComplete(callback)
     }
     public func receiveOnForeground() -> AnyPublisher<Self.Output, Self.Failure> {

@@ -152,7 +152,7 @@ extension AuthTarget: DecodableTargetType {
 }
 extension BaseTarget {
     /// Return an `AuthTarget` for authentification process.
-    open func authentificate(login: String, password: String? = nil, send: AuthTarget.Send = .link, parameters: [String: Any]? = nil) -> AuthTarget {
+    public func authentificate(login: String, password: String? = nil, send: AuthTarget.Send = .link, parameters: [String: Any]? = nil) -> AuthTarget {
         return AuthTarget(parentTarget: self, login: login, password: password, send: send, parameters: parameters)
     }
 }

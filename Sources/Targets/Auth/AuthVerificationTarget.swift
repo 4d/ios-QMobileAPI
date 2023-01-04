@@ -51,7 +51,7 @@ extension AuthVerificationTarget: DecodableTargetType {
 }
 extension BaseTarget {
     /// Return an `AuthVerificationTarget` for authentification process.
-    open func authentificate(token: String) -> AuthVerificationTarget {
+    public func authentificate(token: String) -> AuthVerificationTarget {
         return AuthVerificationTarget(parentTarget: self, token: token)
     }
 }

@@ -381,7 +381,7 @@ extension Device {
 
         case unknown(String)
 
-        static func from(identifier: String) -> Model {
+        static func from(identifier: String) -> Model { // swiftlint:disable:this function_body_length
             switch identifier {
             case "iPod5,1": return .iPodTouch5
             case "iPod7,1": return .iPodTouch6

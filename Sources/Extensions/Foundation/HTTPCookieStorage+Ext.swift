@@ -10,7 +10,7 @@ import Foundation
 
 extension HTTPCookieStorage {
 
-    open func deleteCookies() {
+    public func deleteCookies() {
         for cookie in self.cookies ?? [] {
             deleteCookie(cookie)
         }

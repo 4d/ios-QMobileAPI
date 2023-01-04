@@ -210,8 +210,8 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
     public var rawValue: String {
         switch self {
         case .email: return "email"
-        case .url : return "url"
-        case .phone : return "phone"
+        case .url: return "url"
+        case .phone: return "phone"
         case .password: return "password"
         case .zipCode: return "zipCode"
         case .textArea: return "textArea"
@@ -230,7 +230,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .stepper: return "stepper"
         case .slider: return "slider"
 
-        case .check : return "check"
+        case .check: return "check"
         case .`switch`: return "`switch`"
 
         case .push: return "push"
@@ -242,7 +242,7 @@ public enum ActionParameterFormat: RawRepresentable, Equatable {
         case .energy: return "energy"
         case .mass: return "mass"
 
-        case .duration : return "duration"
+        case .duration: return "duration"
 
         case .shortDate: return "shortDate"
         case .longDate: return "longDate"

@@ -287,7 +287,7 @@ extension ActionRequest: CustomStringConvertible, CustomDebugStringConvertible {
     }
 
     public var debugDescription: String {
-        return "ActionRequest[\(self.action), state=\(self.state), date=\(self.creationDate), parameters=\(self.parameters), result=\(self.result)]"
+        return "ActionRequest[\(self.action), state=\(self.state), date=\(self.creationDate), parameters=\(self.parameters), result=\(String(describing: self.result))]"
     }
 
 }
