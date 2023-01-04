@@ -407,8 +407,10 @@ extension MoyaError: ErrorWithCause {
 extension MoyaError {
     /// Get `RestErrors` from this error data.
     public var restErrors: RestErrors? {
-        if let data = self.response?.data {
-            return RestErrors(data: data)
+        if let data = self.response?.data,
+           let restErrors = RestErrors(data: data),
+           !restErrors.errors.isEmpty {
+            return restErrors
         }
         return nil
     }

@@ -142,10 +142,8 @@ public struct AttributeNameTransformer {
                 return nil
             }
         }
-        for transformer in AttributeNameTransformer.all {
-            if transformer.couldManage(string) {
-                return transformer
-            }
+        for transformer in AttributeNameTransformer.all where transformer.couldManage(string) {
+            return transformer
         }
         return nil
     }
