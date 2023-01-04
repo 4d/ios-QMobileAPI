@@ -205,7 +205,7 @@ public class APIManager {
         }
         if Prephirences.sharedInstance["server.trust"] as? Bool ?? Device.current.isSimulatorCase {
             let evaluators: [String: ServerTrustEvaluating] = [
-                host: DisabledEvaluator()
+                host: DisabledTrustEvaluator()
             ]
             return ServerTrustManager(evaluators: evaluators)
         }
@@ -331,7 +331,7 @@ extension APIManager {
     }
 
     /// Configure a custom URL request with all needed headers.
-    open func configure(request: URLRequest) -> URLRequest {
+    public func configure(request: URLRequest) -> URLRequest {
         var requestMutable = request
         requestMutable.setValue("1", forHTTPHeaderField: "X-QMobile")
         if let authToken = authToken, authToken.isValidToken, let token = authToken.token {

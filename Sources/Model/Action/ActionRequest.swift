@@ -280,10 +280,16 @@ public final class ActionRequest {
 
 // MARK: - protocol implementation
 
-extension ActionRequest: CustomStringConvertible {
+extension ActionRequest: CustomStringConvertible, CustomDebugStringConvertible {
+
     public var description: String {
-        return "ActionRequest[\(self.action), \(self.creationDate)]"
+        return "ActionRequest[\(self.action), state=\(self.state), data=\(self.creationDate)]"
     }
+
+    public var debugDescription: String {
+        return "ActionRequest[\(self.action), state=\(self.state), date=\(self.creationDate), parameters=\(self.parameters), result=\(self.result)]"
+    }
+
 }
 
 @available(iOS 13.0, macOS 10.15, *)
