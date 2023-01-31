@@ -99,6 +99,9 @@ public class AuthTarget: ChildTargetType {
         } else if let appIdPrefix = bundle["AppIdentifierPrefix"] as? String {
             team["id"] = appIdPrefix.dropLast()
         }
+        if let teamid = team["id"] as? String, teamid == "FAKETEAMID" {
+            team["id"] = ""
+        }
         if let value = bundle["TeamName"] as? String {
             team["name"] = value
         }

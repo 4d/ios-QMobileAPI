@@ -76,8 +76,7 @@ extension APIManager {
 
     /// Get info about license for guest mode.
     public typealias CompletionLicenseCheckHandler = ((Result<Status, APIError>) -> Void)
-    public func licenseCheck(token: String? = nil,
-                             callbackQueue: DispatchQueue? = nil,
+    public func licenseCheck(callbackQueue: DispatchQueue? = nil,
                              progress: ProgressHandler? = nil,
                              completionHandler: @escaping CompletionLicenseCheckHandler) -> Cancellable {
         let target: LicenseCheckTarget = base.licenseCheck()
