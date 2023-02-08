@@ -248,10 +248,10 @@ public class APIManager {
             return ""
         }
         plugins.append(AccessTokenPlugin(tokenClosure: tokenClosure))*/
-        plugins.append(ReceivePlugin { result, _ in
+        plugins.append(ReceivePlugin { result, target in
             if case .failure(let error) = result {
                 let requestError = APIError.request(error)
-                if requestError.isHTTPResponseWith(code: .unauthorized) {
+                if requestError.isHTTPResponseWith(code: .unauthorized) && !(target is LicenseCheckTarget) {
                     logger.warning("Unauthorize access. Invalid credential for next request. \(String(describing: requestError.response))")
                     self.authToken = nil
                 }
@@ -326,6 +326,14 @@ extension APIManager {
         endpoint = endpoint.adding(newHTTPHeaderFields: ["X-QMobile": "1"])
         if let authToken = authToken, authToken.isValidToken, let token = authToken.token {
             endpoint = endpoint.adding(newHTTPHeaderFields: [HTTPRequestHeader.authorization.rawValue: "Bearer \(token)"])
+        } else {
+            #if DEBUG
+            if let authToken = authToken {
+                endpoint = endpoint.adding(newHTTPHeaderFields: ["X-QMobile-Debug-Token": "isValidToken \(authToken.isValidToken), token = \(authToken.token ?? "<empty>")"])
+            } else {
+                endpoint = endpoint.adding(newHTTPHeaderFields: ["X-QMobile-Debug-Token": "None? \(self)"])
+            }
+            #endif
         }
         return endpoint
     }
