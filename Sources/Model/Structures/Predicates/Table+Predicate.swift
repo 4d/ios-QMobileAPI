@@ -10,9 +10,13 @@ import Foundation
 
 // MARK: predicate for Key
 extension Table {
+
+    /// Create a predicate for the importable record using table key (primary keys)
     public func predicate(for importable: RecordImportable, with mapper: AttributeValueMapper = .default) -> NSPredicate? {
         let keys = self.keys.values
-        if keys.count == 1, let key = keys.first {
+        if keys.isEmpty {
+            return nil
+        } else if keys.count == 1, let key = keys.first {
             return key.predicate(for: importable, with: mapper)
         } else {
             let predicates = keys.map { key in
@@ -25,7 +29,10 @@ extension Table {
     /// Create a predicate from this table keys to match passed data
     public func predicate(for value: Any) -> NSPredicate? {
         let keys = self.keys.values
-        if keys.count == 1, let key = keys.first {
+        if keys.isEmpty {
+            return nil
+        }
+        else if keys.count == 1, let key = keys.first {
             return key.predicate(for: value)
         } else {
             if let dico = value as? [String: Any] {
