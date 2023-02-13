@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:QMobileAPI.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "ThirdParty">
+      <FileRef
+         location = "group:Carthage/Checkouts/Prephirences/Prephirences.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/XCGLogger/XCGLogger.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Result/Result.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/SwiftyJSON/SwiftyJSON.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Moya/Moya.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/DeviceKit/DeviceKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Alamofire/Alamofire.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>

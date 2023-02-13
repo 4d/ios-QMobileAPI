@@ -1,0 +1,46 @@
+
+/* cannot decode information from 4d server, could be table, catalog, etc... */
+"api.jsonMappingFailed" = "Cannot decode information from 4D server.";
+
+/* Cannot decode json data for records*/
+"api.recordsDecodingFailed" = "Cannot decord records.";
+
+/* a network issue.*/
+"api.request" = "Network issue";
+
+/* 4d server provide JSON, not able to read it*/
+"api.jsonDecodingFailed" = "Unable to decode information from server (json format).";
+
+/* when doing compute request, we need to receive a number value info string */
+"api.stringDecodingFailed" = "Unable to read information from server (string format).";
+
+"api.rest.entity_not_found" = "Entity not found";
+"api.rest.unsupported_format" = "Unsupported format";
+"api.rest.dataset_not_found" = "Data set not found";
+"api.rest.dataset_not_matching_entitymodel" = "Dataset Not matching table model";
+"api.rest.cannot_build_list_of_attribute" = "Cannot build list of attribute";
+"api.rest.cannot_build_list_of_attribute_for_expand" = "Cannot build list of attribute for expand";
+"api.rest.url_is_malformed" = "URL is malformed";
+"api.rest.ampersand_instead_of_questionmark" = "ampersand_instead_of_questionmark";
+"api.rest.expecting_closing_single_quote" = "expecting_closing_single_quote";
+"api.rest.expecting_closing_double_quote" = "expecting_closing_double_quote";
+"api.rest.wrong_list_of_attribute_to_order_by" = "wrong list of attribute to_order by";
+"api.rest.unknown_rest_query_keyword" = "unknown_rest_query_keyword";
+"api.rest.unknown_rest_method" = "unknown_rest_method";
+"api.rest.method_not_applicable" = "method_not_applicable";
+"api.rest.uag_db_does_not_exist" = "uag_db_does_not_exist";
+"api.rest.subentityset_cannot_be_applied_here" = "subentityset_cannot_be_applied_here";
+"api.rest.empty_attribute_list" = "empty_attribute_list";
+"api.rest.compute_action_does_not_exist" = "compute_action_does_not_exist";
+"api.rest.wrong_logic_operator" = "wrong_logic_operator";
+"api.rest.missing_other_collection_ref" = "missing_other_collection_ref";
+"api.rest.wrong_other_collection_ref" = "wrong_other_collection_ref";
+"api.rest.wrong_transaction_command" = "wrong_transaction_command";
+"api.rest.login_failed" = "login_failed";
+"api.rest.max_number_of_sessions_reached" = "max_number_of_sessions_reached";
+"api.rest.unknown_picture_mime_type" = "unknown_picture_mime_type";
+"api.rest.missing_picture_ref" = "missing_picture_ref";
+"api.rest.missing_blob_ref" = "missing_blob_ref";
+"api.rest.method_name_is_unknown" = "method_name_is_unknown";
+"api.rest.limited_alterations" = "limited_alterations";
+"api.rest.method_called_on_a_HTTP_GET" = "method_called_on_a_HTTP_GET";

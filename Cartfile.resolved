@@ -1,0 +1,7 @@
+github "Alamofire/Alamofire" "4.8.2"
+github "DaveWoodCom/XCGLogger" "7.0.0"
+github "Moya/Moya" "13.0.1"
+github "SwiftyJSON/SwiftyJSON" "5.0.0"
+github "antitypical/Result" "4.1.0"
+github "dennisweissmann/DeviceKit" "2.0.0"
+github "phimage/Prephirences" "5.0.0"

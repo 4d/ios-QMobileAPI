@@ -1,0 +1,49 @@
+{
+    "__entityModel": "Table_Linked",
+    "__GlobalStamp": 0,
+    "__COUNT": 1,
+    "__SENT": 1,
+    "__FIRST": 0,
+    "__ENTITIES": [{
+        "__KEY": "1",
+        "__TIMESTAMP": "2018-11-30T13:19:45.011Z",
+        "__STAMP": 1,
+        "ID": 1,
+        "Field_2": "5789",
+        "Field_3": "7897897",
+        "Link_1_return": {
+            "__ENTITYSET": "/rest/Table_Linked(1)/Link_1_return?$expand=Link_1_return",
+            "__GlobalStamp": 0,
+            "__COUNT": 2,
+            "__SENT": 2,
+            "__FIRST": 0,
+            "__ENTITIES": [{
+                "__KEY": "1",
+                "__TIMESTAMP": "2018-11-30T13:19:29.531Z",
+                "__STAMP": 1,
+                "ID": 1,
+                "link": 1,
+                "Field_3": "qsdqsd",
+                "Link_1": {
+                    "__deferred": {
+                        "uri": "/rest/Table_Linked(1)",
+                        "__KEY": "1"
+                    }
+                }
+            }, {
+                "__KEY": "3",
+                "__TIMESTAMP": "2018-12-05T13:51:12.357Z",
+                "__STAMP": 1,
+                "ID": 3,
+                "link": 1,
+                "Field_3": "zezezer",
+                "Link_1": {
+                    "__deferred": {
+                        "uri": "/rest/Table_Linked(1)",
+                        "__KEY": "1"
+                    }
+                }
+            }]
+        }
+    }]
+}

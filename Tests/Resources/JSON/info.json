@@ -1,0 +1,13 @@
+{
+    "cacheSize":419430400,
+    "usedCache":11082080,
+    "entitySetCount":0,
+    "ProgressInfo":[
+                    {"UserInfo":"indexProgressIndicator","SessionCount":0,"Title":"","CanInterrupt":true},
+                    {"UserInfo":"flushProgressIndicator","SessionCount":0,"Title":"","CanInterrupt":false}
+                    ],
+    "sessionInfo":[
+                   {"sessionID":"A04A2C588B404326888DF4AD62A416DE","lifeTime":60,"expiration":"2017-06-21T13:31:09.826Z","userName":""},
+                   {"sessionID":"BE15921DA24B4B93B932C49619744C2C","lifeTime":60,"expiration":"2017-06-21T13:34:06.106Z","userName":""}
+                   ],
+    "HTTPConnections":[]}

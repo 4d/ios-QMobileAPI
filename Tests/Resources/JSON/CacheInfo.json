@@ -1,0 +1,1323 @@
+{
+    "cacheSize" : 419430400,
+    "usedCache" : 9593552,
+    "cacheObjects" :
+    [
+    {
+        "maxMem" : 419430400,
+        "usedMem" : 9593552,
+        "objects" :
+        [
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "development",
+            "table" : "Resources",
+            "recordsBytes" : 64336,
+            "recordsCount" : 50,
+            "recordsTotalEntries" : 4145,
+            "blobsBytes" : 315590,
+            "blobsCount" : 49,
+            "blobsTotalEntries" : 4144,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "development",
+            "table" : "Schemas",
+            "recordsBytes" : 9216,
+            "recordsCount" : 2,
+            "recordsTotalEntries" : 3,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "wrap",
+            "table" : "Resources",
+            "recordsBytes" : 13632,
+            "recordsCount" : 17,
+            "recordsTotalEntries" : 88,
+            "blobsBytes" : 23710,
+            "blobsCount" : 17,
+            "blobsTotalEntries" : 88,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "wrap",
+            "table" : "Schemas",
+            "recordsBytes" : 0,
+            "recordsCount" : 0,
+            "recordsTotalEntries" : 0,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Progress",
+            "table" : "Resources",
+            "recordsBytes" : 13920,
+            "recordsCount" : 18,
+            "recordsTotalEntries" : 446,
+            "blobsBytes" : 33988,
+            "blobsCount" : 18,
+            "blobsTotalEntries" : 445,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Progress",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D SVG",
+            "table" : "Resources",
+            "recordsBytes" : 31264,
+            "recordsCount" : 21,
+            "recordsTotalEntries" : 2399,
+            "blobsBytes" : 77299,
+            "blobsCount" : 21,
+            "blobsTotalEntries" : 2398,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D SVG",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "pk_wizard",
+            "table" : "Resources",
+            "recordsBytes" : 14496,
+            "recordsCount" : 20,
+            "recordsTotalEntries" : 539,
+            "blobsBytes" : 33068,
+            "blobsCount" : 20,
+            "blobsTotalEntries" : 538,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "pk_wizard",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "runtime",
+            "table" : "Resources",
+            "recordsBytes" : 72288,
+            "recordsCount" : 49,
+            "recordsTotalEntries" : 6299,
+            "blobsBytes" : 317975,
+            "blobsCount" : 49,
+            "blobsTotalEntries" : 6299,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "runtime",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "dbTest",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "dbTest",
+            "table" : "Resources",
+            "recordsBytes" : 17568,
+            "recordsCount" : 30,
+            "recordsTotalEntries" : 32,
+            "blobsBytes" : 29265,
+            "blobsCount" : 30,
+            "blobsTotalEntries" : 31,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "dbTest",
+            "table" : "Client",
+            "recordsBytes" : 0,
+            "recordsCount" : 0,
+            "recordsTotalEntries" : 0,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "dbTest",
+            "table" : "Produit",
+            "recordsBytes" : 0,
+            "recordsCount" : 0,
+            "recordsTotalEntries" : 0,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Labels",
+            "table" : "Resources",
+            "recordsBytes" : 31264,
+            "recordsCount" : 21,
+            "recordsTotalEntries" : 3827,
+            "blobsBytes" : 66551,
+            "blobsCount" : 21,
+            "blobsTotalEntries" : 3826,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Labels",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Report",
+            "table" : "Resources",
+            "recordsBytes" : 30976,
+            "recordsCount" : 20,
+            "recordsTotalEntries" : 2968,
+            "blobsBytes" : 73168,
+            "blobsCount" : 20,
+            "blobsTotalEntries" : 2968,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Report",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Widgets",
+            "table" : "Resources",
+            "recordsBytes" : 30976,
+            "recordsCount" : 20,
+            "recordsTotalEntries" : 1465,
+            "blobsBytes" : 56199,
+            "blobsCount" : 20,
+            "blobsTotalEntries" : 1464,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Widgets",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D WritePro Interface",
+            "table" : "Resources",
+            "recordsBytes" : 22736,
+            "recordsCount" : 20,
+            "recordsTotalEntries" : 1741,
+            "blobsBytes" : 44606,
+            "blobsCount" : 20,
+            "blobsTotalEntries" : 1741,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D WritePro Interface",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "Preferences",
+            "table" : "Resources",
+            "recordsBytes" : 30976,
+            "recordsCount" : 20,
+            "recordsTotalEntries" : 3579,
+            "blobsBytes" : 66374,
+            "blobsCount" : 20,
+            "blobsTotalEntries" : 3578,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "Preferences",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Internal",
+            "table" : "Resources",
+            "recordsBytes" : 13632,
+            "recordsCount" : 17,
+            "recordsTotalEntries" : 634,
+            "blobsBytes" : 31524,
+            "blobsCount" : 17,
+            "blobsTotalEntries" : 634,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D Internal",
+            "table" : "Schemas",
+            "recordsBytes" : 0,
+            "recordsCount" : 0,
+            "recordsTotalEntries" : 0,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D unitTest",
+            "table" : "Resources",
+            "recordsBytes" : 31264,
+            "recordsCount" : 21,
+            "recordsTotalEntries" : 1332,
+            "blobsBytes" : 55041,
+            "blobsCount" : 21,
+            "blobsTotalEntries" : 1332,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D unitTest",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D ViewPro",
+            "table" : "Resources",
+            "recordsBytes" : 14208,
+            "recordsCount" : 19,
+            "recordsTotalEntries" : 782,
+            "blobsBytes" : 35846,
+            "blobsCount" : 19,
+            "blobsTotalEntries" : 782,
+            "lockersBytes" : 0,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1500,
+            "type" : "Data Table",
+            "database" : "4D ViewPro",
+            "table" : "Schemas",
+            "recordsBytes" : 8960,
+            "recordsCount" : 1,
+            "recordsTotalEntries" : 1,
+            "blobsBytes" : 0,
+            "blobsCount" : 0,
+            "blobsTotalEntries" : 0,
+            "lockersBytes" : 8704,
+            "lockersCount" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "development",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "development",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 27,
+            "pagesBytes" : 152064,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "development",
+            "table" : "Resources",
+            "pagesCount" : 13,
+            "pagesBytes" : 62464,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "Preferences",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "Preferences",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 17,
+            "pagesBytes" : 95744,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "Preferences",
+            "table" : "Resources",
+            "pagesCount" : 5,
+            "pagesBytes" : 25088,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "pk_wizard",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "pk_wizard",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "pk_wizard",
+            "table" : "Resources",
+            "pagesCount" : 5,
+            "pagesBytes" : 22016,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "runtime",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "runtime",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 36,
+            "pagesBytes" : 202752,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "runtime",
+            "table" : "Resources",
+            "pagesCount" : 13,
+            "pagesBytes" : 65536,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "dbTest",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 1,
+            "pagesBytes" : 5632,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "dbTest",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 1,
+            "pagesBytes" : 5632,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "dbTest",
+            "table" : "Resources",
+            "pagesCount" : 1,
+            "pagesBytes" : 4096,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Labels",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Labels",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 16,
+            "pagesBytes" : 90112,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Labels",
+            "table" : "Resources",
+            "pagesCount" : 4,
+            "pagesBytes" : 17920,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Widgets",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Widgets",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Widgets",
+            "table" : "Resources",
+            "pagesCount" : 5,
+            "pagesBytes" : 23552,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "wrap",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 1,
+            "pagesBytes" : 5632,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "wrap",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "wrap",
+            "table" : "Resources",
+            "pagesCount" : 1,
+            "pagesBytes" : 4096,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Progress",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 3,
+            "pagesBytes" : 16896,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Progress",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Progress",
+            "table" : "Resources",
+            "pagesCount" : 5,
+            "pagesBytes" : 22016,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D SVG",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D SVG",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 14,
+            "pagesBytes" : 78848,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D SVG",
+            "table" : "Resources",
+            "pagesCount" : 6,
+            "pagesBytes" : 26112,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "dbTest",
+            "table" : "Produit",
+            "field" : "ID",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "dbTest",
+            "table" : "Client",
+            "field" : "ID",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Report",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 3,
+            "pagesBytes" : 16896,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Report",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 20,
+            "pagesBytes" : 112640,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Report",
+            "table" : "Resources",
+            "pagesCount" : 6,
+            "pagesBytes" : 26112,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Internal",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Internal",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D Internal",
+            "table" : "Resources",
+            "pagesCount" : 4,
+            "pagesBytes" : 17920,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D unitTest",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D unitTest",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 8,
+            "pagesBytes" : 45056,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D unitTest",
+            "table" : "Resources",
+            "pagesCount" : 4,
+            "pagesBytes" : 19456,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D ViewPro",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D ViewPro",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 0,
+            "pagesBytes" : 0,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D ViewPro",
+            "table" : "Resources",
+            "pagesCount" : 6,
+            "pagesBytes" : 26112,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D WritePro Interface",
+            "table" : "Resources",
+            "field" : "kind",
+            "pagesCount" : 2,
+            "pagesBytes" : 11264,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D WritePro Interface",
+            "table" : "Resources",
+            "field" : "stamp",
+            "pagesCount" : 11,
+            "pagesBytes" : 61952,
+            "clustersCount" : 0,
+            "clustersBytes" : 0
+        },
+        {
+            "priority" : 1700,
+            "type" : "Index",
+            "database" : "4D WritePro Interface",
+            "table" : "Resources",
+            "pagesCount" : 5,
+            "pagesBytes" : 23552,
+            "fields" :
+            ["kind","id"
+            ]
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "development",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/development.4dbase/development.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "development",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/development.4dbase/development.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "Preferences",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/Preferences.4dbase/Preferences.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "Preferences",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/Preferences.4dbase/Preferences.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "pk_wizard",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/pk_wizard.4dbase/pk_wizard.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "pk_wizard",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/pk_wizard.4dbase/pk_wizard.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "runtime",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/runtime.4dbase/runtime.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "runtime",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/runtime.4dbase/runtime.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "dbTest",
+            "ref" : "/Users/anasstalii/Documents/Project4D/dbTest.4dbase/dbTest.4DB",
+            "primaryTablesBytes" : 128,
+            "allocationBlockMapsCount" : 1,
+            "allocationBlockMapsBytes" : 167936,
+            "allocationBlocksCount" : 1,
+            "allocationBlocsBytes" : 2560
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "dbTest",
+            "ref" : "/Users/anasstalii/Documents/Project4D/dbTest.4dbase/dbTest.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "dbTest",
+            "ref" : "/Users/anasstalii/Documents/Project4D/dbTest.4dbase/dbTest.4DD",
+            "primaryTablesBytes" : 128,
+            "allocationBlockMapsCount" : 1,
+            "allocationBlockMapsBytes" : 196608,
+            "allocationBlocksCount" : 1,
+            "allocationBlocsBytes" : 2560
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Labels",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal User Components/4D Labels.4dbase/4D Labels.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Widgets",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Widgets.4dbase/4D Widgets.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "wrap",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/wrap.4dbase/wrap.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "wrap",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal Components/wrap.4dbase/wrap.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D SVG",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D SVG.4dbase/4D SVG.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Labels",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal User Components/4D Labels.4dbase/4D Labels.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Progress",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Progress.4dbase/4D Progress.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Widgets",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Widgets.4dbase/4D Widgets.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Report",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal User Components/4D Report.4dbase/4D Report.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Report",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Resources/Internal User Components/4D Report.4dbase/4D Report.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Progress",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Progress.4dbase/4D Progress.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D SVG",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D SVG.4dbase/4D SVG.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D unitTest",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D unitTest.4dbase/4D unitTest.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D ViewPro",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D ViewPro.4dbase/4D ViewPro.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D WritePro Interface",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D WritePro Interface.4dbase/4D WritePro Interface.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Internal",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Internal.4dbase/4D Internal.4DB",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D Internal",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D Internal.4dbase/4D Internal.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D unitTest",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D unitTest.4dbase/4D unitTest.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D ViewPro",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D ViewPro.4dbase/4D ViewPro.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        },
+        {
+            "priority" : 1800,
+            "type" : "allocation block map",
+            "database" : "4D WritePro Interface",
+            "ref" : "/Users/anasstalii/Documents/4D/4D.app/Contents/Components/4D WritePro Interface.4dbase/4D WritePro Interface.4DIndy",
+            "primaryTablesBytes" : 0,
+            "allocationBlockMapsCount" : 0,
+            "allocationBlockMapsBytes" : 0,
+            "allocationBlocksCount" : 0,
+            "allocationBlocsBytes" : 0
+        }
+        ]
+    }
+    ]
+}
