@@ -31,8 +31,7 @@ extension Table {
         let keys = self.keys.values
         if keys.isEmpty {
             return nil
-        }
-        else if keys.count == 1, let key = keys.first {
+        } else if keys.count == 1, let key = keys.first {
             return key.predicate(for: value)
         } else {
             if let dico = value as? [String: Any] {
