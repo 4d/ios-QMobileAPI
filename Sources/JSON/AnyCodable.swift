@@ -102,7 +102,7 @@ public struct AnyDecodable: Decodable {
     }
 }
 
-protocol _AnyDecodable {
+protocol _AnyDecodable { // swiftlint:disable:this type_name
     var value: Any { get }
     init<T>(_ value: T?)
 }
@@ -220,7 +220,7 @@ public struct AnyEncodable: Encodable {
     }
 }
 
-protocol _AnyEncodable {
+protocol _AnyEncodable { // swiftlint:disable:this type_name
     var value: Any { get }
     init<T>(_ value: T?)
 }

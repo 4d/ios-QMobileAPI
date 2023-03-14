@@ -92,7 +92,7 @@ extension Date {
     /// Return the tomorrow date
     public static var tomorrow: Date {
         var dateComponents = DateComponents()
-        dateComponents.setValue(1, for: .day); // +1 day
+        dateComponents.setValue(1, for: .day) // +1 day
 
         let now = Date() // Current date
         let tomorrow = Calendar.current.date(byAdding: dateComponents, to: now)  // Add the DateComponents

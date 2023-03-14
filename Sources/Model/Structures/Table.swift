@@ -98,11 +98,9 @@ let ignoredTables = ["__DeletedRecords", "__Uploads"]
 
 // MARK: JSON
 extension Table: JSONDecodable {
-    public init?(json: JSON) {
+    public init?(json: JSON) { // swiftlint:disable:this function_body_length
         let jsonTable: JSON
-
         // Be king by allowing to load one table or multiple tables
-
         // multiple table
         if let dataClass = json[.dataClasses].array?.first {
             jsonTable = dataClass
