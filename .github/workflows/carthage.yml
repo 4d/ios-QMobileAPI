@@ -38,9 +38,9 @@ jobs:
           echo "no log file"
         fi
         exit $code
-    - name: carthage build
+    - name: xcodebuild build
       run: |
         sdk=`xcrun -sdk iphonesimulator -show-sdk-path`
         sdkVersion=`echo $sdk | sed -E 's/.*iPhoneSimulator(.*)\.sdk/\1/'`
 
-        xcodebuild -destination "OS=$sdkVersion,name=iPhone 14" -sdk "iphonesimulator$sdkVersion" ENABLE_TESTABILITY=YES QMobileAPI.xcodeproj
+        xcodebuild -project QMobileAPI.xcodeproj -destination "OS=$sdkVersion,name=iPhone 14" -sdk "iphonesimulator$sdkVersion" ENABLE_TESTABILITY=YES clean build
