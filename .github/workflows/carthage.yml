@@ -24,7 +24,7 @@ jobs:
     - name: carthage build
       run: |
         logFile="build.log"
-        ./carthage.sh build --platform iOS --no-use-binaries --cache-builds --log-path "$logFile"
+        ./.github/carthage.sh build --platform iOS --no-use-binaries --cache-builds --log-path "$logFile"
 
         code=$? 
         if [ -f "$logFile" ]; then
