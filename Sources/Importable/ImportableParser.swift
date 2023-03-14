@@ -110,7 +110,7 @@ public struct ImportableParser {
     public func parseArray<B: ImportableBuilder>(
         json: JSON,
         using mapper: AttributeValueMapper = .default,
-        with builder: B) throws ->  [B.Importable] {
+        with builder: B) throws -> [B.Importable] {
 
         let tableName = try parseTableName(json: json)
 
