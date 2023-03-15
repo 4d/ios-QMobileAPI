@@ -1,16 +1,6 @@
 name: carthage
 
-on:
-  push:
-    paths:
-      - "**/*.swift"
-      - ".github/workflows/carthage.yml"
-      - "Cartfile*"
-  pull_request:
-    paths:
-      - "**/*.swift"
-      - ".github/workflows/carthage.yml"
-      - "Cartfile*"
+on: workflow_dispatch
 
 jobs:
   build:
