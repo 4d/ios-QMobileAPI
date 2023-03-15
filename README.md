@@ -1,5 +1,8 @@
 # QMobileAPI
 
+[![swift](https://github.com/4d/ios-QMobileAPI/actions/workflows/swift.yml/badge.svg)](https://github.com/4d/ios-QMobileAPI/actions/workflows/swift.yml)
+[![carthage](https://github.com/4d/ios-QMobileAPI/actions/workflows/carthage.yml/badge.svg)](https://github.com/4d/ios-QMobileAPI/actions/workflows/carthage.yml)
+
 Network layer to communicate with 4D server rest API
 
 ## Initialize

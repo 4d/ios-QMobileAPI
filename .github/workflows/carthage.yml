@@ -1,0 +1,36 @@
+name: carthage
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: carthage checkout
+      run: carthage checkout
+    - name: carthage build
+      run: |
+        logFile="build.log"
+        ./.github/carthage.sh build --platform iOS --no-use-binaries --cache-builds --log-path "$logFile"
+
+        code=$? 
+        if [ -f "$logFile" ]; then
+          if [ -x "$(command -v xcpretty)" ]; then
+            cat "$logFile" | xcpretty
+          else
+            echo 'xcpretty not installed'
+            cat "$logFile"
+          fi
+        else
+          echo "no log file"
+        fi
+        exit $code
+    - name: xcodebuild build
+      run: |
+        sdk=`xcrun -sdk iphonesimulator -show-sdk-path`
+        sdkVersion=`echo $sdk | sed -E 's/.*iPhoneSimulator(.*)\.sdk/\1/'`
+
+        xcodebuild -project QMobileAPI.xcodeproj -destination "OS=$sdkVersion,name=iPhone 14" -sdk "iphonesimulator$sdkVersion" ENABLE_TESTABILITY=YES clean build
