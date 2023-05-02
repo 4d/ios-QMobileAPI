@@ -32,5 +32,6 @@ jobs:
       run: |
         sdk=`xcrun -sdk iphonesimulator -show-sdk-path`
         sdkVersion=`echo $sdk | sed -E 's/.*iPhoneSimulator(.*)\.sdk/\1/'`
+        xcrun simctl list
 
         xcodebuild -project QMobileAPI.xcodeproj -destination "OS=$sdkVersion,name=iPhone 14" -sdk "iphonesimulator$sdkVersion" ENABLE_TESTABILITY=YES clean build
