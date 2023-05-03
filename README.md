@@ -3,7 +3,7 @@
 [![swift](https://github.com/4d/ios-QMobileAPI/actions/workflows/swift.yml/badge.svg)](https://github.com/4d/ios-QMobileAPI/actions/workflows/swift.yml)
 [![carthage](https://github.com/4d/ios-QMobileAPI/actions/workflows/carthage.yml/badge.svg)](https://github.com/4d/ios-QMobileAPI/actions/workflows/carthage.yml)
 
-Network layer to communicate with 4D server rest API
+Network layer to communicate with 4D server rest API. Part of [iOS SDK](https://github.com/4d/ios-sdk)
 
 ## Initialize
 Create your endpoint to make request
@@ -67,5 +67,3 @@ api.loadCatalog { result in
   }
 }
 ```
-
-### Records
