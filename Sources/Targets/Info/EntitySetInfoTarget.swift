@@ -7,6 +7,7 @@
 //
 import Foundation
 import Moya
+import Alamofire
 
 public class EntitySetInfoTarget: ChildTargetType {
     let parentTarget: TargetType

@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 public class ProgessInfoTarget: ChildTargetType {
     let parentTarget: TargetType

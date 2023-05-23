@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 extension APIManager {
     /// Call method on table.

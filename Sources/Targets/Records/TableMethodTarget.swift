@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 // MARK: method
 /// Returns a record collection based on a table method

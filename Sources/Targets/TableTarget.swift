@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 // rest/$catalog/{TableName}
 /// Returns information about a table and its attributes.

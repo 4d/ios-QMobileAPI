@@ -8,6 +8,8 @@
 
 import Foundation
 import Moya
+import Alamofire
+
 // http://doc.wakanda.org/home2.en.html?&_ga=1.241951170.1945468140.1488380770#/HTTP-REST/Manipulating-Data/compute.303-982894.en.html
 public class ComputeTarget: ChildTargetType {
     let parentTarget: TargetType

@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 import Prephirences
 
 // MARK: authentificate
@@ -111,11 +112,23 @@ public class AuthTarget: ChildTargetType {
         var info: [String: Any] = [
             "id": locale.identifier
         ]
-        if let langage = locale.languageCode {
-            info["code"] = langage
+        if #available(iOS 16, *) {
+            if let langage = locale.language.languageCode?.identifier {
+                info["code"] = langage
+            }
+        } else {
+            if let langage = locale.languageCode {
+                info["code"] = langage
+            }
         }
-        if let region = locale.regionCode {
-            info["region"] = region
+        if #available(iOS 16, *) {
+            if let region = locale.language.region?.identifier {
+                info["region"] = region
+            }
+        } else {
+            if let region = locale.regionCode {
+                info["region"] = region
+            }
         }
         return info
     }

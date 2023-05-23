@@ -8,13 +8,14 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 // http://doc.wakanda.org/home2.en.html?&_ga=1.241951170.1945468140.1488380770#/HTTP-REST/Interacting-with-the-Server/upload.303-1158401.en.html
 
 public class UploadTarget: ChildTargetType {
     let parentTarget: TargetType
     init(parentTarget: BaseTarget,
-         provider: MultipartFormData.FormDataProvider,
+         provider: Moya.MultipartFormData.FormDataProvider,
          name: String = "name",
          fileName: String = "fileName",
          mimeType: String = MimeTypes.default
@@ -26,7 +27,7 @@ public class UploadTarget: ChildTargetType {
         self.mimeType = mimeType
     }
 
-    let provider: MultipartFormData.FormDataProvider
+    let provider: Moya.MultipartFormData.FormDataProvider
     private let multipart = false // seems to be not supported
     public let name: String
     public let fileName: String
@@ -85,9 +86,9 @@ public class UploadTarget: ChildTargetType {
         }
     }
 
-    public var multipartBody: [MultipartFormData] {
+    public var multipartBody: [Moya.MultipartFormData] {
         return [
-            MultipartFormData(provider: provider, name: name, fileName: fileName, mimeType: mimeType)
+            Moya.MultipartFormData(provider: provider, name: name, fileName: fileName, mimeType: mimeType)
         ]
     }
 

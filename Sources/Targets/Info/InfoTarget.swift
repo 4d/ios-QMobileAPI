@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 public class InfoTarget: ChildTargetType {
     let parentTarget: TargetType

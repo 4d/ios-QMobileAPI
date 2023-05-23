@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 public class SessionInfoTarget: ChildTargetType {
     let parentTarget: TargetType

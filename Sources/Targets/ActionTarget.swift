@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 import Prephirences
 
 /// Define alias for action parameters values.

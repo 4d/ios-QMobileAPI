@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 import Prephirences
 
 // MARK: authentificate
