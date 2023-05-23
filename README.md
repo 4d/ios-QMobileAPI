@@ -5,7 +5,21 @@
 
 Network layer to communicate with 4D server rest API. Part of [iOS SDK](https://github.com/4d/ios-sdk)
 
-## Initialize
+## Build
+
+### Using Xcode project
+
+To download dependencies use `carthage checkout`
+
+then open workspace with Xcode and compile
+
+### Using swift package manager
+
+You can open [Package.swift](Package.swift) with Xcode and compile or launch standards command line for swift, see [build.sh](build.sh)
+
+## How to
+
+### Initialize
 Create your endpoint to make request
 
 ```swift
@@ -13,9 +27,9 @@ let url = URL(string: "http://your4dserverURL")!
 let api = APIManager(url: url)
 ```
 
-## Make request
+### Make request
 
-### Server info
+#### Server info
 ```swift
 api.loadStatus { result in
    switch result {
@@ -35,7 +49,7 @@ api.loadInfo { result in
 }
 ```
 
-### Table/Catalog
+#### Table/Catalog
 
 ```swift
 api.loadTables { result in
