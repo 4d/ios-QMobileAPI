@@ -83,6 +83,11 @@ public struct Action {
         return self.preset?.isOnlineOnly ?? self.style?.isOnlineOnly ?? false // we use preset until there maybe a JSON data to force it
     }
 
+    /// Return `true` if must be unique ie. if one not send yet, do not create another one..
+    public var isUnique: Bool {
+        return self.style?.isUnique ?? false
+    }
+
     /// Return the url for `openURL`.
     public var url: String? {
         guard self.preset == .openURL else { return nil }
@@ -145,6 +150,15 @@ public extension ActionStyle {
         switch self {
         case .custom(let properties):
             return properties["onlineOnly"] as? Bool ?? false
+        default:
+            return false
+        }
+    }
+
+    var isUnique: Bool {
+        switch self {
+        case .custom(let properties):
+            return properties["unique"] as? Bool ?? false
         default:
             return false
         }
