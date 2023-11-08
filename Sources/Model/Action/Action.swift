@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Prephirences
 
 /// Represent a mobile action sent 4D server.
 public struct Action {
@@ -85,7 +86,7 @@ public struct Action {
 
     /// Return `true` if must be unique ie. if one not send yet, do not create another one..
     public var isUnique: Bool {
-        return self.style?.isUnique ?? false
+        return self.style?.isUnique ?? (self.preset == .edit && Prephirences.Action.editAreUnique)
     }
 
     /// Return the url for `openURL`.
@@ -93,6 +94,14 @@ public struct Action {
         guard self.preset == .openURL else { return nil }
         return self.description
     }
+}
+
+extension Prephirences {
+
+    public struct Action: Prephirencable {
+        public static let editAreUnique: Bool = instance["editAreUnique"] as? Bool ?? false
+    }
+
 }
 
 /// Action preset that could change the default behaviour.
