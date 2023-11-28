@@ -11,8 +11,9 @@ import Foundation
 // http://doc.wakanda.org/home2.en.html?&_ga=1.241951170.1945468140.1488380770#/HTTP-REST/Interacting-with-the-Server/upload.303-1158401.en.html
 // ex: { "ID": "D507BC03E613487E9B4C2F6A0512FE50" }
 
-public struct UploadResult {
+public struct UploadResult: VeryCodable {
     public let id: String
+    public static var codableClassStoreKey: String { return "UploadResult" }
 }
 
 extension UploadResult: Codable {}
