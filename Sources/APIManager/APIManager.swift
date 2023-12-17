@@ -236,7 +236,11 @@ public class APIManager {
         plugins = []
 
         if logger.isEnabledFor(level: networkLogLevel) {
-            let configuration = NetworkLoggerPlugin.Configuration(output: self.logNetwork, logOptions: [.verbose])
+            var options: NetworkLoggerPlugin.Configuration.LogOptions = [.verbose]
+            if Prephirences.sharedInstance["api.network.curl"] as? Bool ?? false {
+                options = [.verbose, .formatRequestAscURL]
+            }
+            let configuration = NetworkLoggerPlugin.Configuration(output: self.logNetwork, logOptions: options)
             plugins.append(NetworkLoggerPlugin(configuration: configuration))
         }
 
