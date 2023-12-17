@@ -136,10 +136,11 @@ extension Method {
 }
 
 extension RecordsRequest {
-    public func appendToFilter(_ query: String) {
+    public func appendToFilter(_ query: String, conjunction: Attribute.Conjunction = .and) {
         if let currentFilter = self.filter, !currentFilter.isEmpty {
             assert(!query.isDoubleQuoted) // expect query not double quoted
-            self.filter(currentFilter.appendingInDoubleQuote(" AND \(query)"))
+            self.filter(currentFilter
+                .surroundInDoubleQuote("(", ") \(conjunction.rawValue) \(query)"))
         } else {
             self.filter(query)
         }
@@ -160,11 +161,11 @@ extension String {
         return self.trimmingCharacters(in: .doubleQuote)
     }
 
-    func appendingInDoubleQuote(_ string: String) -> String {
+    func surroundInDoubleQuote(_ before: String, _ after: String) -> String {
         guard self.isDoubleQuoted else {
-            return self.appending(string)
+            return before + self.appending(after)
         }
-        return self.trimDoubleQuote.appending(string).doubleQuoted
+        return (before + self.trimDoubleQuote.appending(after)).doubleQuoted
     }
 }
 
