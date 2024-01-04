@@ -45,6 +45,9 @@ public struct Action {
     /// Table Name if scope need it
     public let tableName: String?
 
+    /// Has an action could have only one task at the same time
+    public let hasUniqueTask: Bool?
+
     public init(name: String,
                 label: String? = nil,
                 shortLabel: String? = nil,
@@ -54,7 +57,8 @@ public struct Action {
                 style: ActionStyle? = nil,
                 parameters: [ActionParameter] = [],
                 scope: String? = nil,
-                tableName: String? = nil) {
+                tableName: String? = nil,
+                hasUniqueTask: Bool? = false) {
         self.name = name
         self.label = label
         self.shortLabel = shortLabel
@@ -65,6 +69,7 @@ public struct Action {
         self.parameters = parameters
         self.scope = scope
         self.tableName = tableName
+        self.hasUniqueTask = hasUniqueTask
     }
 
     // MARK: computed properties
@@ -86,7 +91,7 @@ public struct Action {
 
     /// Return `true` if must be unique ie. if one not send yet, do not create another one..
     public var isUnique: Bool {
-        return self.style?.isUnique ?? (self.preset == .edit && Prephirences.Action.editAreUnique)
+        return self.hasUniqueTask ?? (self.preset == .edit && Prephirences.Action.Edit.hasUniqueTask)
     }
 
     /// Return the url for `openURL`.
@@ -97,11 +102,11 @@ public struct Action {
 }
 
 extension Prephirences {
-
     public struct Action: Prephirencable {
-        public static let editAreUnique: Bool = instance["editAreUnique"] as? Bool ?? false
+        public struct Edit: Prephirencable { //swiftlint:disable:this nesting
+            public static let hasUniqueTask: Bool = instance["hasUniqueTask"] as? Bool ?? false
+        }
     }
-
 }
 
 /// Action preset that could change the default behaviour.
@@ -164,14 +169,6 @@ public extension ActionStyle {
         }
     }
 
-    var isUnique: Bool {
-        switch self {
-        case .custom(let properties):
-            return properties["unique"] as? Bool ?? false
-        default:
-            return false
-        }
-    }
 }
 
 // MARK: - Codable
@@ -228,6 +225,7 @@ extension Action: JSONDecodable {
         self.scope = json["scope"].string
         self.tableName = json["tableName"].string
         self.description = json["description"].string
+        self.hasUniqueTask = json["hasUniqueTask"].boolValue
     }
 }
 
@@ -276,6 +274,9 @@ extension Action: DictionaryConvertible {
         }
         if let description = description {
             dico["description"] = description
+        }
+        if let hasUniqueTask = hasUniqueTask {
+            dico["hasUniqueTask"] = hasUniqueTask
         }
         return dico
     }
