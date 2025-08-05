@@ -250,8 +250,18 @@ extension URL {
             }
             // check parsing validity
             if let forURL = urlString, URL(string: forURL) == nil {
-                // invalid, fix it by reseting to default
-                urlString = URL.localhost.absoluteString
+                if !forURL.contains("http://") && !forURL.contains("https://") {
+                    urlString = "http://" + forURL
+                    // if still not parsable, try to fix it
+                    if let forURL = urlString, URL(string: forURL) == nil {
+                        // invalid, fix it by reseting to default
+                        urlString = URL.localhost.absoluteString
+                    }
+                }
+                else {
+                    // invalid, fix it by reseting to default
+                    urlString = URL.localhost.absoluteString
+                }
             }
         }
 
