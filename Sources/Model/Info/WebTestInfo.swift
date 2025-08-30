@@ -37,16 +37,16 @@ public struct ServerVersion {
     public var commercialVersion: String?
 
     public init?(_ string: String?) {
-        guard let versionString = string?.replacingOccurrences(of: "4D/", with: "") else {
+        guard var versionString = string?.replacingOccurrences(of: "4D/", with: "") else {
             return nil
         }
 
-        guard let pos = versionString.firstIndex(of: " ") else {
-            logger.warning("Cannot decode server semVersion \(versionString). No space")
-            return nil
+        if let pos = versionString.firstIndex(of: " ") {
+            versionString = versionString[versionString.startIndex..<pos]
         }
-        let semVer = String(versionString[versionString.startIndex..<pos])
-        self.version =  SemVersion(semVer)
+
+        let semVer = String(versionString)
+        self.version = SemVersion(semVer)
 
         let build = String(versionString[pos..<versionString.endIndex]).replacingOccurrences(of: "(Build ", with: "").replacingOccurrences(of: ")", with: "")
         let builds = build.split(separator: ".")
@@ -81,7 +81,7 @@ public struct SemVersion {
     }
     /// Create an instance from string.
     public init(_ string: String) {
-        let splitted = string.split(separator: ".")
+        let splitted = string.replacingOccurrences(of: "R", with: ".").split(separator: ".")
         if splitted.count > 2 {
             self.max = Int(splitted[0]) ?? 0
             self.min = Int(splitted[1]) ?? 0
