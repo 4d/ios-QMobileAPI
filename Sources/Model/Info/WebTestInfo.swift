@@ -42,13 +42,14 @@ public struct ServerVersion {
         }
 
         if let pos = versionString.firstIndex(of: " ") {
-            versionString = versionString[versionString.startIndex..<pos]
+            versionString = String(versionString[versionString.startIndex..<pos])
         }
 
         let semVer = String(versionString)
         self.version = SemVersion(semVer)
 
-        let build = String(versionString[pos..<versionString.endIndex]).replacingOccurrences(of: "(Build ", with: "").replacingOccurrences(of: ")", with: "")
+        let pos = versionString.firstIndex(of: "(") ?? versionString.endIndex
+        let build = String(versionString[pos..<versionString.endIndex]).replacingOccurrences(of: "(Build ", with: "").replacingOccurrences(of: ")", with: "").trimmingCharacters(in: .whitespaces)
         let builds = build.split(separator: ".")
 
         if builds.count > 1 {
