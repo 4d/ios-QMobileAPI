@@ -4,21 +4,33 @@ on:
   push:
     paths:
       - "**/*.swift"
+      - "Package.resolved"
       - ".github/workflows/swift.yml"
   pull_request:
     paths:
       - "**/*.swift"
+      - "Package.resolved"
       - ".github/workflows/swift.yml"
 
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: macos-15
 
     steps:
-    - uses: actions/checkout@v3
-    - name: swift build ios
+    - uses: actions/checkout@v6
+    - name: Select latest Xcode
       run: |
-        sdk=`xcrun -sdk iphonesimulator -show-sdk-path`
-        sdkVersion=`echo $sdk | sed -E 's/.*iPhoneSimulator(.*)\.sdk/\1/'`
-        swift build  -Xswiftc "-sdk" -Xswiftc "$sdk" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios$sdkVersion-simulator"
+        latest=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -1)
+        if [ -n "$latest" ]; then sudo xcode-select -s "$latest"; fi
+        xcodebuild -version
+        swift --version
+    - name: swift build (SwiftPM)
+      run: swift build --build-tests
+    - name: xcodebuild (iOS Simulator)
+      run: |
+        xcodebuild build \
+          -workspace .swiftpm/xcode/package.xcworkspace \
+          -scheme QMobileAPI \
+          -destination 'generic/platform=iOS Simulator' \
+          -skipPackagePluginValidation

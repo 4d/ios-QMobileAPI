@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,8 +7,8 @@ let package = Package(
     name: "QMobileAPI",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v14)
+        .macOS(.v13),
+        .iOS(.v16)
     ],
     products: [
         .library(name: "QMobileAPI", targets: ["QMobileAPI"])
@@ -40,5 +40,8 @@ let package = Package(
             dependencies: ["QMobileAPI"],
             path: "Tests")
     ],
-    swiftLanguageVersions: [.v5]
+    // Staged Swift 6 migration: modern tooling (tools 6.0) while keeping the
+    // Swift 5 language mode. Next steps: enable StrictConcurrency as warnings,
+    // then flip to .v6 once the data-race warnings are resolved.
+    swiftLanguageModes: [.v5]
 )
